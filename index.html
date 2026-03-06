@@ -1,0 +1,693 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UNEXCA · Registro de Proyectos PNF</title>
+    <style>
+        /* ====== MODO OSCURO ====== */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background: #121212;
+                color: #e0e0e0;
+            }
+            .card {
+                background: #1e1e1e;
+                border-color: #333;
+                box-shadow: 0 20px 40px -12px rgba(0,0,0,0.5);
+            }
+            input, select, textarea {
+                background: #2d2d2d;
+                border-color: #444;
+                color: #e0e0e0;
+            }
+            .comuna-highlight {
+                background: #2a2a2a;
+                border-color: #5fa7e0;
+            }
+            .badge {
+                background: #2a3b4f;
+                color: #a0c6ff;
+            }
+            .section-title {
+                color: #a0c6ff;
+            }
+        }
+
+        /* ====== ESTILOS BASE ====== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        }
+        body {
+            background: #f4f7fc;
+            display: flex;
+            justify-content: center;
+            padding: 2rem 1rem;
+            transition: background 0.3s, color 0.3s;
+        }
+        .container {
+            max-width: 1200px;
+            width: 100%;
+        }
+        .card {
+            background: white;
+            border-radius: 2rem;
+            box-shadow: 0 20px 40px -12px rgba(0,20,50,0.2);
+            padding: 2.5rem 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid #e9eef3;
+        }
+        h1 {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #0b2b4f;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.5rem;
+        }
+        .badge {
+            background: #e6f0ff;
+            color: #1a5c9e;
+            font-weight: 500;
+            font-size: 0.85rem;
+            padding: 0.25rem 1rem;
+            border-radius: 30px;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+        }
+        .section-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #0f3b6a;
+            border-left: 6px solid #2d7ee7;
+            padding-left: 1rem;
+            margin: 2rem 0 1.5rem 0;
+        }
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+        .field {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+        label {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: inherit;
+        }
+        input, select, textarea {
+            padding: 0.85rem 1rem;
+            border: 1.5px solid #dde4ec;
+            border-radius: 18px;
+            font-size: 0.95rem;
+            background: white;
+            outline: none;
+            transition: border 0.2s;
+        }
+        input:focus, select:focus, textarea:focus {
+            border-color: #2d7ee7;
+            box-shadow: 0 0 0 3px rgba(45,126,231,0.15);
+        }
+        .comuna-highlight {
+            background: #f2f9fb;
+            border-radius: 24px;
+            padding: 2rem 1.8rem;
+            border: 2px dashed #5fa7e0;
+            margin: 2rem 0 1rem;
+        }
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            background: #f8fafd;
+            padding: 1.5rem;
+            border-radius: 24px;
+        }
+        .radio-option {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        .radio-option input[type="radio"] {
+            width: 1.2rem;
+            height: 1.2rem;
+            accent-color: #2d7ee7;
+        }
+        .btn-submit {
+            background: #0b2b4f;
+            color: white;
+            font-weight: 700;
+            font-size: 1.1rem;
+            padding: 1.2rem 2.5rem;
+            border: none;
+            border-radius: 40px;
+            width: 100%;
+            cursor: pointer;
+            transition: 0.2s;
+            margin-top: 2.5rem;
+        }
+        .btn-submit:hover {
+            background: #1a4880;
+            transform: scale(1.01);
+        }
+        .footer-note {
+            text-align: center;
+            color: inherit;
+            opacity: 0.8;
+            font-size: 0.9rem;
+            margin-top: 2rem;
+        }
+        .mensaje-exito, .mensaje-error, .mensaje-info {
+            padding: 1rem;
+            border-radius: 40px;
+            text-align: center;
+            margin: 1rem 0;
+            display: none;
+        }
+        .mensaje-exito { background: #d4edda; color: #155724; }
+        .mensaje-error { background: #f8d7da; color: #721c24; }
+        .mensaje-info { background: #d1ecf1; color: #0c5460; }
+
+        /* Pantalla de verificación */
+        #pantallaVerificacion {
+            text-align: center;
+            padding: 2rem;
+        }
+        #pantallaVerificacion input {
+            max-width: 300px;
+            margin: 1rem auto;
+        }
+        .oculto {
+            display: none;
+        }
+        @media (max-width:900px) {
+            .grid-2, .grid-3, .grid-4 { grid-template-columns:1fr; }
+            .card { padding: 1.5rem; }
+        }
+/* Mejor contraste para campos de solo lectura */
+input:read-only, select:disabled, textarea:read-only {
+    background-color: #f0f0f0 !important;
+    color: #000000 !important;
+    font-weight: 500;
+    border-color: #2d7ee7;
+}
+
+/* Para modo oscuro */
+@media (prefers-color-scheme: dark) {
+    input:read-only, select:disabled, textarea:read-only {
+        background-color: #3a3a3a !important;
+        color: #ffffff !important;
+        border-color: #5fa7e0;
+    }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="card">
+        <h1>🏷️ UNEXCA · Registro de Proyectos PNF</h1>
+        <div class="badge">✔️ Verificación de identidad</div>
+
+        <!-- Mensajes globales -->
+        <div id="mensajeExito" class="mensaje-exito"></div>
+        <div id="mensajeError" class="mensaje-error"></div>
+        <div id="mensajeInfo" class="mensaje-info"></div>
+
+        <!-- Pantalla de verificación inicial -->
+        <div id="pantallaVerificacion">
+            <h2>🔐 Verifique su identidad</h2>
+            <p>Ingrese su cédula para comenzar. Si ya está registrado, solo completará información adicional.</p>
+            <input type="text" id="cedulaVerificar" placeholder="V-12345678" autocomplete="off">
+            <button class="btn-submit" id="btnVerificar" style="margin-top:1rem;">Verificar</button>
+        </div>
+
+        <!-- Formulario completo (oculto inicialmente) -->
+        <form id="registroForm" class="oculto">
+            <!-- ========== DATOS DEL ESTUDIANTE ========== -->
+            <div class="section-title">📌 Datos del estudiante</div>
+            <div class="grid-2">
+                <div class="field"><label>Cédula</label><input type="text" id="cedula" name="cedula" placeholder="V-12345678" required></div>
+                <div class="field"><label>Nombres</label><input type="text" id="nombres" name="nombres" required></div>
+            </div>
+            <div class="grid-2">
+                <div class="field"><label>Apellidos</label><input type="text" id="apellidos" name="apellidos" required></div>
+                <div class="field"><label>Correo</label><input type="email" id="correo" name="correo" required></div>
+            </div>
+            <div class="grid-2">
+                <div class="field"><label>Teléfono</label><input type="text" id="telefono" name="telefono" placeholder="0412-1234567" required></div>
+                <div class="field"><label>Fecha de nacimiento</label><input type="date" id="fechaNacimiento" name="fechaNacimiento" required></div>
+            </div>
+            <div class="grid-2">
+                <div class="field"><label>Sexo</label>
+                    <select id="sexo" name="sexo" required>
+                        <option value="">Seleccione</option>
+                        <option value="Masculino">Masculino</option>
+                        <option value="Femenino">Femenino</option>
+                        <option value="Otro">Otro</option>
+                    </select>
+                </div>
+                <div class="field"><label>Fecha de registro</label><input type="date" id="fechaRegistro" name="fechaRegistro" required></div>
+            </div>
+
+            <!-- ========== DATOS ACADÉMICOS ========== -->
+            <div class="section-title">🎓 Datos académicos</div>
+            <div class="grid-3">
+                <div class="field"><label>PNF</label>
+                    <select id="pnf" name="pnf" required>
+                        <option value="">Seleccione</option>
+                        <option value="Administración">Administración</option>
+                        <option value="Informática">Informática</option>
+                        <option value="Construcción Civil">Construcción Civil</option>
+                        <option value="Agroalimentación">Agroalimentación</option>
+                        <option value="Electricidad">Electricidad</option>
+                        <option value="Mecánica">Mecánica</option>
+                        <option value="Otro">Otro (especificar abajo)</option>
+                    </select>
+                </div>
+                <div class="field"><label>Trayecto</label>
+                    <select id="trayecto" name="trayecto" required>
+                        <option value="">Seleccione</option>
+                        <option value="I">I</option>
+                        <option value="II">II</option>
+                        <option value="III">III</option>
+                        <option value="IV">IV</option>
+                    </select>
+                </div>
+                <div class="field"><label>Semestre</label>
+                    <select id="semestre" name="semestre" required>
+                        <option value="">Seleccione</option>
+                        <option value="I">I</option>
+                        <option value="II">II</option>
+                    </select>
+                </div>
+            </div>
+            <div class="grid-3">
+                <div class="field"><label>Turno</label>
+                    <select id="turno" name="turno" required>
+                        <option value="">Seleccione</option>
+                        <option value="Mañana">Mañana</option>
+                        <option value="Tarde">Tarde</option>
+                        <option value="Noche">Noche</option>
+                    </select>
+                </div>
+                <div class="field"><label>Sección</label><input type="text" id="seccion" name="seccion" placeholder="Ej: A"></div>
+                <div class="field"><label>Tutor académico</label><input type="text" id="tutorAcademico" name="tutorAcademico" required></div>
+            </div>
+            <div class="grid-3">
+                <div class="field"><label>Tutor comunitario</label><input type="text" id="tutorComunitario" name="tutorComunitario"></div>
+                <div class="field"><label>Línea de investigación</label>
+                    <select id="lineaInvestigacion" name="lineaInvestigacion" required>
+                        <option value="">Seleccione</option>
+                        <option value="Desarrollo Comunitario">Desarrollo Comunitario</option>
+                        <option value="Tecnología y Sociedad">Tecnología y Sociedad</option>
+                        <option value="Gestión Pública">Gestión Pública</option>
+                        <option value="Educación Popular">Educación Popular</option>
+                        <option value="Otra">Otra (especificar abajo)</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- ========== UBICACIÓN (CON COMUNAS) ========== -->
+            <div class="section-title">🌎 Ubicación (según censo comunal)</div>
+            <div class="grid-3">
+                <div class="field"><label>Estado</label><select id="estadoSelect" name="estado" required><option value="">Cargando...</option></select></div>
+                <div class="field"><label>Municipio</label><select id="municipioSelect" name="municipio" disabled required><option value="">Primero seleccione estado</option></select></div>
+                <div class="field"><label>Parroquia</label><select id="parroquiaSelect" name="parroquia" disabled required><option value="">Primero seleccione municipio</option></select></div>
+            </div>
+            <div class="comuna-highlight">
+                <div class="grid-2">
+                    <div class="field">
+                        <label style="font-size:1.1rem;">🧩 Comuna</label>
+                        <select id="comunaSelect" name="comuna" disabled required><option value="">Primero seleccione parroquia</option></select>
+                    </div>
+                    <div class="field">
+                        <label style="font-size:1.1rem;">🏘️ Consejo comunal (opcional)</label>
+                        <input type="text" id="consejoComunal" name="consejoComunal" maxlength="70" placeholder="Nombre del consejo comunal">
+                    </div>
+                </div>
+            </div>
+            <div class="field">
+                <label>Dirección detallada</label>
+                <textarea id="direccion" name="direccion" rows="2" placeholder="Ej: Sector, calle, referencia..."></textarea>
+            </div>
+
+            <!-- ========== DATOS DEL PROYECTO ========== -->
+            <div class="section-title">📋 Datos del proyecto</div>
+            <div class="grid-2">
+                <div class="field"><label>Tipo de proyecto</label>
+                    <select id="tipoProyecto" name="tipoProyecto" required>
+                        <option value="">Seleccione</option>
+                        <option value="Proyecto de Investigación (T.S.U.)">Proyecto de Investigación (T.S.U.)</option>
+                        <option value="Trabajo de Grado (Lic/Ing)">Trabajo de Grado (Lic/Ing)</option>
+                        <option value="Proyecto Socio-comunitario">Proyecto Socio-comunitario</option>
+                    </select>
+                </div>
+                <div class="field"><label>Título del proyecto</label><input type="text" id="tituloProyecto" name="tituloProyecto" required></div>
+            </div>
+            <div class="field"><label>Descripción general</label><textarea id="descripcion" name="descripcion" rows="3" required></textarea></div>
+            <div class="grid-3">
+                <div class="field"><label>Código interno (si aplica)</label><input type="text" id="codigoInterno" name="codigoInterno"></div>
+                <div class="field"><label>Fecha de inicio</label><input type="date" id="fechaInicio" name="fechaInicio" required></div>
+                <div class="field"><label>Fecha de fin estimada</label><input type="date" id="fechaFinEstimada" name="fechaFinEstimada" required></div>
+            </div>
+            <div class="grid-3">
+                <div class="field"><label>Estado actual</label>
+                    <select id="estadoActual" name="estadoActual" required>
+                        <option value="En proceso">En proceso</option>
+                        <option value="En revisión">En revisión</option>
+                        <option value="Aprobado">Aprobado</option>
+                        <option value="Finalizado">Finalizado</option>
+                        <option value="Observado">Observado</option>
+                    </select>
+                </div>
+                <div class="field"><label>Prioridad</label>
+                    <select id="prioridad" name="prioridad" required>
+                        <option value="Alta">Alta</option>
+                        <option value="Media">Media</option>
+                        <option value="Baja">Baja</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- ========== SEGUIMIENTO POR MOMENTOS ========== -->
+            <div class="section-title">⏳ Seguimiento por momentos (PNF)</div>
+            <div class="grid-4">
+                <div class="field"><label>Momento I (Diagnóstico)</label><input type="number" min="0" max="100" step="5" id="avanceI" name="avanceI" placeholder="% avance"></div>
+                <div class="field"><label>Momento II (Reflexión teórica)</label><input type="number" min="0" max="100" step="5" id="avanceII" name="avanceII" placeholder="% avance"></div>
+                <div class="field"><label>Momento III (Metodología)</label><input type="number" min="0" max="100" step="5" id="avanceIII" name="avanceIII" placeholder="% avance"></div>
+                <div class="field"><label>Momento IV (Propuesta)</label><input type="number" min="0" max="100" step="5" id="avanceIV" name="avanceIV" placeholder="% avance"></div>
+                <div class="field"><label>Momento V (Resultados)</label><input type="number" min="0" max="100" step="5" id="avanceV" name="avanceV" placeholder="% avance"></div>
+                <div class="field"><label>Momento VI (Reflexiones finales)</label><input type="number" min="0" max="100" step="5" id="avanceVI" name="avanceVI" placeholder="% avance"></div>
+            </div>
+
+            <!-- ========== EQUIPO Y RECURSOS ========== -->
+            <div class="section-title">💰 Equipo y recursos</div>
+            <div class="grid-2">
+                <div class="field"><label>Sponsor / Cliente</label><input type="text" id="sponsor" name="sponsor"></div>
+                <div class="field"><label>Coordinador</label><input type="text" id="coordinador" name="coordinador" value="(estudiante)"></div>
+            </div>
+            <div class="grid-3">
+                <div class="field"><label>Presupuesto total (Bs.)</label><input type="number" step="0.01" id="presupuestoTotal" name="presupuestoTotal"></div>
+                <div class="field"><label>Presupuesto ejecutado</label><input type="number" step="0.01" id="presupuestoEjecutado" name="presupuestoEjecutado"></div>
+                <div class="field"><label>Recursos críticos</label><input type="text" id="recursosCriticos" name="recursosCriticos" placeholder="Ej: computadoras, software..."></div>
+            </div>
+
+            <!-- ========== DOCUMENTACIÓN ========== -->
+            <div class="section-title">📎 Documentación</div>
+            <div class="grid-2">
+                <div class="field"><label>Acta de constitución (URL)</label><input type="url" id="actaUrl" name="actaUrl" placeholder="https://..."></div>
+                <div class="field"><label>Enlace a repositorio</label><input type="url" id="enlaceRepo" name="enlaceRepo" placeholder="Drive, GitHub..."></div>
+            </div>
+
+            <!-- ========== INTERÉS ACADÉMICO ========== -->
+            <div class="section-title">🎯 Interés académico</div>
+            <div class="radio-group">
+                <div class="radio-option"><input type="radio" name="interes" id="interes_politico" value="Político (Patriótico Bolivariano)"><label for="interes_politico">Político (Patriótico Bolivariano)</label></div>
+                <div class="radio-option"><input type="radio" name="interes" id="interes_material" value="Material (Opción y Servicio)"><label for="interes_material">Material (Opción y Servicio)</label></div>
+                <div class="radio-option"><input type="radio" name="interes" id="interes_humano" value="Humano (Social / Popular)"><label for="interes_humano">Humano (Social / Popular)</label></div>
+                <div class="radio-option"><input type="radio" name="interes" id="interes_regulatorio" value="Regulatorio (Orden Interno)"><label for="interes_regulatorio">Regulatorio (Orden Interno)</label></div>
+                <div class="radio-option"><input type="radio" name="interes" id="interes_operativo" value="Operativo (Movilización y Requisición)"><label for="interes_operativo">Operativo (Movilización y Requisición)</label></div>
+                <div class="radio-option"><input type="radio" name="interes" id="interes_ninguno" value="Ninguno" checked><label for="interes_ninguno">Ninguno</label></div>
+            </div>
+
+            <!-- ========== OBSERVACIONES ========== -->
+            <div class="section-title">📝 Observaciones</div>
+            <div class="field">
+                <textarea id="observaciones" name="observaciones" placeholder="Cualquier comentario adicional..."></textarea>
+            </div>
+
+            <button type="submit" class="btn-submit" id="btnEnviar">✔️ Enviar registro completo</button>
+        </form>
+
+        <div class="footer-note">⚡ Datos guardados en Google Sheets.</div>
+    </div>
+</div>
+
+<script>
+// ========== CONFIGURACIÓN ==========
+const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxX7h0XI1R6PnDuCzAnnC0ZNDIB6opR7xKg8Cl3PPYkRzlIjymtEajPdPxSZuKW_8l6nA/exec'; // ← REEMPLAZA CON TU URL REAL
+
+let datosComunas = null;
+let cedulaVerificada = false;
+
+// ========== CARGA DE COMUNAS ==========
+fetch('comunas.json')
+    .then(response => response.json())
+    .then(data => {
+        datosComunas = data;
+        inicializarSelectores();
+    })
+    .catch(error => {
+        console.error('Error cargando comunas.json:', error);
+        document.getElementById('estadoSelect').innerHTML = '<option value="">Error al cargar</option>';
+    });
+
+function inicializarSelectores() {
+    const estadoSel = document.getElementById('estadoSelect');
+    estadoSel.innerHTML = '<option value="">-- Seleccione estado --</option>';
+    datosComunas.estados.sort((a,b) => a.nombre.localeCompare(b.nombre)).forEach(estado => {
+        const option = document.createElement('option');
+        option.value = estado.nombre;
+        option.textContent = estado.nombre;
+        estadoSel.appendChild(option);
+    });
+    estadoSel.addEventListener('change', cargarMunicipios);
+}
+
+function cargarMunicipios() {
+    const estadoNombre = document.getElementById('estadoSelect').value;
+    const municipioSel = document.getElementById('municipioSelect');
+    const parroquiaSel = document.getElementById('parroquiaSelect');
+    const comunaSel = document.getElementById('comunaSelect');
+
+    municipioSel.innerHTML = '<option value="">-- Seleccione municipio --</option>';
+    parroquiaSel.innerHTML = '<option value="">-- Seleccione parroquia --</option>';
+    comunaSel.innerHTML = '<option value="">-- Seleccione parroquia --</option>';
+    municipioSel.disabled = !estadoNombre;
+    parroquiaSel.disabled = true;
+    comunaSel.disabled = true;
+
+    if (!estadoNombre) return;
+
+    const estado = datosComunas.estados.find(e => e.nombre === estadoNombre);
+    if (!estado) return;
+
+    estado.municipios.sort((a,b) => a.nombre.localeCompare(b.nombre)).forEach(m => {
+        const option = document.createElement('option');
+        option.value = m.nombre;
+        option.textContent = m.nombre;
+        municipioSel.appendChild(option);
+    });
+    municipioSel.addEventListener('change', cargarParroquias);
+}
+
+function cargarParroquias() {
+    const estadoNombre = document.getElementById('estadoSelect').value;
+    const municipioNombre = document.getElementById('municipioSelect').value;
+    const parroquiaSel = document.getElementById('parroquiaSelect');
+    const comunaSel = document.getElementById('comunaSelect');
+
+    parroquiaSel.innerHTML = '<option value="">-- Seleccione parroquia --</option>';
+    comunaSel.innerHTML = '<option value="">-- Seleccione parroquia --</option>';
+    parroquiaSel.disabled = !municipioNombre;
+    comunaSel.disabled = true;
+
+    if (!municipioNombre) return;
+
+    const estado = datosComunas.estados.find(e => e.nombre === estadoNombre);
+    const municipio = estado.municipios.find(m => m.nombre === municipioNombre);
+    if (!municipio) return;
+
+    municipio.parroquias.sort((a,b) => a.nombre.localeCompare(b.nombre)).forEach(p => {
+        const option = document.createElement('option');
+        option.value = p.nombre;
+        option.textContent = p.nombre;
+        parroquiaSel.appendChild(option);
+    });
+    parroquiaSel.addEventListener('change', cargarComunas);
+}
+
+function cargarComunas() {
+    const estadoNombre = document.getElementById('estadoSelect').value;
+    const municipioNombre = document.getElementById('municipioSelect').value;
+    const parroquiaNombre = document.getElementById('parroquiaSelect').value;
+    const comunaSel = document.getElementById('comunaSelect');
+
+    comunaSel.innerHTML = '<option value="">-- Seleccione comuna --</option>';
+    comunaSel.disabled = !parroquiaNombre;
+
+    if (!parroquiaNombre) return;
+
+    const estado = datosComunas.estados.find(e => e.nombre === estadoNombre);
+    const municipio = estado.municipios.find(m => m.nombre === municipioNombre);
+    const parroquia = municipio.parroquias.find(p => p.nombre === parroquiaNombre);
+    if (!parroquia) return;
+
+    parroquia.comunas.sort().forEach(comuna => {
+        const option = document.createElement('option');
+        option.value = comuna;
+        option.textContent = comuna;
+        comunaSel.appendChild(option);
+    });
+}
+
+// ========== VERIFICACIÓN DE CÉDULA (CORREGIDA) ==========
+document.getElementById('btnVerificar').addEventListener('click', async function() {
+    const cedula = document.getElementById('cedulaVerificar').value.trim();
+    if (!cedula) {
+        mostrarMensaje('Por favor ingrese una cédula', 'error');
+        return;
+    }
+
+    try {
+        const response = await fetch(`${GOOGLE_APPS_SCRIPT_URL}?cedula=${encodeURIComponent(cedula)}`);
+        const result = await response.json();
+
+        if (result.error) throw new Error(result.error);
+
+        // Guardar la cédula en el campo del formulario
+        document.getElementById('cedula').value = cedula;
+
+        // Función auxiliar para habilitar/deshabilitar campos
+        const setCamposEstado = (habilitar) => {
+            const campos = [
+                'nombres', 'apellidos', 'correo', 'telefono', 'fechaNacimiento',
+                'sexo', 'fechaRegistro', 'pnf', 'trayecto', 'semestre', 'turno',
+                'seccion', 'tutorAcademico', 'tutorComunitario', 'lineaInvestigacion'
+            ];
+            campos.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) {
+                    if (habilitar) {
+                        el.readOnly = false;
+                        el.disabled = false;
+                    } else {
+                        el.readOnly = true;
+                        el.disabled = true;
+                    }
+                }
+            });
+        };
+
+        if (result.existe && result.datos) {
+            // ===== CÉDULA EXISTE: PRE-CARGAR DATOS =====
+            const d = result.datos;
+            document.getElementById('nombres').value = d.Nombres || '';
+            document.getElementById('apellidos').value = d.Apellidos || '';
+            document.getElementById('correo').value = d.Correo || '';
+            document.getElementById('telefono').value = d.Teléfono || '';
+            document.getElementById('fechaNacimiento').value = d.FechaNacimiento || '';
+            document.getElementById('sexo').value = d.Sexo || '';
+            document.getElementById('fechaRegistro').value = d.FechaRegistro || '';
+            document.getElementById('pnf').value = d.PNF || '';
+            document.getElementById('trayecto').value = d.Trayecto || '';
+            document.getElementById('semestre').value = d.Semestre || '';
+            document.getElementById('turno').value = d.Turno || '';
+            document.getElementById('seccion').value = d.Sección || '';
+            document.getElementById('tutorAcademico').value = d.TutorAcadémico || '';
+            document.getElementById('tutorComunitario').value = d.TutorComunitario || '';
+            document.getElementById('lineaInvestigacion').value = d.LíneaInvestigación || '';
+
+            // Deshabilitar campos personales
+            setCamposEstado(false);
+            mostrarMensaje('✅ Datos recuperados. Complete la información del proyecto.', 'exito');
+
+        } else {
+            // ===== CÉDULA NUEVA: FORMULARIO EN BLANCO =====
+            // Limpiar todos los campos del formulario
+            document.getElementById('registroForm').reset();
+            
+            // Asegurar que la cédula quede con el valor ingresado
+            document.getElementById('cedula').value = cedula;
+
+            // Habilitar todos los campos
+            setCamposEstado(true);
+
+            mostrarMensaje('🆕 Nuevo registro. Complete todos los datos.', 'info');
+        }
+
+        // Ocultar pantalla de verificación y mostrar formulario
+        document.getElementById('pantallaVerificacion').style.display = 'none';
+        document.getElementById('registroForm').classList.remove('oculto');
+
+    } catch (error) {
+        mostrarMensaje('Error al verificar: ' + error.message, 'error');
+    }
+});
+
+function mostrarMensaje(texto, tipo) {
+    const divExito = document.getElementById('mensajeExito');
+    const divError = document.getElementById('mensajeError');
+    const divInfo = document.getElementById('mensajeInfo');
+    
+    divExito.style.display = 'none';
+    divError.style.display = 'none';
+    divInfo.style.display = 'none';
+
+    if (tipo === 'error') {
+        divError.textContent = texto;
+        divError.style.display = 'block';
+        setTimeout(() => divError.style.display = 'none', 5000);
+    } else if (tipo === 'exito') {
+        divExito.textContent = texto;
+        divExito.style.display = 'block';
+        setTimeout(() => divExito.style.display = 'none', 5000);
+    } else {
+        divInfo.textContent = texto;
+        divInfo.style.display = 'block';
+        setTimeout(() => divInfo.style.display = 'none', 5000);
+    }
+}
+
+// ========== ENVÍO DEL FORMULARIO ==========
+document.getElementById('registroForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    const btn = document.getElementById('btnEnviar');
+    btn.disabled = true;
+    btn.textContent = '⏳ Enviando...';
+
+    const formData = new FormData(this);
+    const data = Object.fromEntries(formData.entries());
+    data.timestamp = new Date().toISOString();
+
+    try {
+        const response = await fetch(GOOGLE_APPS_SCRIPT_URL, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        });
+
+        mostrarMensaje('✅ ¡Registro enviado con éxito!', 'exito');
+        this.reset();
+        // Volver a pantalla de verificación
+        document.getElementById('registroForm').classList.add('oculto');
+        document.getElementById('pantallaVerificacion').style.display = 'block';
+        document.getElementById('cedulaVerificar').value = '';
+        document.getElementById('interes_ninguno').checked = true;
+    } catch (error) {
+        console.error(error);
+        mostrarMensaje('❌ Error al enviar. Intenta de nuevo.', 'error');
+    } finally {
+        btn.disabled = false;
+        btn.textContent = '✔️ Enviar registro completo';
+    }
+});
+</script>
+</body>
+</html>
