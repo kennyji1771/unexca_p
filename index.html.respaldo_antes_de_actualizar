@@ -708,7 +708,7 @@
 
     <script>
         // ========== CONFIGURACIÓN ==========
-        const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxX7h0XI1R6PnDuCzAnnC0ZNDIB6opR7xKg8Cl3PPYkRzlIjymtEajPdPxSZuKW_8l6nA/exec';
+        const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxX7h0XI1R6PnDuCzAnnC0ZNDIB6opR7xKg8Cl3PPYkRzlIjymtEajPdPxSZuKW_8l6nA/exec'; // ← URL REAL DE GOOGLE APPS SCRIPT
         console.log('🚀 Script iniciado');
 
         let datosComunas = null;
@@ -738,7 +738,6 @@
             .then(data => {
                 profesores = data;
                 console.log('✅ Profesores cargados:', profesores.length);
-                // Mostrar algunos valores de turno para depuración
                 if (profesores.length > 0) {
                     const turnosUnicos = [...new Set(profesores.map(p => p.Turno).filter(t => t))];
                     console.log('📌 Turnos disponibles en profesores.json:', turnosUnicos);
@@ -752,7 +751,7 @@
             })
             .catch(error => console.error('❌ Error cargando profesores.json:', error));
 
-        // ========== FUNCIÓN DE MENSAJE ROBUSTA ==========
+        // ========== FUNCIÓN DE MENSAJE ==========
         function mostrarMensaje(texto, tipo) {
             const divExito = document.getElementById('mensajeExito');
             const divError = document.getElementById('mensajeError');
@@ -876,7 +875,7 @@
             });
         }
 
-        // ========== ASIGNACIÓN AUTOMÁTICA DEL TUTOR (VERSIÓN FLEXIBLE) ==========
+        // ========== ASIGNACIÓN AUTOMÁTICA DEL TUTOR ==========
         function actualizarTutor() {
             const trayecto = document.getElementById('trayecto');
             const turno = document.getElementById('turno');
@@ -886,18 +885,18 @@
             const trayectoVal = trayecto.value;
             const turnoVal = turno.value;
 
+            // Mapeo de turnos según los valores reales en profesores.json
+            const mapaTurnos = {
+                'MAÑANA': 'MATUTINO',
+                'TARDE': 'TARDE',   // Ajusta según lo que veas en la consola
+                'NOCHE': 'NOCTURNO'
+            };
+            let turnoJson = mapaTurnos[turnoVal] || turnoVal;
+
             if (!trayectoVal || !turnoVal || profesores.length === 0) {
                 tutorInput.value = '';
                 return;
             }
-
-            // Mapeo de turnos (ajusta según los valores que viste en la consola)
-            const mapaTurnos = {
-                'MAÑANA': 'MATUTINO',
-                'TARDE': 'TARDE',
-                'NOCHE': 'NOCTURNO'
-            };
-            let turnoJson = mapaTurnos[turnoVal] || turnoVal;
 
             console.log(`🔍 Buscando tutor: trayecto=${trayectoVal}, turno_form=${turnoVal} -> turno_json=${turnoJson}`);
 
@@ -1024,6 +1023,7 @@
                         body: JSON.stringify(data)
                     });
 
+                    // Con no-cors no podemos leer la respuesta, asumimos éxito
                     mostrarMensaje('✅ ¡Registro enviado con éxito!', 'exito');
                     this.reset();
                     this.classList.add('oculto');

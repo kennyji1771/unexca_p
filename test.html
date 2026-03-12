@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prueba</title>
+</head>
+<body>
+    <div id="verificacion">
+        <input type="text" id="cedulaVerificar" placeholder="Cédula">
+        <button id="btnVerificar">Verificar</button>
+        <div id="mensaje" style="display:none; color:blue;"></div>
+    </div>
+    <div id="registroForm" style="display:none;">
+        <input type="hidden" id="cedula">
+        <p>Formulario oculto</p>
+    </div>
+    <script>
+        document.getElementById('btnVerificar').onclick = function() {
+            let cedula = document.getElementById('cedulaVerificar').value;
+            if (!cedula) {
+                document.getElementById('mensaje').style.display = 'block';
+                document.getElementById('mensaje').innerText = 'Ingrese cédula';
+                return;
+            }
+            document.getElementById('cedula').value = cedula;
+            document.getElementById('verificacion').style.display = 'none';
+            document.getElementById('registroForm').style.display = 'block';
+        };
+    </script>
+</body>
+</html>

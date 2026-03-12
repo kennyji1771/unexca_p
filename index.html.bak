@@ -11,7 +11,7 @@
     <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /* ====== ESTILOS COMPLETOS ====== */
+        /* ====== ESTILOS COMPLETOS (los mismos que funcionaban) ====== */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Inter', sans-serif;
@@ -708,7 +708,6 @@
 
     <script>
         // ========== CONFIGURACIÓN ==========
-        const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxX7h0XI1R6PnDuCzAnnC0ZNDIB6opR7xKg8Cl3PPYkRzlIjymtEajPdPxSZuKW_8l6nA/exec';
         console.log('🚀 Script iniciado');
 
         let datosComunas = null;
@@ -738,17 +737,6 @@
             .then(data => {
                 profesores = data;
                 console.log('✅ Profesores cargados:', profesores.length);
-                // Mostrar algunos valores de turno para depuración
-                if (profesores.length > 0) {
-                    const turnosUnicos = [...new Set(profesores.map(p => p.Turno).filter(t => t))];
-                    console.log('📌 Turnos disponibles en profesores.json:', turnosUnicos);
-                    const proyecto = profesores.find(p => p.Asignatura && p.Asignatura.includes('PROYECTO'));
-                    if (proyecto) {
-                        console.log('📌 Ejemplo de registro de proyecto:', proyecto);
-                    } else {
-                        console.log('📌 No se encontraron registros con "PROYECTO" en Asignatura');
-                    }
-                }
             })
             .catch(error => console.error('❌ Error cargando profesores.json:', error));
 
@@ -876,7 +864,7 @@
             });
         }
 
-        // ========== ASIGNACIÓN AUTOMÁTICA DEL TUTOR (VERSIÓN FLEXIBLE) ==========
+        // ========== ASIGNACIÓN AUTOMÁTICA DEL TUTOR (CON MAPEO) ==========
         function actualizarTutor() {
             const trayecto = document.getElementById('trayecto');
             const turno = document.getElementById('turno');
@@ -886,35 +874,26 @@
             const trayectoVal = trayecto.value;
             const turnoVal = turno.value;
 
+            // Mapeo de los valores del formulario a los que están en profesores.json
+            const mapaTurnos = {
+                'MAÑANA': 'MATUTINO',
+                'TARDE': 'TARDE',   // Ajusta según lo que contenga tu JSON
+                'NOCHE': 'NOCTURNO'
+            };
+            const turnoJson = mapaTurnos[turnoVal] || turnoVal;
+
             if (!trayectoVal || !turnoVal || profesores.length === 0) {
                 tutorInput.value = '';
                 return;
             }
 
-            // Mapeo de turnos (ajusta según los valores que viste en la consola)
-            const mapaTurnos = {
-                'MAÑANA': 'MATUTINO',
-                'TARDE': 'TARDE',
-                'NOCHE': 'NOCTURNO'
-            };
-            let turnoJson = mapaTurnos[turnoVal] || turnoVal;
-
             console.log(`🔍 Buscando tutor: trayecto=${trayectoVal}, turno_form=${turnoVal} -> turno_json=${turnoJson}`);
 
-            let resultados = profesores.filter(p => 
+            const resultados = profesores.filter(p => 
                 p.Asignatura && p.Asignatura.includes('PROYECTO') &&
                 p.Trayecto && p.Trayecto === trayectoVal &&
                 p.Turno && p.Turno === turnoJson
             );
-
-            if (resultados.length === 0 && turnoJson !== turnoVal) {
-                console.log(`🔍 Sin resultados con mapeo, probando con valor original: ${turnoVal}`);
-                resultados = profesores.filter(p => 
-                    p.Asignatura && p.Asignatura.includes('PROYECTO') &&
-                    p.Trayecto && p.Trayecto === trayectoVal &&
-                    p.Turno && p.Turno === turnoVal
-                );
-            }
 
             console.log(`📊 Resultados encontrados: ${resultados.length}`);
 
@@ -927,7 +906,7 @@
             }
         }
 
-        // ========== EVENTO DEL BOTÓN VERIFICAR ==========
+        // ========== EVENTO DEL BOTÓN VERIFICAR (MODO PRUEBA) ==========
         document.addEventListener('DOMContentLoaded', function() {
             console.log('📌 DOM completamente cargado');
 
@@ -966,16 +945,18 @@
                 if (formulario) {
                     formulario.classList.remove('oculto');
                     console.log('✅ Formulario visible, clases:', formulario.className);
-                    setTimeout(actualizarTutor, 100);
+                    // Forzar actualización del tutor con los valores por defecto
+                    setTimeout(actualizarTutor, 100); // pequeño retardo para que los selectores se estabilicen
                 } else {
                     console.error('❌ No se encontró #registroForm');
                     mostrarMensaje('Error: formulario no encontrado', 'error');
                     return;
                 }
 
-                mostrarMensaje('🆕 Nuevo registro. Complete los datos.', 'info');
+                mostrarMensaje('🆕 Nuevo registro (modo prueba). Complete los datos.', 'info');
             });
 
+            // Eventos para actualizar tutor cuando cambien trayecto o turno
             const trayecto = document.getElementById('trayecto');
             const turno = document.getElementById('turno');
             if (trayecto) {
@@ -987,6 +968,7 @@
                 console.log('🔧 Evento change añadido a turno');
             }
 
+            // Verificación de elementos importantes
             console.log('📋 Verificación de elementos:',
                 document.getElementById('verificacion') ? 'verificacion OK' : 'Falta verificacion',
                 document.getElementById('registroForm') ? 'registroForm OK' : 'Falta registroForm',
@@ -997,14 +979,14 @@
             );
         });
 
-        // ========== ENVÍO DEL FORMULARIO (VERSIÓN REAL) ==========
+        // ========== ENVÍO DEL FORMULARIO (MODO PRUEBA) ==========
         document.addEventListener('DOMContentLoaded', function() {
             const form = document.getElementById('registroForm');
             if (!form) return;
 
-            form.addEventListener('submit', async function(e) {
+            form.addEventListener('submit', function(e) {
                 e.preventDefault();
-                console.log('📤 Enviando datos a Google Sheets...');
+                console.log('📤 Formulario enviado');
 
                 const btn = document.getElementById('btnEnviar');
                 if (btn) {
@@ -1012,36 +994,21 @@
                     btn.textContent = '⏳ Enviando...';
                 }
 
-                const formData = new FormData(this);
-                const data = Object.fromEntries(formData.entries());
-                data.timestamp = new Date().toISOString();
-
-                try {
-                    const response = await fetch(GOOGLE_APPS_SCRIPT_URL, {
-                        method: 'POST',
-                        mode: 'no-cors',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(data)
-                    });
-
-                    mostrarMensaje('✅ ¡Registro enviado con éxito!', 'exito');
-                    this.reset();
-                    this.classList.add('oculto');
+                setTimeout(() => {
+                    mostrarMensaje('✅ ¡Registro enviado con éxito! (modo prueba)', 'exito');
+                    form.reset();
+                    form.classList.add('oculto');
                     const verificacion = document.getElementById('verificacion');
                     if (verificacion) verificacion.style.display = 'block';
                     const cedulaVerif = document.getElementById('cedulaVerificar');
                     if (cedulaVerif) cedulaVerif.value = '';
                     const ninguno = document.getElementById('interes_ninguno');
                     if (ninguno) ninguno.checked = true;
-                } catch (error) {
-                    console.error('Error en el envío:', error);
-                    mostrarMensaje('❌ Error al enviar. Intenta de nuevo.', 'error');
-                } finally {
                     if (btn) {
                         btn.disabled = false;
                         btn.textContent = '✔️ Enviar registro completo';
                     }
-                }
+                }, 1000);
             });
         });
     </script>
