@@ -364,13 +364,6 @@
                 color: #ffffff !important;
                 border-color: #5fa7e0;
             }
-.comuna-highlight .grid-2 {
-    grid-template-columns: 1fr;
-    gap: 0.5rem;
-}
-.comuna-highlight input,
-.comuna-highlight select {
-    width: 100%;
         }
     </style>
 </head>
@@ -424,7 +417,7 @@
                 <div class="card-icon"><i class="fas fa-user-graduate"></i></div>
                 <h3>Paso 2<br>Tu Historia</h3>
                 <div class="badge">Datos personales y académicos</div>
-                <p>Cuéntanos quién eres.</p>
+                <p>Cuéntanos quién eres y qué estudias.</p>
                 <a href="#paso2" class="card-link">Ir al paso <i class="fas fa-arrow-right"></i></a>
             </div>
             <div class="card">
@@ -496,13 +489,26 @@
                 <div class="grid-2">
                     <div class="field"><label>Fecha de registro</label><input type="date" id="fechaRegistro" name="fechaRegistro" required></div>
                 </div>
+
                 <h3>🎓 Datos académicos</h3>
-                <div class="grid-3">
-                    <!-- PNF ahora se selecciona en Paso 3; aquí solo se muestra el valor seleccionado -->
+
+                <!-- NUEVA ESTRUCTURA: Núcleo y PNF en paso 2 -->
+                <div class="grid-2">
                     <div class="field">
-                        <label>PNF (seleccionado en Paso 3)</label>
-                        <input type="text" id="pnfSeleccionado" name="pnf" readonly placeholder="Selecciona primero en Paso 3">
+                        <label for="nucleoSelectPaso2">Núcleo donde cursas:</label>
+                        <select id="nucleoSelectPaso2" name="nucleo" onchange="cargarProgramasPaso2()">
+                            <option value="">Seleccione un núcleo</option>
+                        </select>
                     </div>
+                    <div class="field">
+                        <label for="pnfSelectPaso2">Programa de Formación (PNF):</label>
+                        <select id="pnfSelectPaso2" name="pnf">
+                            <option value="">Primero seleccione un núcleo</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="grid-3">
                     <div class="field"><label>Trayecto</label>
                         <select id="trayecto" name="trayecto" required>
                             <option value="">Seleccione</option>
@@ -519,8 +525,6 @@
                             <option value="II">II</option>
                         </select>
                     </div>
-                </div>
-                <div class="grid-3">
                     <div class="field"><label>Turno</label>
                         <select id="turno" name="turno" required>
                             <option value="">Seleccione</option>
@@ -529,10 +533,9 @@
                             <option value="NOCHE">Noche</option>
                         </select>
                     </div>
-                    <div class="field"><label>Sección</label><input type="text" id="seccion" name="seccion" placeholder="Ej: A"></div>
                 </div>
-                <!-- TUTOR ASIGNADO AUTOMÁTICAMENTE -->
-                <div class="grid-3" style="margin-top: 2rem;">
+                <div class="grid-3">
+                    <div class="field"><label>Sección</label><input type="text" id="seccion" name="seccion" placeholder="Ej: A"></div>
                     <div class="field">
                         <label><i class="fas fa-chalkboard-teacher"></i> Tutor de proyecto asignado</label>
                         <input type="text" id="tutorAsignado" name="tutorAcademico" readonly placeholder="Selecciona trayecto y turno">
@@ -541,6 +544,8 @@
                         <label>Profesor de proyecto</label>
                         <input type="text" id="tutorComunitario" name="tutorComunitario">
                     </div>
+                </div>
+                <div class="grid-3">
                     <div class="field">
                         <label>Línea de investigación</label>
                         <select id="lineaInvestigacion" name="lineaInvestigacion" required>
@@ -555,26 +560,11 @@
                 </div>
             </section>
 
-            <!-- PASO 3: PROYECTO Y ENTORNO -->
+            <!-- PASO 3: PROYECTO Y ENTORNO (SIN SELECTORES DE NÚCLEO/PNF) -->
             <section id="paso3" class="detail-section">
                 <a href="#capitulos" class="back-nav"><i class="fas fa-arrow-left"></i> Volver</a>
                 <h2>🌍 Paso 3: Tu Proyecto y su Entorno (El Corazón del Asunto)</h2>
                 <div class="pensamiento"><i class="fas fa-lightbulb" style="color:#fbbf24;"></i> Un proyecto no vive en el aire. Necesita un lugar y una comunidad.</div>
-
-                <!-- NUEVO: Selector de Núcleo --> 
-		<div class="form-group">
-    <label for="nucleoSelect">Núcleo donde cursas:</label>
-    <select id="nucleoSelect" name="nucleo" onchange="cargarProgramasPorNucleo()">
-        <option value="">Seleccione un núcleo</option>
-    </select>
-</div>
-                <!-- Selector de Programa (PNF) -->
-                <div class="form-group">
-                    <label for="programaSelect">Programa de Formación (PNF):</label>
-                    <select id="programaSelect" name="pnf" onchange="actualizarPnfSeleccionado()">
-                        <option value="">Primero seleccione un núcleo</option>
-                    </select>
-                </div>
 
                 <h3>🌎 Ubicación (según censo comunal)</h3>
                 <div class="grid-3">
@@ -680,11 +670,11 @@
                 <div class="pensamiento"><i class="fas fa-lightbulb" style="color:#fbbf24;"></i> Como un piloto antes de despegar, debes revisar tu lista de comprobación.</div>
                 <h3>🎯 Interés académico</h3>
                 <div class="radio-group">
-                    <div class="radio-option"><input type="radio" name="interes" id="interes_politico" value="Político (Patriótico Bolivariano)"><label for="interes_politico"> Dirección </label></div>
-                    <div class="radio-option"><input type="radio" name="interes" id="interes_material" value="Material (Opción y Servicio)"><label for="interes_material"> Producción </label></div>
-                    <div class="radio-option"><input type="radio" name="interes" id="interes_humano" value="Humano (Social / Popular)"><label for="interes_humano"> Social </label></div>
-                    <div class="radio-option"><input type="radio" name="interes" id="interes_regulatorio" value="Regulatorio (Orden Interno)"><label for="interes_regulatorio"> Legal </label></div>
-                    <div class="radio-option"><input type="radio" name="interes" id="interes_operativo" value="Operativo (Movilización y Requisición)"><label for="interes_operativo"> Operaciones </label></div>
+                    <div class="radio-option"><input type="radio" name="interes" id="interes_politico" value="Político (Patriótico Bolivariano)"><label for="interes_politico">Político (Patriótico Bolivariano)</label></div>
+                    <div class="radio-option"><input type="radio" name="interes" id="interes_material" value="Material (Opción y Servicio)"><label for="interes_material">Material (Opción y Servicio)</label></div>
+                    <div class="radio-option"><input type="radio" name="interes" id="interes_humano" value="Humano (Social / Popular)"><label for="interes_humano">Humano (Social / Popular)</label></div>
+                    <div class="radio-option"><input type="radio" name="interes" id="interes_regulatorio" value="Regulatorio (Orden Interno)"><label for="interes_regulatorio">Regulatorio (Orden Interno)</label></div>
+                    <div class="radio-option"><input type="radio" name="interes" id="interes_operativo" value="Operativo (Movilización y Requisición)"><label for="interes_operativo">Operativo (Movilización y Requisición)</label></div>
                     <div class="radio-option"><input type="radio" name="interes" id="interes_ninguno" value="Ninguno" checked><label for="interes_ninguno">Ninguno</label></div>
                 </div>
                 <h3>📝 Observaciones</h3>
@@ -724,7 +714,7 @@
 
     <script>
         // ========== CONFIGURACIÓN ==========
-const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxX7h0XI1R6PnDuCzAnnC0ZNDIB6opR7xKg8Cl3PPYkRzlIjymtEajPdPxSZuKW_8l6nA/exec';
+        const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxX7h0XI1R6PnDuCzAnnC0ZNDIB6opR7xKg8Cl3PPYkRzlIjymtEajPdPxSZuKW_8l6nA/exec'; // ← REEMPLAZA CON TU URL SI ES NECESARIO
         console.log('🚀 Script iniciado');
 
         let datosComunas = null;
@@ -750,22 +740,12 @@ const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxX7h0XI
             .then(response => response.json())
             .then(data => {
                 ofertaAcademica = data;
-                // Llenar el selector de núcleos
-                const nucleoSelect = document.getElementById('nucleoSelect');
-                if (nucleoSelect) {
-                    nucleoSelect.innerHTML = '<option value="">Seleccione un núcleo</option>';
-                    Object.keys(ofertaAcademica).sort().forEach(nucleo => {
-                        const option = document.createElement('option');
-                        option.value = nucleo;
-                        option.textContent = nucleo;
-                        nucleoSelect.appendChild(option);
-                    });
-                }
+                cargarNucleosPaso2();  // Llenar selector de núcleo en paso 2
                 console.log('✅ oferta_academica.json cargado');
             })
             .catch(error => {
                 console.error('❌ Error cargando oferta_academica.json:', error);
-                const nucleoSelect = document.getElementById('nucleoSelect');
+                const nucleoSelect = document.getElementById('nucleoSelectPaso2');
                 if (nucleoSelect) nucleoSelect.innerHTML = '<option value="">Error al cargar núcleos</option>';
             });
 
@@ -786,7 +766,7 @@ const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxX7h0XI
             })
             .catch(error => console.error('❌ Error cargando profesores.json:', error));
 
-        // ========== FUNCIÓN DE MENSAJE ROBUSTA ==========
+        // ========== FUNCIÓN DE MENSAJE ==========
         function mostrarMensaje(texto, tipo) {
             const divExito = document.getElementById('mensajeExito');
             const divError = document.getElementById('mensajeError');
@@ -910,29 +890,33 @@ const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxX7h0XI
             });
         }
 
-        // ========== FUNCIONES PARA PROGRAMA SEGÚN NÚCLEO ==========
-        function cargarProgramasPorNucleo() {
-            const nucleo = document.getElementById('nucleoSelect').value;
-            const programaSelect = document.getElementById('programaSelect');
+        // ========== FUNCIONES PARA NÚCLEO Y PNF EN PASO 2 ==========
+        function cargarNucleosPaso2() {
+            const nucleoSelect = document.getElementById('nucleoSelectPaso2');
+            if (!nucleoSelect) return;
+            nucleoSelect.innerHTML = '<option value="">Seleccione un núcleo</option>';
+            Object.keys(ofertaAcademica).sort().forEach(nucleo => {
+                const option = document.createElement('option');
+                option.value = nucleo;
+                option.textContent = nucleo;
+                nucleoSelect.appendChild(option);
+            });
+        }
+
+        function cargarProgramasPaso2() {
+            const nucleo = document.getElementById('nucleoSelectPaso2').value;
+            const programaSelect = document.getElementById('pnfSelectPaso2');
             programaSelect.innerHTML = '<option value="">Seleccione un programa</option>';
 
             if (nucleo && ofertaAcademica[nucleo]) {
                 ofertaAcademica[nucleo].forEach(item => {
                     const option = document.createElement('option');
-                    option.value = item.programa; // Guardamos el nombre del programa
+                    option.value = item.programa;
                     option.textContent = `${item.programa} (${item.tipo})`;
                     programaSelect.appendChild(option);
                 });
             } else {
                 programaSelect.innerHTML = '<option value="">No hay programas para este núcleo</option>';
-            }
-        }
-
-        function actualizarPnfSeleccionado() {
-            const programaSelect = document.getElementById('programaSelect');
-            const pnfSeleccionado = document.getElementById('pnfSeleccionado');
-            if (pnfSeleccionado) {
-                pnfSeleccionado.value = programaSelect.value;
             }
         }
 
@@ -951,7 +935,6 @@ const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxX7h0XI
                 return;
             }
 
-            // Mapeo de turnos (ajusta según los valores que viste en la consola)
             const mapaTurnos = {
                 'MAÑANA': 'MATUTINO',
                 'TARDE': 'TARDE',
@@ -1047,14 +1030,7 @@ const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxX7h0XI
                 console.log('🔧 Evento change añadido a turno');
             }
 
-            console.log('📋 Verificación de elementos:',
-                document.getElementById('verificacion') ? 'verificacion OK' : 'Falta verificacion',
-                document.getElementById('registroForm') ? 'registroForm OK' : 'Falta registroForm',
-                document.getElementById('btnVerificar') ? 'btnVerificar OK' : 'Falta btnVerificar',
-                document.getElementById('trayecto') ? 'trayecto OK' : 'Falta trayecto',
-                document.getElementById('turno') ? 'turno OK' : 'Falta turno',
-                document.getElementById('tutorAsignado') ? 'tutorAsignado OK' : 'Falta tutorAsignado'
-            );
+            // También actualizar tutor si cambian trayecto/turno (ya está arriba)
         });
 
         // ========== ENVÍO DEL FORMULARIO ==========
