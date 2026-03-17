@@ -561,14 +561,13 @@
                 <h2>🌍 Paso 3: Tu Proyecto y su Entorno (El Corazón del Asunto)</h2>
                 <div class="pensamiento"><i class="fas fa-lightbulb" style="color:#fbbf24;"></i> Un proyecto no vive en el aire. Necesita un lugar y una comunidad.</div>
 
-                <!-- NUEVO: Selector de Núcleo -->
-                <div class="form-group">
-                    <label for="nucleoSelect">Núcleo donde cursas:</label>
-                    <select id="nucleoSelect" onchange="cargarProgramasPorNucleo()">
-                        <option value="">Seleccione un núcleo</option>
-                    </select>
-                </div>
-
+                <!-- NUEVO: Selector de Núcleo --> 
+		<div class="form-group">
+    <label for="nucleoSelect">Núcleo donde cursas:</label>
+    <select id="nucleoSelect" name="nucleo" onchange="cargarProgramasPorNucleo()">
+        <option value="">Seleccione un núcleo</option>
+    </select>
+</div>
                 <!-- Selector de Programa (PNF) -->
                 <div class="form-group">
                     <label for="programaSelect">Programa de Formación (PNF):</label>
