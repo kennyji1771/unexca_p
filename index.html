@@ -500,6 +500,7 @@
                         <select id="nucleoSelectPaso2" name="nucleo" onchange="cargarProgramasPaso2()">
                             <option value="">Seleccione un núcleo</option>
                         </select>
+				<input type="hidden" name="nucleo_hidden" id="nucleo_hidden">
                     </div>
                     <div class="field">
                         <label for="pnfSelectPaso2">Programa de Formación (PNF):</label>
@@ -1039,7 +1040,15 @@
             if (!form) return;
 
             form.addEventListener('submit', async function(e) {
-                e.preventDefault();
+    e.preventDefault();
+    
+    // Asegurar que el campo oculto tenga el núcleo seleccionado
+    const nucleoSelect = document.getElementById('nucleoSelectPaso2');
+    const nucleoHidden = document.getElementById('nucleo_hidden');
+    if (nucleoSelect && nucleoHidden) {
+        nucleoHidden.value = nucleoSelect.value;
+    }
+}
                 console.log('📤 Enviando datos a Google Sheets...');
 
                 const btn = document.getElementById('btnEnviar');
