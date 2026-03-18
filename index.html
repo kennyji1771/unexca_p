@@ -1,5 +1,4 @@
-﻿<!-- Actualizado -->
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -12,7 +11,7 @@
     <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /* ====== ESTILOS COMPLETOS (sin cambios) ====== */
+        /* ====== ESTILOS COMPLETOS ====== */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Inter', sans-serif;
@@ -493,14 +492,14 @@
 
                 <h3>🎓 Datos académicos</h3>
 
-                <!-- NUEVA ESTRUCTURA: Núcleo y PNF en paso 2 -->
+                <!-- Núcleo y PNF en paso 2 con campo oculto -->
                 <div class="grid-2">
                     <div class="field">
                         <label for="nucleoSelectPaso2">Núcleo donde cursas:</label>
                         <select id="nucleoSelectPaso2" name="nucleo" onchange="cargarProgramasPaso2()">
                             <option value="">Seleccione un núcleo</option>
                         </select>
-				<input type="hidden" name="nucleo_hidden" id="nucleo_hidden">
+                        <input type="hidden" name="nucleo_hidden" id="nucleo_hidden">
                     </div>
                     <div class="field">
                         <label for="pnfSelectPaso2">Programa de Formación (PNF):</label>
@@ -562,7 +561,7 @@
                 </div>
             </section>
 
-            <!-- PASO 3: PROYECTO Y ENTORNO (SIN SELECTORES DE NÚCLEO/PNF) -->
+            <!-- PASO 3: PROYECTO Y ENTORNO -->
             <section id="paso3" class="detail-section">
                 <a href="#capitulos" class="back-nav"><i class="fas fa-arrow-left"></i> Volver</a>
                 <h2>🌍 Paso 3: Tu Proyecto y su Entorno (El Corazón del Asunto)</h2>
@@ -716,7 +715,9 @@
 
     <script>
         // ========== CONFIGURACIÓN ==========
-	const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxX7h0XI1R6PnDuCzAnnC0ZNDIB6opR7xKg8Cl3PPYkRzlIjymtEajPdPxSZuKW_8l6nA/exec'; // actualizado
+        // *** REEMPLAZA ESTA URL CON LA ÚLTIMA QUE GENERASTE EN APPS SCRIPT ***
+	const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxX7h0XI1R6PnDuCzAnnC0ZNDIB6opR7xKg8Cl3PPYkRzlIjymtEajPdPxSZuKW_8l6nA/exec';
+        console.log('🚀 Script iniciado');
 
         let datosComunas = null;
         let profesores = [];
@@ -909,6 +910,9 @@
             const programaSelect = document.getElementById('pnfSelectPaso2');
             programaSelect.innerHTML = '<option value="">Seleccione un programa</option>';
 
+            // Actualizar campo oculto con el núcleo seleccionado
+            document.getElementById('nucleo_hidden').value = nucleo;
+
             if (nucleo && ofertaAcademica[nucleo]) {
                 ofertaAcademica[nucleo].forEach(item => {
                     const option = document.createElement('option');
@@ -1030,8 +1034,6 @@
                 turno.addEventListener('change', actualizarTutor);
                 console.log('🔧 Evento change añadido a turno');
             }
-
-            // También actualizar tutor si cambian trayecto/turno (ya está arriba)
         });
 
         // ========== ENVÍO DEL FORMULARIO ==========
@@ -1040,15 +1042,15 @@
             if (!form) return;
 
             form.addEventListener('submit', async function(e) {
-    e.preventDefault();
-    
-    // Asegurar que el campo oculto tenga el núcleo seleccionado
-    const nucleoSelect = document.getElementById('nucleoSelectPaso2');
-    const nucleoHidden = document.getElementById('nucleo_hidden');
-    if (nucleoSelect && nucleoHidden) {
-        nucleoHidden.value = nucleoSelect.value;
-    }
-}
+                e.preventDefault();
+
+                // Asegurar que el campo oculto tenga el núcleo seleccionado (por si acaso)
+                const nucleoSelect = document.getElementById('nucleoSelectPaso2');
+                const nucleoHidden = document.getElementById('nucleo_hidden');
+                if (nucleoSelect && nucleoHidden) {
+                    nucleoHidden.value = nucleoSelect.value;
+                }
+
                 console.log('📤 Enviando datos a Google Sheets...');
 
                 const btn = document.getElementById('btnEnviar');
