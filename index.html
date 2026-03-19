@@ -11,7 +11,7 @@
     <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /* ====== ESTILOS COMPLETOS (sin cambios) ====== */
+        /* ====== ESTILOS COMPLETOS ====== */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Inter', sans-serif;
@@ -492,13 +492,14 @@
 
                 <h3>🎓 Datos académicos</h3>
 
-                <!-- Núcleo y PNF en paso 2 -->
+                <!-- Núcleo y PNF en paso 2 con campo oculto -->
                 <div class="grid-2">
                     <div class="field">
                         <label for="nucleoSelectPaso2">Núcleo donde cursas:</label>
                         <select id="nucleoSelectPaso2" name="nucleo" onchange="cargarProgramasPaso2()">
                             <option value="">Seleccione un núcleo</option>
                         </select>
+                        <input type="hidden" name="nucleo_hidden" id="nucleo_hidden">
                     </div>
                     <div class="field">
                         <label for="pnfSelectPaso2">Programa de Formación (PNF):</label>
@@ -714,8 +715,8 @@
 
     <script>
         // ========== CONFIGURACIÓN ==========
-        // URL del script que YA FUNCIONÓ en la prueba
-        const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzc8Zzf5qjao5otrgwXdWj4xYn3hzt9mVsXSIZpdAzm8A8RVc_3Xk5wcwLssIeNog4S/exec';
+        // *** REEMPLAZA ESTA URL CON LA ÚLTIMA QUE GENERASTE EN APPS SCRIPT ***
+	const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxX7h0XI1R6PnDuCzAnnC0ZNDIB6opR7xKg8Cl3PPYkRzlIjymtEajPdPxSZuKW_8l6nA/exec';
         console.log('🚀 Script iniciado');
 
         let datosComunas = null;
@@ -741,7 +742,7 @@
             .then(response => response.json())
             .then(data => {
                 ofertaAcademica = data;
-                cargarNucleosPaso2();
+                cargarNucleosPaso2();  // Llenar selector de núcleo en paso 2
                 console.log('✅ oferta_academica.json cargado');
             })
             .catch(error => {
@@ -909,6 +910,9 @@
             const programaSelect = document.getElementById('pnfSelectPaso2');
             programaSelect.innerHTML = '<option value="">Seleccione un programa</option>';
 
+            // Actualizar campo oculto con el núcleo seleccionado
+            document.getElementById('nucleo_hidden').value = nucleo;
+
             if (nucleo && ofertaAcademica[nucleo]) {
                 ofertaAcademica[nucleo].forEach(item => {
                     const option = document.createElement('option');
@@ -1032,13 +1036,21 @@
             }
         });
 
-        // ========== ENVÍO DEL FORMULARIO (VERSIÓN CORREGIDA Y PROBADA) ==========
+        // ========== ENVÍO DEL FORMULARIO ==========
         document.addEventListener('DOMContentLoaded', function() {
             const form = document.getElementById('registroForm');
             if (!form) return;
 
             form.addEventListener('submit', async function(e) {
                 e.preventDefault();
+
+                // Asegurar que el campo oculto tenga el núcleo seleccionado (por si acaso)
+                const nucleoSelect = document.getElementById('nucleoSelectPaso2');
+                const nucleoHidden = document.getElementById('nucleo_hidden');
+                if (nucleoSelect && nucleoHidden) {
+                    nucleoHidden.value = nucleoSelect.value;
+                }
+
                 console.log('📤 Enviando datos a Google Sheets...');
 
                 const btn = document.getElementById('btnEnviar');
@@ -1047,20 +1059,12 @@
                     btn.textContent = '⏳ Enviando...';
                 }
 
-                // Recoger datos del formulario
-                const formData = new FormData(form);
+                const formData = new FormData(this);
                 const data = Object.fromEntries(formData.entries());
                 data.timestamp = new Date().toISOString();
 
-                // Forzar el valor del núcleo desde el selector (por seguridad)
-                const nucleoSelect = document.getElementById('nucleoSelectPaso2');
-                if (nucleoSelect) {
-                    data.nucleo = nucleoSelect.value;
-                }
-
-                // Enviar usando fetch con modo no-cors (exactamente como en la prueba exitosa)
                 try {
-                    await fetch(GOOGLE_APPS_SCRIPT_URL, {
+                    const response = await fetch(GOOGLE_APPS_SCRIPT_URL, {
                         method: 'POST',
                         mode: 'no-cors',
                         headers: { 'Content-Type': 'application/json' },
@@ -1068,8 +1072,8 @@
                     });
 
                     mostrarMensaje('✅ ¡Registro enviado con éxito!', 'exito');
-                    form.reset();
-                    form.classList.add('oculto');
+                    this.reset();
+                    this.classList.add('oculto');
                     const verificacion = document.getElementById('verificacion');
                     if (verificacion) verificacion.style.display = 'block';
                     const cedulaVerif = document.getElementById('cedulaVerificar');
