@@ -21,7 +21,7 @@
         }
 
         :root {
-            --bg: #c2c7cc;          /* fondo blanco roto */
+            --bg: #c2c7cc;
             --surface: rgba(255, 255, 255, 0.85);
             --surface-solid: #ffffff;
             --primary: #1e3a8a;
@@ -47,7 +47,7 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            font-size: 16px; /* ligeramente más grande */
+            font-size: 16px;
         }
 
         .container {
@@ -1092,7 +1092,8 @@
 
     <script>
         // ========== CONFIGURACIÓN ==========
-        const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxUGegp3U2NWG2_8fZebPeUAUs4IizUdOJ9CnBSc5sw5zESl1Oo6h-LMU0Wn8e1bHHx/exec'; // Reemplazar
+        // *** REEMPLAZA ESTA URL CON LA DE TU APPS SCRIPT PUBLICADO ***
+        const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxP-xiXx1ekm71MNlXHdiV6FfVeJLc8GQ_O3nU7jehn6RNDkB1mFU4y3JFX-o016F_C/exec';
 
         let datosComunas = null;
         let profesores = [];
@@ -1397,22 +1398,27 @@
                 console.log('Datos a enviar:', data);
 
                 try {
-                    await fetch(GOOGLE_APPS_SCRIPT_URL, {
+                    const response = await fetch(GOOGLE_APPS_SCRIPT_URL, {
                         method: 'POST',
-                        mode: 'no-cors',
+                        mode: 'no-cors',   // Evita errores de CORS, pero no podemos leer la respuesta
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify(data)
                     });
 
+                    // Debido a 'no-cors', la respuesta no es accesible.
+                    // Asumimos éxito si no hubo error de red.
                     mostrarMensaje('✅ ¡Registro enviado con éxito!', 'exito');
+
+                    // Limpiar y resetear formulario
                     this.reset();
                     this.classList.add('oculto');
                     document.getElementById('verificacion').style.display = 'block';
                     document.getElementById('cedulaVerificar').value = '';
                     document.getElementById('interes_ninguno').checked = true;
+
                 } catch (error) {
                     console.error('Error en el envío:', error);
-                    mostrarMensaje('❌ Error al enviar. Intenta de nuevo.', 'error');
+                    mostrarMensaje('❌ Error al enviar. Intenta de nuevo. Revisa tu conexión.', 'error');
                 } finally {
                     btn.disabled = false;
                     btn.innerHTML = '<i class="fas fa-paper-plane"></i> Enviar registro completo';
