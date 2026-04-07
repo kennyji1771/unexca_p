@@ -1,0 +1,145 @@
+{
+  "Altagracia": [
+    {
+      "tipo": "Pregrado",
+      "programa": "Distribución y Logística",
+      "descripcion": "Aprende a conformar y conducir organizaciones para fortalecer la economía social en sus procesos administrativos, productivos, económicos, financieros, de intercambio de bienes y servicios, ajustado a parámetros de ética social.",
+      "titulos": "TSU en Distribución y Logística, Licenciatura en Distribución y Logística",
+      "duracion": "TSU: 2 años, Licenciatura: 4 años"
+    },
+    {
+      "tipo": "Pregrado",
+      "programa": "Trabajo Social",
+      "descripcion": "Formación transdisciplinaria con enfoque crítico y preventivo para la atención integral de población vulnerable.",
+      "titulos": "TSU en Trabajo Social, Licenciatura en Trabajo Social",
+      "duracion": "TSU: 2 años, Licenciatura: 4 años"
+    },
+    {
+      "tipo": "Pregrado",
+      "programa": "Administración",
+      "descripcion": "Identificar, analizar y solucionar problemas administrativos en planificación, organización, dirección, control y evaluación, vinculados a áreas contables, financieras y productivas.",
+      "titulos": "TSU en Administración, Licenciatura en Administración",
+      "duracion": "TSU: 2 años, Licenciatura: 4 años"
+    },
+    {
+      "tipo": "Pregrado",
+      "programa": "Ingeniería Informática",
+      "descripcion": "Conceptualizar y construir productos tecnológicos, administrar proyectos, auditar sistemas, desarrollar software libre, administrar bases de datos y redes.",
+      "titulos": "TSU en Informática, Ingeniería Informática",
+      "duracion": "TSU: 2 años, Ingeniería: 4 años"
+    },
+    {
+      "tipo": "Pregrado",
+      "programa": "Contaduría",
+      "descripcion": "Elaborar, revisar, examinar y dar fe pública de información financiera en entidades públicas, privadas y de producción social.",
+      "titulos": "TSU en Contaduría, Licenciatura en Contaduría Pública",
+      "duracion": "TSU: 2 años, Licenciatura: 4 años"
+    },
+    {
+      "tipo": "Pregrado",
+      "programa": "Ingeniería Agroalimentaria",
+      "descripcion": "Investigar métodos de obtención y conservación de alimentos, considerando efectos químicos, biológicos y físicos, y la cultura campesina.",
+      "titulos": "TSU Agroalimentario, Ingeniería Agroalimentaria",
+      "duracion": "TSU: 2 años, Ingeniería: 4 años"
+    },
+    {
+      "tipo": "Pregrado",
+      "programa": "Optometría",
+      "descripcion": "Atención primaria en salud visual, actuando en equipos multidisciplinarios con enfoque comunitario.",
+      "titulos": "TSU en Optometría, Licenciatura en Optometría",
+      "duracion": "TSU: 2 años, Licenciatura: 4 años"
+    }
+  ],
+  "La Urbina": [
+    {
+      "tipo": "Pregrado",
+      "programa": "Distribución y Logística",
+      "descripcion": "Aprende a conformar y conducir organizaciones para fortalecer la economía social en sus procesos administrativos, productivos, económicos, financieros, de intercambio de bienes y servicios, ajustado a parámetros de ética social.",
+      "titulos": "TSU en Distribución y Logística, Licenciatura en Distribución y Logística",
+      "duracion": "TSU: 2 años, Licenciatura: 4 años"
+    },
+    {
+      "tipo": "Pregrado",
+      "programa": "Administración",
+      "descripcion": "Identificar, analizar y solucionar problemas administrativos en planificación, organización, dirección, control y evaluación, vinculados a áreas contables, financieras y productivas.",
+      "titulos": "TSU en Administración, Licenciatura en Administración",
+      "duracion": "TSU: 2 años, Licenciatura: 4 años"
+    },
+    {
+      "tipo": "Pregrado",
+      "programa": "Turismo",
+      "descripcion": "Formación para el emprendimiento, investigación y gestión de políticas y proyectos turísticos con enfoque endógeno y sostenible.",
+      "titulos": "TSU en Turismo, Licenciatura en Turismo (con menciones: Guiatural, Gestión, Alojamiento)",
+      "duracion": "TSU: 2 años, Licenciatura: 4 años"
+    },
+    {
+      "tipo": "Pregrado",
+      "programa": "Educación Especial",
+      "descripcion": "Formación integral para atender a educandos con necesidades educativas especiales, asociadas o no a discapacidad.",
+      "titulos": "Licenciatura en Educación Especial",
+      "duracion": "12 semanas y cuatro trayectos"
+    }
+  ],
+  "Carayaca": [
+    {
+      "tipo": "Pregrado",
+      "programa": "Distribución y Logística",
+      "descripcion": "Aprende a conformar y conducir organizaciones para fortalecer la economía social en sus procesos administrativos, productivos, económicos, financieros, de intercambio de bienes y servicios, ajustado a parámetros de ética social.",
+      "titulos": "TSU en Distribución y Logística, Licenciatura en Distribución y Logística",
+      "duracion": "TSU: 2 años, Licenciatura: 4 años"
+    },
+    {
+      "tipo": "Pregrado",
+      "programa": "Ingeniería Agroalimentaria",
+      "descripcion": "Investigar métodos de obtención y conservación de alimentos, considerando efectos químicos, biológicos y físicos, y la cultura campesina.",
+      "titulos": "TSU Agroalimentario, Ingeniería Agroalimentaria",
+      "duracion": "TSU: 2 años, Ingeniería: 4 años"
+    }
+  ],
+  "La Floresta": [
+    {
+      "tipo": "Pregrado",
+      "programa": "Administración",
+      "descripcion": "Identificar, analizar y solucionar problemas administrativos en planificación, organización, dirección, control y evaluación, vinculados a áreas contables, financieras y productivas.",
+      "titulos": "TSU en Administración, Licenciatura en Administración",
+      "duracion": "TSU: 2 años, Licenciatura: 4 años"
+    },
+    {
+      "tipo": "Pregrado",
+      "programa": "Ingeniería Informática",
+      "descripcion": "Conceptualizar y construir productos tecnológicos, administrar proyectos, auditar sistemas, desarrollar software libre, administrar bases de datos y redes.",
+      "titulos": "TSU en Informática, Ingeniería Informática",
+      "duracion": "TSU: 2 años, Ingeniería: 4 años"
+    },
+    {
+      "tipo": "Pregrado",
+      "programa": "Turismo",
+      "descripcion": "Formación para el emprendimiento, investigación y gestión de políticas y proyectos turísticos con enfoque endógeno y sostenible.",
+      "titulos": "TSU en Turismo, Licenciatura en Turismo (con menciones: Guiatural, Gestión, Alojamiento)",
+      "duracion": "TSU: 2 años, Licenciatura: 4 años"
+    },
+    {
+      "tipo": "Pregrado",
+      "programa": "Educación Inicial",
+      "descripcion": "Formación crítica y ecológica para la educación inicial, con enfoque preventivo y acorde a innovaciones educativas.",
+      "titulos": "TSU en Educación Inicial, Licenciatura en Educación Inicial",
+      "duracion": "TSU: 2 años, Licenciatura: 4 años"
+    }
+  ],
+  "No especificados": [
+    {
+      "tipo": "Posgrado",
+      "programa": "Especialización en Auditoria de Tecnología de Información Financiera y Seguridad de Datos",
+      "descripcion": "Auditar tecnologías de información financiera, recomendar controles de seguridad, supervisar cumplimiento de leyes y normas nacionales e internacionales.",
+      "titulos": "Especialista (título no especificado)",
+      "duracion": "No especificada"
+    },
+    {
+      "tipo": "Posgrado",
+      "programa": "Especialización Gestión del Talento Humano en las Organizaciones",
+      "descripcion": "Gestionar estratégicamente el talento humano en organizaciones públicas, privadas y de producción social, con ética y responsabilidad.",
+      "titulos": "Especialista (título no especificado)",
+      "duracion": "No especificada"
+    }
+  ]
+}
