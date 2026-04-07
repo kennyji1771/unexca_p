@@ -10,8 +10,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
-    <!-- Favicon (original) -->
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%231e3a8a'/><text x='50' y='70' font-size='70' text-anchor='middle' fill='white' font-family='Arial' font-weight='bold'>U</text></svg>">
     <style>
         /* ========== RESET Y VARIABLES ========== */
         * {
@@ -653,7 +651,6 @@
             display: none !important;
         }
 
-        /* Indicador de paso */
         .step-indicator {
             display: inline-block;
             width: 30px;
@@ -688,7 +685,6 @@
     </div>
 
     <div class="container">
-        <!-- HEADER -->
         <header class="app-header">
             <div class="logo">
                 <h1>UNEXCA · Registro de Proyectos PNF</h1>
@@ -711,7 +707,6 @@
                     <i class="fas fa-arrow-right"></i> Verificar y continuar
                 </button>
             </div>
-            <!-- Mensajes globales -->
             <div id="mensajeExito" class="mensaje mensaje-exito"></div>
             <div id="mensajeError" class="mensaje mensaje-error"></div>
             <div id="mensajeInfo" class="mensaje mensaje-info"></div>
@@ -775,7 +770,6 @@
 
         <!-- FORMULARIO COMPLETO (oculto inicialmente) -->
         <form id="registroForm" class="registro-form oculto">
-            <!-- Paso 2: Datos personales y académicos -->
             <section id="paso2">
                 <h2 class="section-title"><i class="fas fa-user-graduate"></i> Paso 2: Tu información</h2>
                 <div class="card-section">
@@ -900,7 +894,6 @@
                 </div>
             </section>
 
-            <!-- Paso 3: Proyecto y entorno -->
             <section id="paso3">
                 <h2 class="section-title"><i class="fas fa-globe-americas"></i> Paso 3: Proyecto y entorno</h2>
                 <div class="card-section">
@@ -993,7 +986,6 @@
                 </div>
             </section>
 
-            <!-- Paso 4: Mapa de ruta -->
             <section id="paso4">
                 <h2 class="section-title"><i class="fas fa-map-signs"></i> Paso 4: Mapa de ruta</h2>
                 <div class="card-section">
@@ -1019,7 +1011,6 @@
                 </div>
             </section>
 
-            <!-- Paso 5: Documentación -->
             <section id="paso5">
                 <h2 class="section-title"><i class="fas fa-file-pdf"></i> Paso 5: Documentación</h2>
                 <div class="card-section">
@@ -1030,7 +1021,6 @@
                 </div>
             </section>
 
-            <!-- Paso 6: Revisión y envío -->
             <section id="paso6">
                 <h2 class="section-title"><i class="fas fa-check-double"></i> Paso 6: Revisión final</h2>
                 <div class="card-section">
@@ -1065,7 +1055,6 @@
                 </div>
             </section>
 
-            <!-- FAQ -->
             <section id="faq">
                 <h2 class="section-title"><i class="fas fa-question-circle"></i> Preguntas frecuentes</h2>
                 <div class="card-section">
@@ -1092,8 +1081,7 @@
 
     <script>
         // ========== CONFIGURACIÓN ==========
-        // *** REEMPLAZA ESTA URL CON LA DE TU APPS SCRIPT PUBLICADO ***
-        const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyEjGHDGPVL-K4L0JnqTIJR389Fs-6og64LvQX_R4pPL8SpN5iUDIaGo-BylT8lWqE/exec';
+        const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxP-xiXx1ekm71MNlXHdiV6FfVeJLc8GQ_O3nU7jehn6RNDkB1mFU4y3JFX-o016F_C/exec';
 
         let datosComunas = null;
         let profesores = [];
@@ -1136,21 +1124,17 @@
             })
             .catch(error => console.error('❌ Error cargando profesores.json:', error));
 
-        // ========== FUNCIÓN DE MENSAJE ==========
         function mostrarMensaje(texto, tipo) {
             const divExito = document.getElementById('mensajeExito');
             const divError = document.getElementById('mensajeError');
             const divInfo = document.getElementById('mensajeInfo');
-
             if (!divExito || !divError || !divInfo) {
                 alert(`${tipo.toUpperCase()}: ${texto}`);
                 return;
             }
-
             divExito.style.display = 'none';
             divError.style.display = 'none';
             divInfo.style.display = 'none';
-
             if (tipo === 'error') {
                 divError.textContent = texto;
                 divError.style.display = 'block';
@@ -1166,7 +1150,6 @@
             }
         }
 
-        // ========== FUNCIONES DE UBICACIÓN ==========
         function inicializarSelectores() {
             const estadoSel = document.getElementById('estadoSelect');
             if (!estadoSel || !datosComunas) return;
@@ -1186,19 +1169,15 @@
             const parroquiaSel = document.getElementById('parroquiaSelect');
             const comunaSel = document.getElementById('comunaSelect');
             if (!municipioSel || !parroquiaSel || !comunaSel) return;
-
             municipioSel.innerHTML = '<option value="">-- Seleccione municipio --</option>';
             parroquiaSel.innerHTML = '<option value="">-- Seleccione parroquia --</option>';
             comunaSel.innerHTML = '<option value="">-- Seleccione comuna --</option>';
             municipioSel.disabled = !estadoNombre;
             parroquiaSel.disabled = true;
             comunaSel.disabled = true;
-
             if (!estadoNombre) return;
-
             const estado = datosComunas.estados.find(e => e.nombre === estadoNombre);
             if (!estado) return;
-
             estado.municipios.sort((a,b) => a.nombre.localeCompare(b.nombre)).forEach(m => {
                 const option = document.createElement('option');
                 option.value = m.nombre;
@@ -1214,18 +1193,14 @@
             const parroquiaSel = document.getElementById('parroquiaSelect');
             const comunaSel = document.getElementById('comunaSelect');
             if (!parroquiaSel || !comunaSel) return;
-
             parroquiaSel.innerHTML = '<option value="">-- Seleccione parroquia --</option>';
             comunaSel.innerHTML = '<option value="">-- Seleccione comuna --</option>';
             parroquiaSel.disabled = !municipioNombre;
             comunaSel.disabled = true;
-
             if (!municipioNombre) return;
-
             const estado = datosComunas.estados.find(e => e.nombre === estadoNombre);
             const municipio = estado.municipios.find(m => m.nombre === municipioNombre);
             if (!municipio) return;
-
             municipio.parroquias.sort((a,b) => a.nombre.localeCompare(b.nombre)).forEach(p => {
                 const option = document.createElement('option');
                 option.value = p.nombre;
@@ -1241,17 +1216,13 @@
             const parroquiaNombre = document.getElementById('parroquiaSelect').value;
             const comunaSel = document.getElementById('comunaSelect');
             if (!comunaSel) return;
-
             comunaSel.innerHTML = '<option value="">-- Seleccione comuna --</option>';
             comunaSel.disabled = !parroquiaNombre;
-
             if (!parroquiaNombre) return;
-
             const estado = datosComunas.estados.find(e => e.nombre === estadoNombre);
             const municipio = estado.municipios.find(m => m.nombre === municipioNombre);
             const parroquia = municipio.parroquias.find(p => p.nombre === parroquiaNombre);
             if (!parroquia) return;
-
             parroquia.comunas.sort().forEach(comuna => {
                 const option = document.createElement('option');
                 option.value = comuna;
@@ -1260,7 +1231,6 @@
             });
         }
 
-        // ========== FUNCIONES PARA NÚCLEO Y PNF EN PASO 2 ==========
         function cargarNucleosPaso2() {
             const nucleoSelect = document.getElementById('nucleoSelectPaso2');
             if (!nucleoSelect) return;
@@ -1277,7 +1247,6 @@
             const nucleo = document.getElementById('nucleoSelectPaso2').value;
             const programaSelect = document.getElementById('pnfSelectPaso2');
             programaSelect.innerHTML = '<option value="">Seleccione un programa</option>';
-
             if (nucleo && ofertaAcademica[nucleo]) {
                 ofertaAcademica[nucleo].forEach(item => {
                     const option = document.createElement('option');
@@ -1290,34 +1259,24 @@
             }
         }
 
-        // ========== ASIGNACIÓN AUTOMÁTICA DEL TUTOR ==========
         function actualizarTutor() {
             const trayecto = document.getElementById('trayecto');
             const turno = document.getElementById('turno');
             const tutorInput = document.getElementById('tutorAsignado');
             if (!trayecto || !turno || !tutorInput) return;
-
             const trayectoVal = trayecto.value;
             const turnoVal = turno.value;
-
             if (!trayectoVal || !turnoVal || profesores.length === 0) {
                 tutorInput.value = '';
                 return;
             }
-
-            const mapaTurnos = {
-                'MAÑANA': 'MATUTINO',
-                'TARDE': 'TARDE',
-                'NOCHE': 'NOCTURNO'
-            };
+            const mapaTurnos = { 'MAÑANA': 'MATUTINO', 'TARDE': 'TARDE', 'NOCHE': 'NOCTURNO' };
             let turnoJson = mapaTurnos[turnoVal] || turnoVal;
-
             let resultados = profesores.filter(p =>
                 p.Asignatura && p.Asignatura.includes('PROYECTO') &&
                 p.Trayecto && p.Trayecto === trayectoVal &&
                 p.Turno && p.Turno === turnoJson
             );
-
             if (resultados.length === 0 && turnoJson !== turnoVal) {
                 resultados = profesores.filter(p =>
                     p.Asignatura && p.Asignatura.includes('PROYECTO') &&
@@ -1325,7 +1284,6 @@
                     p.Turno && p.Turno === turnoVal
                 );
             }
-
             if (resultados.length === 1) {
                 tutorInput.value = resultados[0].Docente || 'No especificado';
             } else if (resultados.length > 1) {
@@ -1335,18 +1293,16 @@
             }
         }
 
-        // ========== LIMPIAR FORMULARIO ==========
         function limpiarFormulario() {
             document.getElementById('registroForm').reset();
             document.getElementById('cedula').value = document.getElementById('cedulaVerificar').value;
             mostrarMensaje('Formulario limpiado', 'info');
         }
 
-        // ========== EVENTO DEL BOTÓN VERIFICAR ==========
+        // Evento del botón Verificar (con scroll automático al Paso 2)
         document.addEventListener('DOMContentLoaded', function() {
             const btnVerificar = document.getElementById('btnVerificar');
             if (!btnVerificar) return;
-
             btnVerificar.addEventListener('click', function() {
                 const cedulaInput = document.getElementById('cedulaVerificar');
                 const cedula = cedulaInput.value.trim();
@@ -1354,71 +1310,59 @@
                     mostrarMensaje('Por favor ingrese una cédula', 'error');
                     return;
                 }
-
                 document.getElementById('cedula').value = cedula;
-
                 const verificacion = document.getElementById('verificacion');
                 const formulario = document.getElementById('registroForm');
-
                 verificacion.style.display = 'none';
                 formulario.classList.remove('oculto');
-
                 mostrarMensaje('🆕 Nuevo registro. Complete los datos.', 'info');
+                // Scroll automático al Paso 2
+                const paso2 = document.getElementById('paso2');
+                if (paso2) {
+                    paso2.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
             });
-
             const trayecto = document.getElementById('trayecto');
             const turno = document.getElementById('turno');
             if (trayecto) trayecto.addEventListener('change', actualizarTutor);
             if (turno) turno.addEventListener('change', actualizarTutor);
         });
 
-        // ========== ENVÍO DEL FORMULARIO ==========
+        // Envío del formulario
         document.addEventListener('DOMContentLoaded', function() {
             const form = document.getElementById('registroForm');
             if (!form) return;
-
             form.addEventListener('submit', async function(e) {
                 e.preventDefault();
-
                 const nucleo = document.getElementById('nucleoSelectPaso2').value;
                 if (!nucleo) {
                     mostrarMensaje('Debes seleccionar un núcleo', 'error');
                     document.getElementById('nucleoSelectPaso2').focus();
                     return;
                 }
-
                 const btn = document.getElementById('btnEnviar');
                 btn.disabled = true;
                 btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
-
                 const formData = new FormData(this);
                 const data = Object.fromEntries(formData.entries());
                 data.timestamp = new Date().toISOString();
-
                 console.log('Datos a enviar:', data);
-
                 try {
-                    const response = await fetch(GOOGLE_APPS_SCRIPT_URL, {
+                    await fetch(GOOGLE_APPS_SCRIPT_URL, {
                         method: 'POST',
-                        mode: 'no-cors',   // Evita errores de CORS, pero no podemos leer la respuesta
+                        mode: 'no-cors',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify(data)
                     });
-
-                    // Debido a 'no-cors', la respuesta no es accesible.
-                    // Asumimos éxito si no hubo error de red.
                     mostrarMensaje('✅ ¡Registro enviado con éxito!', 'exito');
-
-                    // Limpiar y resetear formulario
                     this.reset();
                     this.classList.add('oculto');
                     document.getElementById('verificacion').style.display = 'block';
                     document.getElementById('cedulaVerificar').value = '';
                     document.getElementById('interes_ninguno').checked = true;
-
                 } catch (error) {
                     console.error('Error en el envío:', error);
-                    mostrarMensaje('❌ Error al enviar. Intenta de nuevo. Revisa tu conexión.', 'error');
+                    mostrarMensaje('❌ Error al enviar. Intenta de nuevo.', 'error');
                 } finally {
                     btn.disabled = false;
                     btn.innerHTML = '<i class="fas fa-paper-plane"></i> Enviar registro completo';
