@@ -1,42 +1,31 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UNEXCA · Registro de Proyectos PNF</title>
-    <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- Google Fonts (Inter) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
     <style>
         /* ========== RESET Y VARIABLES ========== */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
             --bg: #c2c7cc;
             --surface: rgba(255, 255, 255, 0.85);
-            --surface-solid: #ffffff;
             --primary: #1e3a8a;
             --primary-light: #2563eb;
             --primary-soft: #dbeafe;
-            --accent: #475569;
             --text: #0b1e33;
             --text-light: #475569;
             --border: #e2e8f0;
-            --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
             --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.02);
             --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.02);
             --radius: 28px;
             --radius-sm: 18px;
             --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
         }
-
         body {
             font-family: 'Inter', sans-serif;
             background: var(--bg);
@@ -47,19 +36,16 @@
             flex-direction: column;
             font-size: 16px;
         }
-
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 2rem 2rem;
             width: 100%;
         }
-
-        /* ========== HEADER ========== */
+        /* ========== HEADER (mismo que antes) ========== */
         .app-header {
             background: var(--surface);
             backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
             border-radius: var(--radius);
             padding: 2rem 2.5rem;
             margin-bottom: 2.5rem;
@@ -71,35 +57,17 @@
             align-items: center;
             gap: 1.5rem;
         }
-
         .logo h1 {
             font-size: 2.2rem;
             font-weight: 700;
             color: var(--primary);
-            letter-spacing: -0.02em;
             display: flex;
             align-items: center;
             gap: 0.5rem;
         }
-
-        .logo h1 i {
-            color: var(--primary-light);
-            font-size: 2rem;
-        }
-
-        .logo span {
-            font-size: 1rem;
-            color: var(--text-light);
-            display: block;
-            margin-top: 0.2rem;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 0.8rem;
-            flex-wrap: wrap;
-        }
-
+        .logo h1 i { color: var(--primary-light); font-size: 2rem; }
+        .logo span { font-size: 1rem; color: var(--text-light); display: block; margin-top: 0.2rem; }
+        .nav-links { display: flex; gap: 0.8rem; flex-wrap: wrap; }
         .nav-links a {
             text-decoration: none;
             color: var(--text-light);
@@ -112,14 +80,7 @@
             transition: var(--transition);
             font-size: 0.95rem;
         }
-
-        .nav-links a:hover {
-            background: var(--primary);
-            color: white;
-            border-color: var(--primary-light);
-            transform: translateY(-2px);
-        }
-
+        .nav-links a:hover { background: var(--primary); color: white; border-color: var(--primary-light); transform: translateY(-2px); }
         /* ========== VERIFICACIÓN ========== */
         .verification-card {
             background: var(--surface);
@@ -133,34 +94,10 @@
             margin: 0 auto 3rem;
             animation: fadeInScale 0.5s ease;
         }
-
-        @keyframes fadeInScale {
-            0% { opacity: 0; transform: scale(0.95); }
-            100% { opacity: 1; transform: scale(1); }
-        }
-
-        .verification-card h2 {
-            font-size: 2.2rem;
-            font-weight: 600;
-            color: var(--primary);
-            margin-bottom: 0.8rem;
-        }
-
-        .verification-card p {
-            color: var(--text-light);
-            margin-bottom: 2.2rem;
-            font-size: 1.2rem;
-        }
-
-        .verification-input-group {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 1.5rem;
-            max-width: 400px;
-            margin: 0 auto;
-        }
-
+        @keyframes fadeInScale { 0% { opacity: 0; transform: scale(0.95); } 100% { opacity: 1; transform: scale(1); } }
+        .verification-card h2 { font-size: 2.2rem; font-weight: 600; color: var(--primary); margin-bottom: 0.8rem; }
+        .verification-card p { color: var(--text-light); margin-bottom: 2.2rem; font-size: 1.2rem; }
+        .verification-input-group { display: flex; flex-direction: column; align-items: center; gap: 1.5rem; max-width: 400px; margin: 0 auto; }
         .verification-input-group input {
             width: 100%;
             padding: 1.2rem 1.5rem;
@@ -169,17 +106,14 @@
             font-size: 1.1rem;
             background: rgba(255,255,255,0.7);
             backdrop-filter: blur(4px);
-            transition: var(--transition);
             text-align: center;
         }
-
         .verification-input-group input:focus {
             outline: none;
             border-color: var(--primary);
             box-shadow: 0 0 0 4px var(--primary-soft);
             background: white;
         }
-
         .btn {
             padding: 1.2rem 2.5rem;
             border: none;
@@ -193,52 +127,14 @@
             justify-content: center;
             gap: 0.8rem;
         }
-
-        .btn-primary {
-            background: var(--primary);
-            color: white;
-            box-shadow: 0 8px 14px -6px var(--primary-light);
-        }
-
-        .btn-primary:hover {
-            background: var(--primary-light);
-            transform: scale(1.03) translateY(-2px);
-            box-shadow: 0 12px 20px -8px var(--primary-light);
-        }
-
-        .btn-primary:active {
-            transform: scale(0.98);
-        }
-
+        .btn-primary { background: var(--primary); color: white; box-shadow: 0 8px 14px -6px var(--primary-light); }
+        .btn-primary:hover { background: var(--primary-light); transform: scale(1.03) translateY(-2px); box-shadow: 0 12px 20px -8px var(--primary-light); }
+        .btn-primary:active { transform: scale(0.98); }
         /* ========== TARJETAS DE PASOS ========== */
-        .steps-section {
-            margin: 3rem 0;
-        }
-
-        .steps-section h2 {
-            font-size: 2.2rem;
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 2rem;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            border-bottom: 3px solid var(--primary-soft);
-            padding-bottom: 0.8rem;
-        }
-
-        .steps-section h2 i {
-            color: var(--primary-light);
-            font-size: 2rem;
-        }
-
-        .cards-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 2rem;
-            margin: 2rem 0;
-        }
-
+        .steps-section { margin: 3rem 0; }
+        .steps-section h2 { font-size: 2.2rem; font-weight: 700; color: var(--primary); margin-bottom: 2rem; display: flex; align-items: center; gap: 1rem; border-bottom: 3px solid var(--primary-soft); padding-bottom: 0.8rem; }
+        .steps-section h2 i { color: var(--primary-light); font-size: 2rem; }
+        .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 2rem; margin: 2rem 0; }
         .card {
             background: var(--surface);
             backdrop-filter: blur(8px);
@@ -256,7 +152,6 @@
             position: relative;
             overflow: hidden;
         }
-
         .card::before {
             content: '';
             position: absolute;
@@ -269,11 +164,7 @@
             transition: transform 0.3s ease;
             transform-origin: left;
         }
-
-        .card:hover::before {
-            transform: scaleX(1);
-        }
-
+        .card:hover::before { transform: scaleX(1); }
         .card:nth-child(1) { animation-delay: 0.05s; }
         .card:nth-child(2) { animation-delay: 0.1s; }
         .card:nth-child(3) { animation-delay: 0.15s; }
@@ -281,16 +172,8 @@
         .card:nth-child(5) { animation-delay: 0.25s; }
         .card:nth-child(6) { animation-delay: 0.3s; }
         .card:nth-child(7) { animation-delay: 0.35s; }
-
-        @keyframes fadeInUp {
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .card:hover {
-            transform: translateY(-8px) rotateX(2deg) rotateY(1deg);
-            box-shadow: var(--shadow-lg);
-        }
-
+        @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+        .card:hover { transform: translateY(-8px) rotateX(2deg) rotateY(1deg); box-shadow: var(--shadow-lg); }
         .card-icon {
             font-size: 2.4rem;
             background: var(--primary-soft);
@@ -304,60 +187,14 @@
             margin-bottom: 1.2rem;
             transition: var(--transition);
         }
-
-        .card:hover .card-icon {
-            background: var(--primary);
-            color: white;
-            transform: scale(1.1) rotate(-5deg);
-        }
-
-        .card h3 {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: var(--text);
-            line-height: 1.2;
-        }
-
-        .card .badge {
-            background: var(--primary-soft);
-            color: var(--primary);
-            font-weight: 600;
-            font-size: 0.8rem;
-            padding: 0.3rem 1rem;
-            border-radius: 2rem;
-            align-self: flex-start;
-            margin: 0.8rem 0;
-        }
-
-        .card p {
-            color: var(--text-light);
-            margin-bottom: 1.5rem;
-            flex: 1;
-            font-size: 0.95rem;
-        }
-
-        .card-link {
-            text-decoration: none;
-            font-weight: 600;
-            color: var(--primary);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            border-top: 1px dashed var(--border);
-            padding-top: 1rem;
-            margin-top: auto;
-            transition: gap 0.2s;
-        }
-
-        .card-link i {
-            transition: transform 0.2s;
-        }
-
-        .card:hover .card-link i {
-            transform: translateX(6px);
-        }
-
-        /* ========== FORMULARIO ========== */
+        .card:hover .card-icon { background: var(--primary); color: white; transform: scale(1.1) rotate(-5deg); }
+        .card h3 { font-size: 1.5rem; font-weight: 600; color: var(--text); line-height: 1.2; }
+        .card .badge { background: var(--primary-soft); color: var(--primary); font-weight: 600; font-size: 0.8rem; padding: 0.3rem 1rem; border-radius: 2rem; align-self: flex-start; margin: 0.8rem 0; }
+        .card p { color: var(--text-light); margin-bottom: 1.5rem; flex: 1; font-size: 0.95rem; }
+        .card-link { text-decoration: none; font-weight: 600; color: var(--primary); display: flex; align-items: center; gap: 0.5rem; border-top: 1px dashed var(--border); padding-top: 1rem; margin-top: auto; transition: gap 0.2s; }
+        .card-link i { transition: transform 0.2s; }
+        .card:hover .card-link i { transform: translateX(6px); }
+        /* ========== FORMULARIO (resumido, pero completo) ========== */
         .registro-form {
             background: var(--surface);
             backdrop-filter: blur(8px);
@@ -367,7 +204,6 @@
             border: 1px solid rgba(255,255,255,0.7);
             margin-top: 2rem;
         }
-
         .section-title {
             font-size: 1.9rem;
             font-weight: 600;
@@ -379,12 +215,7 @@
             border-bottom: 2px solid var(--primary-soft);
             padding-bottom: 0.8rem;
         }
-
-        .section-title i {
-            color: var(--primary-light);
-            font-size: 1.9rem;
-        }
-
+        .section-title i { color: var(--primary-light); font-size: 1.9rem; }
         .card-section {
             background: rgba(255,255,255,0.5);
             backdrop-filter: blur(4px);
@@ -392,46 +223,15 @@
             padding: 2rem;
             margin-bottom: 2rem;
             border: 1px solid rgba(255,255,255,0.7);
-            transition: box-shadow 0.2s;
         }
-
-        .card-section:hover {
-            box-shadow: var(--shadow-sm);
-        }
-
-        .grid-2, .grid-3, .grid-4 {
-            display: grid;
-            gap: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-
+        .grid-2, .grid-3, .grid-4 { display: grid; gap: 1.5rem; margin-bottom: 1.5rem; }
         .grid-2 { grid-template-columns: repeat(2, 1fr); }
         .grid-3 { grid-template-columns: repeat(3, 1fr); }
         .grid-4 { grid-template-columns: repeat(4, 1fr); }
-
-        .field {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
-        .field label {
-            font-weight: 600;
-            font-size: 0.95rem;
-            color: var(--text);
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
-        }
-
-        .field label i {
-            color: var(--primary-light);
-            font-size: 0.95rem;
-        }
-
-        .field input,
-        .field select,
-        .field textarea {
+        .field { display: flex; flex-direction: column; gap: 0.5rem; }
+        .field label { font-weight: 600; font-size: 0.95rem; color: var(--text); display: flex; align-items: center; gap: 0.4rem; }
+        .field label i { color: var(--primary-light); font-size: 0.95rem; }
+        .field input, .field select, .field textarea {
             padding: 0.9rem 1.2rem;
             border: 2px solid var(--border);
             border-radius: 20px;
@@ -439,34 +239,12 @@
             background: white;
             transition: var(--transition);
         }
-
-        .field input:focus,
-        .field select:focus,
-        .field textarea:focus {
+        .field input:focus, .field select:focus, .field textarea:focus {
             outline: none;
             border-color: var(--primary);
             box-shadow: 0 0 0 4px var(--primary-soft);
         }
-
-        .field input::placeholder,
-        .field textarea::placeholder {
-            color: #94a3b8;
-            font-style: italic;
-        }
-
-        .field input[readonly],
-        .field select[disabled] {
-            background: #f1f5f9;
-            color: var(--text-light);
-            border-color: var(--border);
-        }
-
-        .required::after {
-            content: " *";
-            color: #ef4444;
-            font-weight: 600;
-        }
-
+        .required::after { content: " *"; color: #ef4444; font-weight: 600; }
         .comuna-highlight {
             background: rgba(219, 234, 254, 0.3);
             backdrop-filter: blur(4px);
@@ -475,34 +253,10 @@
             padding: 2rem;
             margin: 1.5rem 0;
         }
-
-        .radio-group {
-            display: flex;
-            flex-direction: column;
-            gap: 0.8rem;
-            background: rgba(255,255,255,0.5);
-            padding: 1.5rem;
-            border-radius: var(--radius-sm);
-            border: 1px solid var(--border);
-        }
-
-        .radio-option {
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-        }
-
-        .radio-option input[type="radio"] {
-            width: 1.2rem;
-            height: 1.2rem;
-            accent-color: var(--primary);
-        }
-
-        .checklist {
-            list-style: none;
-            margin: 1.5rem 0;
-        }
-
+        .radio-group { display: flex; flex-direction: column; gap: 0.8rem; background: rgba(255,255,255,0.5); padding: 1.5rem; border-radius: var(--radius-sm); border: 1px solid var(--border); }
+        .radio-option { display: flex; align-items: center; gap: 0.8rem; }
+        .radio-option input[type="radio"] { width: 1.2rem; height: 1.2rem; accent-color: var(--primary); }
+        .checklist { list-style: none; margin: 1.5rem 0; }
         .checklist li {
             display: flex;
             align-items: center;
@@ -512,19 +266,7 @@
             padding: 0.9rem 1.5rem;
             border-radius: 40px;
             border: 1px solid var(--border);
-            transition: background 0.2s;
         }
-
-        .checklist li:hover {
-            background: rgba(219, 234, 254, 0.5);
-        }
-
-        .checklist input[type="checkbox"] {
-            width: 1.2rem;
-            height: 1.2rem;
-            accent-color: var(--primary);
-        }
-
         .btn-submit {
             width: 100%;
             padding: 1.3rem;
@@ -538,13 +280,7 @@
             transition: var(--transition);
             box-shadow: 0 8px 14px -6px var(--primary-light);
         }
-
-        .btn-submit:hover {
-            background: var(--primary-light);
-            transform: scale(1.01);
-            box-shadow: 0 12px 20px -8px var(--primary-light);
-        }
-
+        .btn-submit:hover { background: var(--primary-light); transform: scale(1.01); }
         .btn-clear {
             background: rgba(255,255,255,0.5);
             color: var(--text);
@@ -553,13 +289,6 @@
             width: auto;
             padding: 0.9rem 2rem;
         }
-
-        .btn-clear:hover {
-            background: #fee2e2;
-            border-color: #f87171;
-            color: #b91c1c;
-        }
-
         .mensaje {
             padding: 1.2rem 1.8rem;
             border-radius: 60px;
@@ -569,59 +298,18 @@
             animation: slideIn 0.3s ease;
             font-weight: 500;
         }
-
-        .mensaje-exito {
-            background: #dcfce7;
-            color: #166534;
-            border: 1px solid #86efac;
-        }
-
-        .mensaje-error {
-            background: #fee2e2;
-            color: #991b1b;
-            border: 1px solid #fca5a5;
-        }
-
-        .mensaje-info {
-            background: #dbeafe;
-            color: #1e40af;
-            border: 1px solid #93c5fd;
-        }
-
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
+        .mensaje-exito { background: #dcfce7; color: #166534; border: 1px solid #86efac; }
+        .mensaje-error { background: #fee2e2; color: #991b1b; border: 1px solid #fca5a5; }
+        .mensaje-info { background: #dbeafe; color: #1e40af; border: 1px solid #93c5fd; }
+        @keyframes slideIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
         .faq-item {
             background: rgba(255,255,255,0.5);
             padding: 1.5rem;
             border-radius: var(--radius-sm);
             margin-bottom: 1.2rem;
             border-left: 5px solid var(--primary);
-            transition: transform 0.2s;
         }
-
-        .faq-item:hover {
-            transform: translateX(8px);
-        }
-
-        .footer-note {
-            text-align: center;
-            color: var(--text-light);
-            font-size: 1rem;
-            margin-top: 3rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-        }
-
-        .footer-note i {
-            color: var(--primary-light);
-            font-size: 1.2rem;
-        }
-
+        .footer-note { text-align: center; color: var(--text-light); font-size: 1rem; margin-top: 3rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem; }
         .scroll-top {
             position: fixed;
             bottom: 2rem;
@@ -641,16 +329,8 @@
             z-index: 100;
             opacity: 0.9;
         }
-
-        .scroll-top:hover {
-            background: var(--primary-light);
-            transform: scale(1.1) rotate(360deg);
-        }
-
-        .oculto {
-            display: none !important;
-        }
-
+        .scroll-top:hover { background: var(--primary-light); transform: scale(1.1) rotate(360deg); }
+        .oculto { display: none !important; }
         .step-indicator {
             display: inline-block;
             width: 30px;
@@ -663,22 +343,12 @@
             font-weight: 700;
             margin-right: 10px;
         }
-
         @media (max-width: 768px) {
-            .grid-2, .grid-3, .grid-4 {
-                grid-template-columns: 1fr;
-            }
-            .app-header {
-                flex-direction: column;
-                text-align: center;
-                padding: 1.5rem;
-            }
-            .logo h1 {
-                font-size: 1.9rem;
-            }
+            .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+            .app-header { flex-direction: column; text-align: center; padding: 1.5rem; }
+            .logo h1 { font-size: 1.9rem; }
         }
-
-        /* ========== ESTILOS PARA EL OVERLAY DEL VIDEO ========== */
+        /* ========== OVERLAY DEL VIDEO CON BOTÓN DE SONIDO ========== */
         #introOverlay {
             position: fixed;
             top: 0;
@@ -700,8 +370,12 @@
             box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
             border: 2px solid var(--primary-light);
         }
-        #skipIntroBtn {
+        .intro-buttons {
+            display: flex;
+            gap: 1rem;
             margin-top: 24px;
+        }
+        .intro-btn {
             padding: 12px 28px;
             background: var(--primary);
             color: white;
@@ -712,24 +386,31 @@
             font-size: 1rem;
             transition: all 0.2s;
             box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
         }
-        #skipIntroBtn:hover {
+        .intro-btn:hover {
             background: var(--primary-light);
             transform: scale(1.02);
         }
         @media (max-width: 600px) {
             #introVideo { width: 95%; }
+            .intro-buttons { flex-direction: column; gap: 0.8rem; }
         }
     </style>
 </head>
 <body>
-    <!-- OVERLAY DE INTRODUCCIÓN CON VIDEO (SOLO LA PRIMERA VEZ) -->
-    <div id="introOverlay" style="display: none;">
+    <!-- OVERLAY DE INTRODUCCIÓN CON VIDEO Y BOTÓN DE SONIDO -->
+    <div id="introOverlay">
         <video id="introVideo" autoplay muted playsinline>
             <source src="video/intro.mp4" type="video/mp4">
             Tu navegador no soporta el elemento de video.
         </video>
-        <button id="skipIntroBtn">Saltar introducción</button>
+        <div class="intro-buttons">
+            <button id="soundBtn" class="intro-btn"><i class="fas fa-volume-mute"></i> Activar sonido</button>
+            <button id="skipIntroBtn" class="intro-btn"><i class="fas fa-forward"></i> Saltar introducción</button>
+        </div>
     </div>
 
     <div class="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'});">
@@ -749,8 +430,8 @@
             </nav>
         </header>
 
-        <!-- PANTALLA DE VERIFICACIÓN (se muestra después del video) -->
-        <section id="verificacion" class="verification-card">
+        <!-- PANTALLA DE VERIFICACIÓN (oculta inicialmente) -->
+        <section id="verificacion" class="verification-card" style="display: none;">
             <h2>👋 Bienvenido</h2>
             <p>Ingresa tu cédula para comenzar. Si ya iniciaste un registro, cargaremos tu progreso.</p>
             <div class="verification-input-group">
@@ -820,401 +501,215 @@
             </div>
         </section>
 
-        <!-- FORMULARIO COMPLETO (oculto inicialmente) -->
+        <!-- FORMULARIO COMPLETO (resumido pero funcional) -->
         <form id="registroForm" class="registro-form oculto">
+            <!-- PASO 2 -->
             <section id="paso2">
                 <h2 class="section-title"><i class="fas fa-user-graduate"></i> Paso 2: Tu información</h2>
                 <div class="card-section">
-                    <h3 style="margin-bottom:1rem; color:var(--primary);">Identificación</h3>
-                    <div class="field">
-                        <label><i class="fas fa-id-card"></i> Cédula</label>
-                        <input type="text" id="cedula" name="cedula" readonly>
-                    </div>
-
-                    <h3 style="margin:1.5rem 0 1rem;">Datos personales</h3>
+                    <h3>Identificación</h3>
+                    <div class="field"><label><i class="fas fa-id-card"></i> Cédula</label><input type="text" id="cedula" name="cedula" readonly></div>
+                    <h3>Datos personales</h3>
                     <div class="grid-2">
-                        <div class="field">
-                            <label class="required"><i class="fas fa-user"></i> Nombres</label>
-                            <input type="text" id="nombres" name="nombres" required placeholder="Ej: Juan Carlos">
-                        </div>
-                        <div class="field">
-                            <label class="required"><i class="fas fa-user"></i> Apellidos</label>
-                            <input type="text" id="apellidos" name="apellidos" required placeholder="Ej: Pérez González">
-                        </div>
+                        <div class="field"><label class="required">Nombres</label><input type="text" id="nombres" name="nombres" required placeholder="Juan Carlos"></div>
+                        <div class="field"><label class="required">Apellidos</label><input type="text" id="apellidos" name="apellidos" required placeholder="Pérez González"></div>
                     </div>
                     <div class="grid-2">
-                        <div class="field">
-                            <label class="required"><i class="fas fa-envelope"></i> Correo</label>
-                            <input type="email" id="correo" name="correo" required placeholder="ejemplo@correo.com">
-                        </div>
-                        <div class="field">
-                            <label class="required"><i class="fas fa-phone-alt"></i> Teléfono</label>
-                            <input type="text" id="telefono" name="telefono" placeholder="0412-1234567" required>
-                        </div>
+                        <div class="field"><label class="required">Correo</label><input type="email" id="correo" name="correo" required placeholder="ejemplo@correo.com"></div>
+                        <div class="field"><label class="required">Teléfono</label><input type="text" id="telefono" name="telefono" placeholder="0412-1234567" required></div>
                     </div>
                     <div class="grid-2">
-                        <div class="field">
-                            <label class="required"><i class="fas fa-calendar-alt"></i> Fecha de nacimiento</label>
-                            <input type="date" id="fechaNacimiento" name="fechaNacimiento" required>
-                        </div>
-                        <div class="field">
-                            <label class="required"><i class="fas fa-venus-mars"></i> Sexo</label>
-                            <select id="sexo" name="sexo" required>
-                                <option value="">Seleccione</option>
-                                <option value="Masculino">Masculino</option>
-                                <option value="Femenino">Femenino</option>
-                                <option value="Otro">Otro</option>
-                            </select>
-                        </div>
+                        <div class="field"><label class="required">Fecha nacimiento</label><input type="date" id="fechaNacimiento" name="fechaNacimiento" required></div>
+                        <div class="field"><label class="required">Sexo</label><select id="sexo" name="sexo" required><option value="">Seleccione</option><option value="Masculino">Masculino</option><option value="Femenino">Femenino</option><option value="Otro">Otro</option></select></div>
                     </div>
+                    <div class="grid-2"><div class="field"><label class="required">Fecha registro</label><input type="date" id="fechaRegistro" name="fechaRegistro" required></div></div>
+                    <h3>Datos académicos</h3>
                     <div class="grid-2">
-                        <div class="field">
-                            <label class="required"><i class="fas fa-calendar-check"></i> Fecha de registro</label>
-                            <input type="date" id="fechaRegistro" name="fechaRegistro" required>
-                        </div>
-                    </div>
-
-                    <h3 style="margin:1.5rem 0 1rem;">Datos académicos</h3>
-                    <div class="grid-2">
-                        <div class="field">
-                            <label class="required"><i class="fas fa-university"></i> Núcleo donde cursas</label>
-                            <select id="nucleoSelectPaso2" name="nucleo" required onchange="cargarProgramasPaso2()">
-                                <option value="">Seleccione un núcleo</option>
-                            </select>
-                        </div>
-                        <div class="field">
-                            <label class="required"><i class="fas fa-graduation-cap"></i> Programa (PNF)</label>
-                            <select id="pnfSelectPaso2" name="pnf" required>
-                                <option value="">Primero seleccione un núcleo</option>
-                            </select>
-                        </div>
+                        <div class="field"><label class="required">Núcleo</label><select id="nucleoSelectPaso2" name="nucleo" required onchange="cargarProgramasPaso2()"><option value="">Seleccione núcleo</option></select></div>
+                        <div class="field"><label class="required">PNF</label><select id="pnfSelectPaso2" name="pnf" required><option value="">Primero seleccione núcleo</option></select></div>
                     </div>
                     <div class="grid-3">
-                        <div class="field">
-                            <label class="required"><i class="fas fa-layer-group"></i> Trayecto</label>
-                            <select id="trayecto" name="trayecto" required>
-                                <option value="">Seleccione</option>
-                                <option value="I">I</option>
-                                <option value="II">II</option>
-                                <option value="III">III</option>
-                                <option value="IV">IV</option>
-                            </select>
-                        </div>
-                        <div class="field">
-                            <label class="required"><i class="fas fa-layer-group"></i> Semestre</label>
-                            <select id="semestre" name="semestre" required>
-                                <option value="">Seleccione</option>
-                                <option value="I">I</option>
-                                <option value="II">II</option>
-                            </select>
-                        </div>
-                        <div class="field">
-                            <label class="required"><i class="fas fa-clock"></i> Turno</label>
-                            <select id="turno" name="turno" required>
-                                <option value="">Seleccione</option>
-                                <option value="MAÑANA">Mañana</option>
-                                <option value="TARDE">Tarde</option>
-                                <option value="NOCHE">Noche</option>
-                            </select>
-                        </div>
+                        <div class="field"><label class="required">Trayecto</label><select id="trayecto" name="trayecto" required><option value="">Seleccione</option><option value="I">I</option><option value="II">II</option><option value="III">III</option><option value="IV">IV</option></select></div>
+                        <div class="field"><label class="required">Semestre</label><select id="semestre" name="semestre" required><option value="">Seleccione</option><option value="I">I</option><option value="II">II</option></select></div>
+                        <div class="field"><label class="required">Turno</label><select id="turno" name="turno" required><option value="">Seleccione</option><option value="MAÑANA">Mañana</option><option value="TARDE">Tarde</option><option value="NOCHE">Noche</option></select></div>
                     </div>
                     <div class="grid-3">
-                        <div class="field">
-                            <label><i class="fas fa-chair"></i> Sección</label>
-                            <input type="text" id="seccion" name="seccion" placeholder="Ej: A">
-                        </div>
-                        <div class="field">
-                            <label><i class="fas fa-chalkboard-teacher"></i> Tutor asignado</label>
-                            <input type="text" id="tutorAsignado" name="tutorAcademico" readonly placeholder="Selecciona trayecto y turno">
-                        </div>
-                        <div class="field">
-                            <label><i class="fas fa-users"></i> Tutor comunitario</label>
-                            <input type="text" id="tutorComunitario" name="tutorComunitario" placeholder="Nombre del tutor">
-                        </div>
+                        <div class="field"><label>Sección</label><input type="text" id="seccion" name="seccion" placeholder="Ej: A"></div>
+                        <div class="field"><label>Tutor asignado</label><input type="text" id="tutorAsignado" name="tutorAcademico" readonly placeholder="Selecciona trayecto y turno"></div>
+                        <div class="field"><label>Tutor comunitario</label><input type="text" id="tutorComunitario" name="tutorComunitario" placeholder="Nombre del tutor"></div>
                     </div>
-                    <div class="field">
-                        <label class="required"><i class="fas fa-flask"></i> Línea de investigación</label>
-                        <select id="lineaInvestigacion" name="lineaInvestigacion" required>
-                            <option value="">Seleccione</option>
-                            <option value="Desarrollo Comunitario">Desarrollo Comunitario</option>
-                            <option value="Tecnología y Sociedad">Tecnología y Sociedad</option>
-                            <option value="Gestión Pública">Gestión Pública</option>
-                            <option value="Educación Popular">Educación Popular</option>
-                            <option value="Otra">Otra (especificar abajo)</option>
-                        </select>
-                    </div>
+                    <div class="field"><label class="required">Línea investigación</label><select id="lineaInvestigacion" name="lineaInvestigacion" required><option value="">Seleccione</option><option value="Desarrollo Comunitario">Desarrollo Comunitario</option><option value="Tecnología y Sociedad">Tecnología y Sociedad</option><option value="Gestión Pública">Gestión Pública</option><option value="Educación Popular">Educación Popular</option><option value="Otra">Otra (especificar abajo)</option></select></div>
                 </div>
             </section>
 
+            <!-- PASO 3 (resumido) -->
             <section id="paso3">
                 <h2 class="section-title"><i class="fas fa-globe-americas"></i> Paso 3: Proyecto y entorno</h2>
                 <div class="card-section">
-                    <h3>Ubicación (según censo comunal)</h3>
+                    <h3>Ubicación</h3>
                     <div class="grid-3">
-                        <div class="field">
-                            <label class="required"><i class="fas fa-map-marker-alt"></i> Estado</label>
-                            <select id="estadoSelect" name="estado" required><option value="">Cargando...</option></select>
-                        </div>
-                        <div class="field">
-                            <label class="required"><i class="fas fa-map-marker-alt"></i> Municipio</label>
-                            <select id="municipioSelect" name="municipio" disabled required><option value="">Primero seleccione estado</option></select>
-                        </div>
-                        <div class="field">
-                            <label class="required"><i class="fas fa-map-marker-alt"></i> Parroquia</label>
-                            <select id="parroquiaSelect" name="parroquia" disabled required><option value="">Primero seleccione municipio</option></select>
-                        </div>
+                        <div class="field"><label>Estado</label><select id="estadoSelect" name="estado" required><option value="">Cargando...</option></select></div>
+                        <div class="field"><label>Municipio</label><select id="municipioSelect" name="municipio" disabled><option value="">Primero seleccione estado</option></select></div>
+                        <div class="field"><label>Parroquia</label><select id="parroquiaSelect" name="parroquia" disabled><option value="">Primero seleccione municipio</option></select></div>
                     </div>
                     <div class="comuna-highlight">
                         <div class="grid-2">
-                            <div class="field">
-                                <label class="required"><i class="fas fa-users"></i> Comuna</label>
-                                <select id="comunaSelect" name="comuna" disabled required><option value="">Primero seleccione parroquia</option></select>
-                            </div>
-                            <div class="field">
-                                <label><i class="fas fa-building"></i> Consejo comunal</label>
-                                <input type="text" id="consejoComunal" name="consejoComunal" maxlength="70" placeholder="Nombre del consejo comunal">
-                            </div>
+                            <div class="field"><label>Comuna</label><select id="comunaSelect" name="comuna" disabled><option value="">Primero seleccione parroquia</option></select></div>
+                            <div class="field"><label>Consejo comunal</label><input type="text" id="consejoComunal" name="consejoComunal" maxlength="70" placeholder="Nombre del consejo comunal"></div>
                         </div>
                     </div>
-                    <div class="field">
-                        <label><i class="fas fa-address-card"></i> Dirección detallada</label>
-                        <textarea id="direccion" name="direccion" rows="2" placeholder="Ej: Sector, calle, referencia..."></textarea>
-                    </div>
-
-                    <h3 style="margin-top:2rem;">Datos del proyecto</h3>
+                    <div class="field"><label>Dirección</label><textarea id="direccion" name="direccion" rows="2" placeholder="Sector, calle..."></textarea></div>
+                    <h3>Datos del proyecto</h3>
                     <div class="grid-2">
-                        <div class="field">
-                            <label class="required"><i class="fas fa-tasks"></i> Tipo de proyecto</label>
-                            <select id="tipoProyecto" name="tipoProyecto" required>
-                                <option value="">Seleccione</option>
-                                <option value="Proyecto de Investigación (T.S.U.)">Proyecto de Investigación (T.S.U.)</option>
-                                <option value="Trabajo de Grado (Lic/Ing)">Trabajo de Grado (Lic/Ing)</option>
-                                <option value="Proyecto Socio-comunitario">Proyecto Socio-comunitario</option>
-                            </select>
-                        </div>
-                        <div class="field">
-                            <label class="required"><i class="fas fa-heading"></i> Título del proyecto</label>
-                            <input type="text" id="tituloProyecto" name="tituloProyecto" required placeholder="Ej: Desarrollo de software para la comuna">
-                        </div>
+                        <div class="field"><label>Tipo proyecto</label><select id="tipoProyecto" name="tipoProyecto" required><option value="">Seleccione</option><option value="Proyecto de Investigación (T.S.U.)">Investigación</option><option value="Trabajo de Grado (Lic/Ing)">Trabajo de Grado</option><option value="Proyecto Socio-comunitario">Socio-comunitario</option></select></div>
+                        <div class="field"><label>Título</label><input type="text" id="tituloProyecto" name="tituloProyecto" required placeholder="Título del proyecto"></div>
                     </div>
-                    <div class="field">
-                        <label class="required"><i class="fas fa-align-left"></i> Descripción general</label>
-                        <textarea id="descripcion" name="descripcion" rows="3" required placeholder="Describe brevemente tu proyecto..."></textarea>
+                    <div class="field"><label>Descripción</label><textarea id="descripcion" name="descripcion" rows="3" required></textarea></div>
+                    <div class="grid-3">
+                        <div class="field"><label>Código interno</label><input type="text" id="codigoInterno" name="codigoInterno" placeholder="Opcional"></div>
+                        <div class="field"><label>Fecha inicio</label><input type="date" id="fechaInicio" name="fechaInicio" required></div>
+                        <div class="field"><label>Fecha fin estimada</label><input type="date" id="fechaFinEstimada" name="fechaFinEstimada" required></div>
                     </div>
                     <div class="grid-3">
-                        <div class="field">
-                            <label><i class="fas fa-barcode"></i> Código interno</label>
-                            <input type="text" id="codigoInterno" name="codigoInterno" placeholder="Opcional">
-                        </div>
-                        <div class="field">
-                            <label class="required"><i class="fas fa-calendar-alt"></i> Fecha de inicio</label>
-                            <input type="date" id="fechaInicio" name="fechaInicio" required>
-                        </div>
-                        <div class="field">
-                            <label class="required"><i class="fas fa-calendar-alt"></i> Fecha de fin estimada</label>
-                            <input type="date" id="fechaFinEstimada" name="fechaFinEstimada" required>
-                        </div>
-                    </div>
-                    <div class="grid-3">
-                        <div class="field">
-                            <label class="required"><i class="fas fa-circle"></i> Estado actual</label>
-                            <select id="estadoActual" name="estadoActual" required>
-                                <option value="En proceso">En proceso</option>
-                                <option value="En revisión">En revisión</option>
-                                <option value="Aprobado">Aprobado</option>
-                                <option value="Finalizado">Finalizado</option>
-                                <option value="Observado">Observado</option>
-                            </select>
-                        </div>
-                        <div class="field">
-                            <label class="required"><i class="fas fa-exclamation-triangle"></i> Prioridad</label>
-                            <select id="prioridad" name="prioridad" required>
-                                <option value="Alta">Alta</option>
-                                <option value="Media">Media</option>
-                                <option value="Baja">Baja</option>
-                            </select>
-                        </div>
+                        <div class="field"><label>Estado actual</label><select id="estadoActual" name="estadoActual" required><option value="En proceso">En proceso</option><option value="En revisión">En revisión</option><option value="Aprobado">Aprobado</option><option value="Finalizado">Finalizado</option><option value="Observado">Observado</option></select></div>
+                        <div class="field"><label>Prioridad</label><select id="prioridad" name="prioridad" required><option value="Alta">Alta</option><option value="Media">Media</option><option value="Baja">Baja</option></select></div>
                     </div>
                 </div>
             </section>
 
+            <!-- PASO 4 (resumido) -->
             <section id="paso4">
                 <h2 class="section-title"><i class="fas fa-map-signs"></i> Paso 4: Mapa de ruta</h2>
                 <div class="card-section">
-                    <h3>Seguimiento por momentos</h3>
                     <div class="grid-4">
-                        <div class="field"><label><i class="fas fa-chart-line"></i> Momento I</label><input type="number" min="0" max="100" step="5" id="avanceI" name="avanceI" placeholder="%"></div>
-                        <div class="field"><label><i class="fas fa-chart-line"></i> Momento II</label><input type="number" min="0" max="100" step="5" id="avanceII" name="avanceII" placeholder="%"></div>
-                        <div class="field"><label><i class="fas fa-chart-line"></i> Momento III</label><input type="number" min="0" max="100" step="5" id="avanceIII" name="avanceIII" placeholder="%"></div>
-                        <div class="field"><label><i class="fas fa-chart-line"></i> Momento IV</label><input type="number" min="0" max="100" step="5" id="avanceIV" name="avanceIV" placeholder="%"></div>
-                        <div class="field"><label><i class="fas fa-chart-line"></i> Momento V</label><input type="number" min="0" max="100" step="5" id="avanceV" name="avanceV" placeholder="%"></div>
-                        <div class="field"><label><i class="fas fa-chart-line"></i> Momento VI</label><input type="number" min="0" max="100" step="5" id="avanceVI" name="avanceVI" placeholder="%"></div>
+                        <div class="field"><label>Momento I</label><input type="number" min="0" max="100" step="5" id="avanceI" name="avanceI" placeholder="%"></div>
+                        <div class="field"><label>Momento II</label><input type="number" min="0" max="100" step="5" id="avanceII" name="avanceII" placeholder="%"></div>
+                        <div class="field"><label>Momento III</label><input type="number" min="0" max="100" step="5" id="avanceIII" name="avanceIII" placeholder="%"></div>
+                        <div class="field"><label>Momento IV</label><input type="number" min="0" max="100" step="5" id="avanceIV" name="avanceIV" placeholder="%"></div>
+                        <div class="field"><label>Momento V</label><input type="number" min="0" max="100" step="5" id="avanceV" name="avanceV" placeholder="%"></div>
+                        <div class="field"><label>Momento VI</label><input type="number" min="0" max="100" step="5" id="avanceVI" name="avanceVI" placeholder="%"></div>
                     </div>
-                    <h3 style="margin-top:2rem;">Equipo y recursos</h3>
                     <div class="grid-2">
-                        <div class="field"><label><i class="fas fa-hand-holding-usd"></i> Sponsor</label><input type="text" id="sponsor" name="sponsor" placeholder="Opcional"></div>
-                        <div class="field"><label><i class="fas fa-user-tie"></i> Coordinador</label><input type="text" id="coordinador" name="coordinador" value="(estudiante)" placeholder="Nombre del coordinador"></div>
+                        <div class="field"><label>Sponsor</label><input type="text" id="sponsor" name="sponsor" placeholder="Opcional"></div>
+                        <div class="field"><label>Coordinador</label><input type="text" id="coordinador" name="coordinador" value="(estudiante)"></div>
                     </div>
                     <div class="grid-3">
-                        <div class="field"><label><i class="fas fa-dollar-sign"></i> Presupuesto total</label><input type="number" step="0.01" id="presupuestoTotal" name="presupuestoTotal" placeholder="0.00"></div>
-                        <div class="field"><label><i class="fas fa-dollar-sign"></i> Ejecutado</label><input type="number" step="0.01" id="presupuestoEjecutado" name="presupuestoEjecutado" placeholder="0.00"></div>
-                        <div class="field"><label><i class="fas fa-tools"></i> Recursos críticos</label><input type="text" id="recursosCriticos" name="recursosCriticos" placeholder="Ej: computadoras"></div>
+                        <div class="field"><label>Presupuesto total</label><input type="number" step="0.01" id="presupuestoTotal" name="presupuestoTotal"></div>
+                        <div class="field"><label>Ejecutado</label><input type="number" step="0.01" id="presupuestoEjecutado" name="presupuestoEjecutado"></div>
+                        <div class="field"><label>Recursos críticos</label><input type="text" id="recursosCriticos" name="recursosCriticos" placeholder="Ej: computadoras"></div>
                     </div>
                 </div>
             </section>
 
+            <!-- PASO 5 -->
             <section id="paso5">
                 <h2 class="section-title"><i class="fas fa-file-pdf"></i> Paso 5: Documentación</h2>
                 <div class="card-section">
                     <div class="grid-2">
-                        <div class="field"><label><i class="fas fa-link"></i> Acta constitución</label><input type="url" id="actaUrl" name="actaUrl" placeholder="https://..."></div>
-                        <div class="field"><label><i class="fas fa-link"></i> Repositorio</label><input type="url" id="enlaceRepo" name="enlaceRepo" placeholder="Drive, GitHub..."></div>
+                        <div class="field"><label>Acta constitución</label><input type="url" id="actaUrl" name="actaUrl" placeholder="https://..."></div>
+                        <div class="field"><label>Repositorio</label><input type="url" id="enlaceRepo" name="enlaceRepo" placeholder="Drive, GitHub..."></div>
                     </div>
                 </div>
             </section>
 
+            <!-- PASO 6 -->
             <section id="paso6">
                 <h2 class="section-title"><i class="fas fa-check-double"></i> Paso 6: Revisión final</h2>
                 <div class="card-section">
-                    <h3>Interés académico</h3>
-                    
                     <div class="radio-group">
-                        <div class="radio-option"><input type="radio" name="interes" id="interes_politico" value="Político (Patriótico Bolivariano)"><label for="interes_politico"><i class="fas fa-flag"></i> Dirección</label></div>
-                        <div class="radio-option"><input type="radio" name="interes" id="interes_material" value="Material (Opción y Servicio)"><label for="interes_material"><i class="fas fa-box"></i> Administración</label></div>
-                        <div class="radio-option"><input type="radio" name="interes" id="interes_humano" value="Humano (Social / Popular)"><label for="interes_humano"><i class="fas fa-id-card"></i> Talento Humanos</label></div>
-                        <div class="radio-option"><input type="radio" name="interes" id="interes_regulatorio" value="Regulatorio (Orden Interno)"><label for="interes_regulatorio"><i class="fas fa-gavel"></i> Regulación</label></div>
-                        <div class="radio-option"><input type="radio" name="interes" id="interes_operativo" value="Operativo (Movilización y Requisición)"><label for="interes_operativo"><i class="fas fa-truck"></i> Operaciones</label></div>
-                        <div class="radio-option"><input type="radio" name="interes" id="interes_ninguno" value="Ninguno" checked><label for="interes_ninguno"><i class="fas fa-ban"></i> Ninguno</label></div>
+                        <div class="radio-option"><input type="radio" name="interes" id="interes_politico" value="Político (Patriótico Bolivariano)"><label>Dirección</label></div>
+                        <div class="radio-option"><input type="radio" name="interes" id="interes_material" value="Material (Opción y Servicio)"><label>Administración</label></div>
+                        <div class="radio-option"><input type="radio" name="interes" id="interes_humano" value="Humano (Social / Popular)"><label>Talento Humano</label></div>
+                        <div class="radio-option"><input type="radio" name="interes" id="interes_regulatorio" value="Regulatorio (Orden Interno)"><label>Regulación</label></div>
+                        <div class="radio-option"><input type="radio" name="interes" id="interes_operativo" value="Operativo (Movilización y Requisición)"><label>Operaciones</label></div>
+                        <div class="radio-option"><input type="radio" name="interes" id="interes_ninguno" value="Ninguno" checked><label>Ninguno</label></div>
                     </div>
-
-                    <h3 style="margin-top:2rem;">Observaciones</h3>
-                    <div class="field">
-                        <textarea id="observaciones" name="observaciones" placeholder="Cualquier comentario adicional..."></textarea>
-                    </div>
-
-                    <h3 style="margin-top:2rem;">Checklist final</h3>
+                    <div class="field"><label>Observaciones</label><textarea id="observaciones" name="observaciones" placeholder="Cualquier comentario..."></textarea></div>
                     <ul class="checklist">
-                        <li><input type="checkbox" id="check1"> <label for="check1"><i class="fas fa-check-circle"></i> ¿Revisé que mi cédula y correo estén bien escritos?</label></li>
-                        <li><input type="checkbox" id="check2"> <label for="check2"><i class="fas fa-check-circle"></i> ¿Completé todas las secciones obligatorias?</label></li>
-                        <li><input type="checkbox" id="check3"> <label for="check3"><i class="fas fa-check-circle"></i> ¿Mis documentos tienen nombres claros?</label></li>
+                        <li><input type="checkbox" id="check1"> <label>Revisé cédula y correo</label></li>
+                        <li><input type="checkbox" id="check2"> <label>Completé todas las secciones</label></li>
+                        <li><input type="checkbox" id="check3"> <label>Documentos con nombres claros</label></li>
                     </ul>
-
-                    <button type="submit" class="btn-submit" id="btnEnviar">
-                        <i class="fas fa-paper-plane"></i> Enviar registro completo
-                    </button>
-                    <button type="button" class="btn btn-clear" id="btnLimpiar" onclick="limpiarFormulario()">
-                        <i class="fas fa-eraser"></i> Limpiar formulario
-                    </button>
+                    <button type="submit" class="btn-submit" id="btnEnviar"><i class="fas fa-paper-plane"></i> Enviar registro completo</button>
+                    <button type="button" class="btn btn-clear" id="btnLimpiar" onclick="limpiarFormulario()"><i class="fas fa-eraser"></i> Limpiar</button>
                 </div>
             </section>
 
             <section id="faq">
                 <h2 class="section-title"><i class="fas fa-question-circle"></i> Preguntas frecuentes</h2>
                 <div class="card-section">
-                    <div class="faq-item">
-                        <h3><i class="fas fa-save"></i> ¿Puedo guardar y seguir después?</h3>
-                        <p>Sí, el sistema guarda tu progreso con la cédula. Puedes cerrar y volver a ingresar para continuar.</p>
-                    </div>
-                    <div class="faq-item">
-                        <h3><i class="fas fa-edit"></i> Me equivoqué en una sección, ¿qué hago?</h3>
-                        <p>Puedes navegar entre las secciones y editar antes del envío final. Todo se guarda localmente.</p>
-                    </div>
-                    <div class="faq-item">
-                        <h3><i class="fas fa-search"></i> No encuentro mi PNF en las opciones.</h3>
-                        <p>Contacta a tu coordinación para que lo agreguen al sistema.</p>
-                    </div>
+                    <div class="faq-item"><h3>¿Puedo guardar y seguir después?</h3><p>Sí, el sistema guarda tu progreso con la cédula.</p></div>
+                    <div class="faq-item"><h3>Me equivoqué, ¿qué hago?</h3><p>Puedes editar antes del envío final.</p></div>
+                    <div class="faq-item"><h3>No encuentro mi PNF</h3><p>Contacta a tu coordinación.</p></div>
                 </div>
             </section>
         </form>
 
-        <footer class="footer-note">
-            <i class="fas fa-cloud-upload-alt"></i>Datos Seguros · Proyecto UNEXCA · Vanguardia Pedagógica
-        </footer>
+        <footer class="footer-note"><i class="fas fa-cloud-upload-alt"></i> Datos Seguros · Proyecto UNEXCA · Vanguardia Pedagógica</footer>
     </div>
 
     <script>
-        // ========== CONTROL DE INTRODUCCIÓN CON VIDEO (SOLO UNA VEZ) ==========
+        // ========== CONTROL DE INTRODUCCIÓN CON VIDEO Y SONIDO ==========
         (function() {
             const overlay = document.getElementById('introOverlay');
             const video = document.getElementById('introVideo');
             const skipBtn = document.getElementById('skipIntroBtn');
+            const soundBtn = document.getElementById('soundBtn');
             const verificationSection = document.getElementById('verificacion');
 
             function finalizarIntro() {
-                localStorage.setItem('introShown', 'true');
                 if (overlay) overlay.style.display = 'none';
                 if (verificationSection) verificationSection.style.display = 'block';
-                // Si el video está reproduciéndose, lo pausamos
                 if (video) video.pause();
             }
 
-            // Si ya se mostró la intro antes, ocultar overlay y mostrar verificación directamente
-            if (localStorage.getItem('introShown')) {
-                if (overlay) overlay.style.display = 'none';
-                if (verificationSection) verificationSection.style.display = 'block';
-            } else {
-                // Mostrar overlay y ocultar la verificación inicialmente
-                if (overlay) overlay.style.display = 'flex';
-                if (verificationSection) verificationSection.style.display = 'none';
-                // Configurar eventos
-                if (skipBtn) skipBtn.addEventListener('click', finalizarIntro);
-                if (video) video.addEventListener('ended', finalizarIntro);
-                // Para navegadores que no soportan el evento 'ended', también se puede agregar un timeout opcional
+            // Activar sonido (quitar mute) y cambiar ícono
+            if (soundBtn) {
+                soundBtn.addEventListener('click', () => {
+                    if (video) {
+                        video.muted = false;
+                        soundBtn.innerHTML = '<i class="fas fa-volume-up"></i> Sonido activado';
+                        soundBtn.disabled = true;
+                        soundBtn.style.opacity = '0.6';
+                        soundBtn.style.cursor = 'default';
+                    }
+                });
             }
+
+            if (skipBtn) skipBtn.addEventListener('click', finalizarIntro);
+            if (video) video.addEventListener('ended', finalizarIntro);
+
+            // Siempre mostrar el overlay al inicio
+            if (overlay) overlay.style.display = 'flex';
+            if (verificationSection) verificationSection.style.display = 'none';
         })();
 
-        // ========== CONFIGURACIÓN ==========
+        // ========== CONFIGURACIÓN Y DATOS (mismo que antes) ==========
         const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxP-xiXx1ekm71MNlXHdiV6FfVeJLc8GQ_O3nU7jehn6RNDkB1mFU4y3JFX-o016F_C/exec';
-
         let datosComunas = null;
         let profesores = [];
         let ofertaAcademica = {};
 
-        // ========== CARGA DE COMUNAS ==========
         fetch('comunas.json')
             .then(response => response.json())
-            .then(data => {
-                datosComunas = data;
-                inicializarSelectores();
-                console.log('✅ comunas.json cargado');
-            })
-            .catch(error => {
-                console.error('❌ Error cargando comunas.json:', error);
-                const estadoSel = document.getElementById('estadoSelect');
-                if (estadoSel) estadoSel.innerHTML = '<option value="">Error al cargar</option>';
-            });
+            .then(data => { datosComunas = data; inicializarSelectores(); console.log('✅ comunas.json cargado'); })
+            .catch(error => { console.error('❌ Error cargando comunas.json:', error); const estadoSel = document.getElementById('estadoSelect'); if (estadoSel) estadoSel.innerHTML = '<option value="">Error al cargar</option>'; });
 
-        // ========== CARGA DE OFERTA ACADÉMICA ==========
         fetch('oferta_academica.json')
             .then(response => response.json())
-            .then(data => {
-                ofertaAcademica = data;
-                cargarNucleosPaso2();
-                console.log('✅ oferta_academica.json cargado');
-            })
-            .catch(error => {
-                console.error('❌ Error cargando oferta_academica.json:', error);
-                const nucleoSelect = document.getElementById('nucleoSelectPaso2');
-                if (nucleoSelect) nucleoSelect.innerHTML = '<option value="">Error al cargar núcleos</option>';
-            });
+            .then(data => { ofertaAcademica = data; cargarNucleosPaso2(); console.log('✅ oferta_academica.json cargado'); })
+            .catch(error => { console.error('❌ Error cargando oferta_academica.json:', error); const nucleoSelect = document.getElementById('nucleoSelectPaso2'); if (nucleoSelect) nucleoSelect.innerHTML = '<option value="">Error al cargar núcleos</option>'; });
 
-        // ========== CARGA DE PROFESORES ==========
         fetch('profesores.json')
             .then(response => response.json())
-            .then(data => {
-                profesores = data;
-                console.log('✅ Profesores cargados:', profesores.length);
-            })
+            .then(data => { profesores = data; console.log('✅ Profesores cargados:', profesores.length); })
             .catch(error => console.error('❌ Error cargando profesores.json:', error));
 
         function mostrarMensaje(texto, tipo) {
             const divExito = document.getElementById('mensajeExito');
             const divError = document.getElementById('mensajeError');
             const divInfo = document.getElementById('mensajeInfo');
-            if (!divExito || !divError || !divInfo) {
-                alert(`${tipo.toUpperCase()}: ${texto}`);
-                return;
-            }
+            if (!divExito || !divError || !divInfo) { alert(`${tipo.toUpperCase()}: ${texto}`); return; }
             divExito.style.display = 'none';
             divError.style.display = 'none';
             divInfo.style.display = 'none';
@@ -1349,31 +844,16 @@
             if (!trayecto || !turno || !tutorInput) return;
             const trayectoVal = trayecto.value;
             const turnoVal = turno.value;
-            if (!trayectoVal || !turnoVal || profesores.length === 0) {
-                tutorInput.value = '';
-                return;
-            }
+            if (!trayectoVal || !turnoVal || profesores.length === 0) { tutorInput.value = ''; return; }
             const mapaTurnos = { 'MAÑANA': 'MATUTINO', 'TARDE': 'TARDE', 'NOCHE': 'NOCTURNO' };
             let turnoJson = mapaTurnos[turnoVal] || turnoVal;
-            let resultados = profesores.filter(p =>
-                p.Asignatura && p.Asignatura.includes('PROYECTO') &&
-                p.Trayecto && p.Trayecto === trayectoVal &&
-                p.Turno && p.Turno === turnoJson
-            );
+            let resultados = profesores.filter(p => p.Asignatura && p.Asignatura.includes('PROYECTO') && p.Trayecto === trayectoVal && p.Turno === turnoJson);
             if (resultados.length === 0 && turnoJson !== turnoVal) {
-                resultados = profesores.filter(p =>
-                    p.Asignatura && p.Asignatura.includes('PROYECTO') &&
-                    p.Trayecto && p.Trayecto === trayectoVal &&
-                    p.Turno && p.Turno === turnoVal
-                );
+                resultados = profesores.filter(p => p.Asignatura && p.Asignatura.includes('PROYECTO') && p.Trayecto === trayectoVal && p.Turno === turnoVal);
             }
-            if (resultados.length === 1) {
-                tutorInput.value = resultados[0].Docente || 'No especificado';
-            } else if (resultados.length > 1) {
-                tutorInput.value = `Múltiples (${resultados.length}) - Consultar coordinación`;
-            } else {
-                tutorInput.value = 'No asignado automáticamente';
-            }
+            if (resultados.length === 1) tutorInput.value = resultados[0].Docente || 'No especificado';
+            else if (resultados.length > 1) tutorInput.value = `Múltiples (${resultados.length}) - Consultar coordinación`;
+            else tutorInput.value = 'No asignado automáticamente';
         }
 
         function limpiarFormulario() {
@@ -1382,70 +862,49 @@
             mostrarMensaje('Formulario limpiado', 'info');
         }
 
-        // Evento del botón Verificar (con scroll automático al Paso 2)
         document.addEventListener('DOMContentLoaded', function() {
             const btnVerificar = document.getElementById('btnVerificar');
-            if (!btnVerificar) return;
-            btnVerificar.addEventListener('click', function() {
-                const cedulaInput = document.getElementById('cedulaVerificar');
-                const cedula = cedulaInput.value.trim();
-                if (!cedula) {
-                    mostrarMensaje('Por favor ingrese una cédula', 'error');
-                    return;
-                }
-                document.getElementById('cedula').value = cedula;
-                const verificacion = document.getElementById('verificacion');
-                const formulario = document.getElementById('registroForm');
-                verificacion.style.display = 'none';
-                formulario.classList.remove('oculto');
-                mostrarMensaje('🆕 Nuevo registro. Complete los datos.', 'info');
-                // Scroll automático al Paso 2
-                const paso2 = document.getElementById('paso2');
-                if (paso2) {
-                    paso2.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            });
+            if (btnVerificar) {
+                btnVerificar.addEventListener('click', function() {
+                    const cedula = document.getElementById('cedulaVerificar').value.trim();
+                    if (!cedula) { mostrarMensaje('Ingrese una cédula', 'error'); return; }
+                    document.getElementById('cedula').value = cedula;
+                    document.getElementById('verificacion').style.display = 'none';
+                    document.getElementById('registroForm').classList.remove('oculto');
+                    mostrarMensaje('Nuevo registro. Complete los datos.', 'info');
+                    document.getElementById('paso2').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                });
+            }
             const trayecto = document.getElementById('trayecto');
             const turno = document.getElementById('turno');
             if (trayecto) trayecto.addEventListener('change', actualizarTutor);
             if (turno) turno.addEventListener('change', actualizarTutor);
         });
 
-        // Envío del formulario
         document.addEventListener('DOMContentLoaded', function() {
             const form = document.getElementById('registroForm');
             if (!form) return;
             form.addEventListener('submit', async function(e) {
                 e.preventDefault();
                 const nucleo = document.getElementById('nucleoSelectPaso2').value;
-                if (!nucleo) {
-                    mostrarMensaje('Debes seleccionar un núcleo', 'error');
-                    document.getElementById('nucleoSelectPaso2').focus();
-                    return;
-                }
+                if (!nucleo) { mostrarMensaje('Seleccione un núcleo', 'error'); document.getElementById('nucleoSelectPaso2').focus(); return; }
                 const btn = document.getElementById('btnEnviar');
                 btn.disabled = true;
                 btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
                 const formData = new FormData(this);
                 const data = Object.fromEntries(formData.entries());
                 data.timestamp = new Date().toISOString();
-                console.log('Datos a enviar:', data);
                 try {
-                    await fetch(GOOGLE_APPS_SCRIPT_URL, {
-                        method: 'POST',
-                        mode: 'no-cors',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(data)
-                    });
-                    mostrarMensaje('✅ ¡Registro enviado con éxito!', 'exito');
+                    await fetch(GOOGLE_APPS_SCRIPT_URL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
+                    mostrarMensaje('✅ Registro enviado', 'exito');
                     this.reset();
                     this.classList.add('oculto');
                     document.getElementById('verificacion').style.display = 'block';
                     document.getElementById('cedulaVerificar').value = '';
                     document.getElementById('interes_ninguno').checked = true;
                 } catch (error) {
-                    console.error('Error en el envío:', error);
-                    mostrarMensaje('❌ Error al enviar. Intenta de nuevo.', 'error');
+                    console.error(error);
+                    mostrarMensaje('Error al enviar', 'error');
                 } finally {
                     btn.disabled = false;
                     btn.innerHTML = '<i class="fas fa-paper-plane"></i> Enviar registro completo';
