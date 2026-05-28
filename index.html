@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
     <style>
-        /* ========== RESET Y VARIABLES (igual que antes) ========== */
+        /* ========== RESET Y VARIABLES (mismo estilo anterior) ========== */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
             --bg: #c2c7cc;
@@ -26,144 +26,41 @@
             --radius-sm: 18px;
             --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        body {
-            font-family: 'Inter', sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            line-height: 1.5;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            font-size: 16px;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem 2rem;
-            width: 100%;
-        }
-        /* ========== HEADER ========== */
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.5; min-height: 100vh; display: flex; flex-direction: column; font-size: 16px; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 2rem 2rem; width: 100%; }
         .app-header {
-            background: var(--surface);
-            backdrop-filter: blur(8px);
-            border-radius: var(--radius);
-            padding: 2rem 2.5rem;
-            margin-bottom: 2.5rem;
-            box-shadow: var(--shadow-md);
-            border: 1px solid rgba(255,255,255,0.5);
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: center;
-            gap: 1.5rem;
+            background: var(--surface); backdrop-filter: blur(8px); border-radius: var(--radius); padding: 2rem 2.5rem; margin-bottom: 2.5rem;
+            box-shadow: var(--shadow-md); border: 1px solid rgba(255,255,255,0.5); display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1.5rem;
         }
-        .logo h1 {
-            font-size: 2.2rem;
-            font-weight: 700;
-            color: var(--primary);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
+        .logo h1 { font-size: 2.2rem; font-weight: 700; color: var(--primary); display: flex; align-items: center; gap: 0.5rem; }
         .logo h1 i { color: var(--primary-light); font-size: 2rem; }
         .logo span { font-size: 1rem; color: var(--text-light); display: block; margin-top: 0.2rem; }
         .nav-links { display: flex; gap: 0.8rem; flex-wrap: wrap; }
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-light);
-            font-weight: 500;
-            padding: 0.7rem 1.4rem;
-            border-radius: 40px;
-            background: rgba(255,255,255,0.6);
-            backdrop-filter: blur(4px);
-            border: 1px solid var(--border);
-            transition: var(--transition);
-            font-size: 0.95rem;
-        }
+        .nav-links a { text-decoration: none; color: var(--text-light); font-weight: 500; padding: 0.7rem 1.4rem; border-radius: 40px; background: rgba(255,255,255,0.6); backdrop-filter: blur(4px); border: 1px solid var(--border); transition: var(--transition); font-size: 0.95rem; }
         .nav-links a:hover { background: var(--primary); color: white; border-color: var(--primary-light); transform: translateY(-2px); }
-        /* ========== VERIFICACIÓN ========== */
         .verification-card {
-            background: var(--surface);
-            backdrop-filter: blur(8px);
-            border-radius: var(--radius);
-            padding: 3rem 2.5rem;
-            box-shadow: var(--shadow-lg);
-            border: 1px solid rgba(255,255,255,0.7);
-            text-align: center;
-            max-width: 650px;
-            margin: 0 auto 3rem;
-            animation: fadeInScale 0.5s ease;
+            background: var(--surface); backdrop-filter: blur(8px); border-radius: var(--radius); padding: 3rem 2.5rem; box-shadow: var(--shadow-lg);
+            border: 1px solid rgba(255,255,255,0.7); text-align: center; max-width: 650px; margin: 0 auto 3rem; animation: fadeInScale 0.5s ease;
         }
         @keyframes fadeInScale { 0% { opacity: 0; transform: scale(0.95); } 100% { opacity: 1; transform: scale(1); } }
         .verification-card h2 { font-size: 2.2rem; font-weight: 600; color: var(--primary); margin-bottom: 0.8rem; }
         .verification-card p { color: var(--text-light); margin-bottom: 2.2rem; font-size: 1.2rem; }
         .verification-input-group { display: flex; flex-direction: column; align-items: center; gap: 1.5rem; max-width: 400px; margin: 0 auto; }
-        .verification-input-group input {
-            width: 100%;
-            padding: 1.2rem 1.5rem;
-            border: 2px solid var(--border);
-            border-radius: 60px;
-            font-size: 1.1rem;
-            background: rgba(255,255,255,0.7);
-            backdrop-filter: blur(4px);
-            text-align: center;
-        }
-        .verification-input-group input:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 4px var(--primary-soft);
-            background: white;
-        }
-        .btn {
-            padding: 1.2rem 2.5rem;
-            border: none;
-            border-radius: 60px;
-            font-weight: 600;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: var(--transition);
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.8rem;
-        }
+        .verification-input-group input { width: 100%; padding: 1.2rem 1.5rem; border: 2px solid var(--border); border-radius: 60px; font-size: 1.1rem; background: rgba(255,255,255,0.7); backdrop-filter: blur(4px); text-align: center; }
+        .verification-input-group input:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 4px var(--primary-soft); background: white; }
+        .btn { padding: 1.2rem 2.5rem; border: none; border-radius: 60px; font-weight: 600; font-size: 1.1rem; cursor: pointer; transition: var(--transition); display: inline-flex; align-items: center; justify-content: center; gap: 0.8rem; }
         .btn-primary { background: var(--primary); color: white; box-shadow: 0 8px 14px -6px var(--primary-light); }
         .btn-primary:hover { background: var(--primary-light); transform: scale(1.03) translateY(-2px); box-shadow: 0 12px 20px -8px var(--primary-light); }
-        .btn-primary:active { transform: scale(0.98); }
-        /* ========== TARJETAS DE PASOS ========== */
         .steps-section { margin: 3rem 0; }
         .steps-section h2 { font-size: 2.2rem; font-weight: 700; color: var(--primary); margin-bottom: 2rem; display: flex; align-items: center; gap: 1rem; border-bottom: 3px solid var(--primary-soft); padding-bottom: 0.8rem; }
         .steps-section h2 i { color: var(--primary-light); font-size: 2rem; }
         .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 2rem; margin: 2rem 0; }
         .card {
-            background: var(--surface);
-            backdrop-filter: blur(8px);
-            border-radius: var(--radius-sm);
-            padding: 2rem 1.5rem;
-            box-shadow: var(--shadow-md);
-            transition: var(--transition);
-            border: 1px solid rgba(255,255,255,0.7);
-            display: flex;
-            flex-direction: column;
-            cursor: pointer;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInUp 0.5s forwards;
-            position: relative;
-            overflow: hidden;
+            background: var(--surface); backdrop-filter: blur(8px); border-radius: var(--radius-sm); padding: 2rem 1.5rem; box-shadow: var(--shadow-md);
+            transition: var(--transition); border: 1px solid rgba(255,255,255,0.7); display: flex; flex-direction: column; cursor: pointer;
+            opacity: 0; transform: translateY(20px); animation: fadeInUp 0.5s forwards; position: relative; overflow: hidden;
         }
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary), var(--primary-light));
-            transform: scaleX(0);
-            transition: transform 0.3s ease;
-            transform-origin: left;
-        }
+        .card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, var(--primary), var(--primary-light)); transform: scaleX(0); transition: transform 0.3s ease; transform-origin: left; }
         .card:hover::before { transform: scaleX(1); }
         .card:nth-child(1) { animation-delay: 0.05s; }
         .card:nth-child(2) { animation-delay: 0.1s; }
@@ -174,19 +71,7 @@
         .card:nth-child(7) { animation-delay: 0.35s; }
         @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
         .card:hover { transform: translateY(-8px) rotateX(2deg) rotateY(1deg); box-shadow: var(--shadow-lg); }
-        .card-icon {
-            font-size: 2.4rem;
-            background: var(--primary-soft);
-            width: 4rem;
-            height: 4rem;
-            border-radius: 1.2rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary);
-            margin-bottom: 1.2rem;
-            transition: var(--transition);
-        }
+        .card-icon { font-size: 2.4rem; background: var(--primary-soft); width: 4rem; height: 4rem; border-radius: 1.2rem; display: flex; align-items: center; justify-content: center; color: var(--primary); margin-bottom: 1.2rem; transition: var(--transition); }
         .card:hover .card-icon { background: var(--primary); color: white; transform: scale(1.1) rotate(-5deg); }
         .card h3 { font-size: 1.5rem; font-weight: 600; color: var(--text); line-height: 1.2; }
         .card .badge { background: var(--primary-soft); color: var(--primary); font-weight: 600; font-size: 0.8rem; padding: 0.3rem 1rem; border-radius: 2rem; align-self: flex-start; margin: 0.8rem 0; }
@@ -194,36 +79,10 @@
         .card-link { text-decoration: none; font-weight: 600; color: var(--primary); display: flex; align-items: center; gap: 0.5rem; border-top: 1px dashed var(--border); padding-top: 1rem; margin-top: auto; transition: gap 0.2s; }
         .card-link i { transition: transform 0.2s; }
         .card:hover .card-link i { transform: translateX(6px); }
-        /* ========== FORMULARIO ========== */
-        .registro-form {
-            background: var(--surface);
-            backdrop-filter: blur(8px);
-            border-radius: var(--radius);
-            padding: 2.5rem;
-            box-shadow: var(--shadow-lg);
-            border: 1px solid rgba(255,255,255,0.7);
-            margin-top: 2rem;
-        }
-        .section-title {
-            font-size: 1.9rem;
-            font-weight: 600;
-            color: var(--primary);
-            margin: 2rem 0 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            border-bottom: 2px solid var(--primary-soft);
-            padding-bottom: 0.8rem;
-        }
+        .registro-form { background: var(--surface); backdrop-filter: blur(8px); border-radius: var(--radius); padding: 2.5rem; box-shadow: var(--shadow-lg); border: 1px solid rgba(255,255,255,0.7); margin-top: 2rem; }
+        .section-title { font-size: 1.9rem; font-weight: 600; color: var(--primary); margin: 2rem 0 1.5rem; display: flex; align-items: center; gap: 1rem; border-bottom: 2px solid var(--primary-soft); padding-bottom: 0.8rem; }
         .section-title i { color: var(--primary-light); font-size: 1.9rem; }
-        .card-section {
-            background: rgba(255,255,255,0.5);
-            backdrop-filter: blur(4px);
-            border-radius: var(--radius-sm);
-            padding: 2rem;
-            margin-bottom: 2rem;
-            border: 1px solid rgba(255,255,255,0.7);
-        }
+        .card-section { background: rgba(255,255,255,0.5); backdrop-filter: blur(4px); border-radius: var(--radius-sm); padding: 2rem; margin-bottom: 2rem; border: 1px solid rgba(255,255,255,0.7); }
         .grid-2, .grid-3, .grid-4 { display: grid; gap: 1.5rem; margin-bottom: 1.5rem; }
         .grid-2 { grid-template-columns: repeat(2, 1fr); }
         .grid-3 { grid-template-columns: repeat(3, 1fr); }
@@ -231,801 +90,442 @@
         .field { display: flex; flex-direction: column; gap: 0.5rem; }
         .field label { font-weight: 600; font-size: 0.95rem; color: var(--text); display: flex; align-items: center; gap: 0.4rem; }
         .field label i { color: var(--primary-light); font-size: 0.95rem; }
-        .field input, .field select, .field textarea {
-            padding: 0.9rem 1.2rem;
-            border: 2px solid var(--border);
-            border-radius: 20px;
-            font-size: 1rem;
-            background: white;
-            transition: var(--transition);
-        }
-        .field input:focus, .field select:focus, .field textarea:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 4px var(--primary-soft);
-        }
+        .field input, .field select, .field textarea { padding: 0.9rem 1.2rem; border: 2px solid var(--border); border-radius: 20px; font-size: 1rem; background: white; transition: var(--transition); font-family: 'Inter', sans-serif; }
+        .field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 4px var(--primary-soft); }
         .required::after { content: " *"; color: #ef4444; font-weight: 600; }
-        .comuna-highlight {
-            background: rgba(219, 234, 254, 0.3);
-            backdrop-filter: blur(4px);
-            border: 2px dashed var(--primary-light);
-            border-radius: var(--radius-sm);
-            padding: 2rem;
-            margin: 1.5rem 0;
-        }
+        .comuna-highlight { background: rgba(219, 234, 254, 0.3); backdrop-filter: blur(4px); border: 2px dashed var(--primary-light); border-radius: var(--radius-sm); padding: 2rem; margin: 1.5rem 0; }
         .radio-group { display: flex; flex-direction: column; gap: 0.8rem; background: rgba(255,255,255,0.5); padding: 1.5rem; border-radius: var(--radius-sm); border: 1px solid var(--border); }
         .radio-option { display: flex; align-items: center; gap: 0.8rem; }
         .radio-option input[type="radio"] { width: 1.2rem; height: 1.2rem; accent-color: var(--primary); }
         .checklist { list-style: none; margin: 1.5rem 0; }
-        .checklist li {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 0.8rem;
-            background: rgba(255,255,255,0.5);
-            padding: 0.9rem 1.5rem;
-            border-radius: 40px;
-            border: 1px solid var(--border);
-        }
-        .btn-submit {
-            width: 100%;
-            padding: 1.3rem;
-            background: var(--primary);
-            color: white;
-            border: none;
-            border-radius: 60px;
-            font-weight: 700;
-            font-size: 1.2rem;
-            margin-top: 2rem;
-            transition: var(--transition);
-            box-shadow: 0 8px 14px -6px var(--primary-light);
-        }
+        .checklist li { display: flex; align-items: center; gap: 1rem; margin-bottom: 0.8rem; background: rgba(255,255,255,0.5); padding: 0.9rem 1.5rem; border-radius: 40px; border: 1px solid var(--border); }
+        .btn-submit { width: 100%; padding: 1.3rem; background: var(--primary); color: white; border: none; border-radius: 60px; font-weight: 700; font-size: 1.2rem; margin-top: 2rem; transition: var(--transition); box-shadow: 0 8px 14px -6px var(--primary-light); }
         .btn-submit:hover { background: var(--primary-light); transform: scale(1.01); }
-        .btn-clear {
-            background: rgba(255,255,255,0.5);
-            color: var(--text);
-            border: 2px solid var(--border);
-            margin-top: 1.2rem;
-            width: auto;
-            padding: 0.9rem 2rem;
-        }
-        .mensaje {
-            padding: 1.2rem 1.8rem;
-            border-radius: 60px;
-            text-align: center;
-            margin: 1rem 0;
-            display: none;
-            animation: slideIn 0.3s ease;
-            font-weight: 500;
-        }
+        .btn-clear { background: rgba(255,255,255,0.5); color: var(--text); border: 2px solid var(--border); margin-top: 1.2rem; width: auto; padding: 0.9rem 2rem; }
+        .mensaje { padding: 1.2rem 1.8rem; border-radius: 60px; text-align: center; margin: 1rem 0; display: none; animation: slideIn 0.3s ease; font-weight: 500; }
         .mensaje-exito { background: #dcfce7; color: #166534; border: 1px solid #86efac; }
         .mensaje-error { background: #fee2e2; color: #991b1b; border: 1px solid #fca5a5; }
         .mensaje-info { background: #dbeafe; color: #1e40af; border: 1px solid #93c5fd; }
         @keyframes slideIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
-        .faq-item {
-            background: rgba(255,255,255,0.5);
-            padding: 1.5rem;
-            border-radius: var(--radius-sm);
-            margin-bottom: 1.2rem;
-            border-left: 5px solid var(--primary);
-        }
+        .faq-item { background: rgba(255,255,255,0.5); padding: 1.5rem; border-radius: var(--radius-sm); margin-bottom: 1.2rem; border-left: 5px solid var(--primary); }
         .footer-note { text-align: center; color: var(--text-light); font-size: 1rem; margin-top: 3rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem; }
-        .scroll-top {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            background: var(--primary);
-            color: white;
-            width: 3.2rem;
-            height: 3.2rem;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: var(--shadow-lg);
-            cursor: pointer;
-            transition: var(--transition);
-            border: 2px solid white;
-            z-index: 100;
-            opacity: 0.9;
-        }
+        .scroll-top { position: fixed; bottom: 2rem; right: 2rem; background: var(--primary); color: white; width: 3.2rem; height: 3.2rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow-lg); cursor: pointer; transition: var(--transition); border: 2px solid white; z-index: 100; opacity: 0.9; }
         .scroll-top:hover { background: var(--primary-light); transform: scale(1.1) rotate(360deg); }
         .oculto { display: none !important; }
-        .step-indicator {
-            display: inline-block;
-            width: 30px;
-            height: 30px;
-            background: var(--primary-soft);
-            color: var(--primary);
-            border-radius: 50%;
-            text-align: center;
-            line-height: 30px;
-            font-weight: 700;
-            margin-right: 10px;
-        }
-        /* NUEVO: Estilo para mensaje fijo de éxito (toast) */
-        .toast-success {
-            position: fixed;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: #166534;
-            color: white;
-            padding: 12px 24px;
-            border-radius: 50px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-            z-index: 10001;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            backdrop-filter: blur(8px);
-            background-color: rgba(22, 101, 52, 0.95);
-            border: 1px solid #86efac;
-        }
-        @media (max-width: 768px) {
-            .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
-            .app-header { flex-direction: column; text-align: center; padding: 1.5rem; }
-            .logo h1 { font-size: 1.9rem; }
-        }
-        /* ========== OVERLAY DEL VIDEO CON BOTÓN DE SONIDO ========== */
-        #introOverlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.92);
-            z-index: 10000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            backdrop-filter: blur(10px);
-        }
-        #introVideo {
-            width: 80%;
-            max-width: 800px;
-            border-radius: 28px;
-            box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
-            border: 2px solid var(--primary-light);
-        }
-        .intro-buttons {
-            display: flex;
-            gap: 1rem;
-            margin-top: 24px;
-        }
-        .intro-btn {
-            padding: 12px 28px;
-            background: var(--primary);
-            color: white;
-            border: none;
-            border-radius: 60px;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 1rem;
-            transition: all 0.2s;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        .intro-btn:hover {
-            background: var(--primary-light);
-            transform: scale(1.02);
-        }
-        @media (max-width: 600px) {
-            #introVideo { width: 95%; }
-            .intro-buttons { flex-direction: column; gap: 0.8rem; }
-        }
+        .step-indicator { display: inline-block; width: 30px; height: 30px; background: var(--primary-soft); color: var(--primary); border-radius: 50%; text-align: center; line-height: 30px; font-weight: 700; margin-right: 10px; }
+        .toast-success { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background-color: #166534; color: white; padding: 12px 24px; border-radius: 50px; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 10001; font-weight: 600; display: flex; align-items: center; gap: 10px; backdrop-filter: blur(8px); background-color: rgba(22, 101, 52, 0.95); border: 1px solid #86efac; }
+        @media (max-width: 768px) { .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; } .app-header { flex-direction: column; text-align: center; padding: 1.5rem; } .logo h1 { font-size: 1.9rem; } }
+        #introOverlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.92); z-index: 10000; display: flex; align-items: center; justify-content: center; flex-direction: column; backdrop-filter: blur(10px); }
+        #introVideo { width: 80%; max-width: 800px; border-radius: 28px; box-shadow: 0 0 40px rgba(0, 0, 0, 0.5); border: 2px solid var(--primary-light); }
+        .intro-buttons { display: flex; gap: 1rem; margin-top: 24px; }
+        .intro-btn { padding: 12px 28px; background: var(--primary); color: white; border: none; border-radius: 60px; cursor: pointer; font-weight: 600; font-size: 1rem; transition: all 0.2s; box-shadow: 0 4px 12px rgba(0,0,0,0.2); display: inline-flex; align-items: center; gap: 0.5rem; }
+        .intro-btn:hover { background: var(--primary-light); transform: scale(1.02); }
+        @media (max-width: 600px) { #introVideo { width: 95%; } .intro-buttons { flex-direction: column; gap: 0.8rem; } }
     </style>
 </head>
 <body>
-    <!-- OVERLAY DE INTRODUCCIÓN CON VIDEO Y BOTÓN DE SONIDO -->
     <div id="introOverlay">
         <video id="introVideo" autoplay muted playsinline>
             <source src="video/intro.mp4" type="video/mp4">
-            Tu navegador no soporta el elemento de video.
         </video>
         <div class="intro-buttons">
             <button id="soundBtn" class="intro-btn"><i class="fas fa-volume-mute"></i> Activar sonido</button>
             <button id="skipIntroBtn" class="intro-btn"><i class="fas fa-forward"></i> Saltar introducción</button>
         </div>
     </div>
-
-    <div class="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'});">
-        <i class="fas fa-arrow-up"></i>
-    </div>
-
+    <div class="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'});"><i class="fas fa-arrow-up"></i></div>
     <div class="container">
         <header class="app-header">
-            <div class="logo">
-                <h1>UNEXCA · Registro de Proyectos PNF</h1>
-                <span>Sistema de gestión de proyectos socio-tecnológicos</span>
-            </div>
-            <nav class="nav-links">
-                <a href="#verificacion"><i class="fas fa-rocket"></i> Inicio</a>
-                <a href="#steps"><i class="fas fa-cubes"></i> Pasos</a>
-                <a href="#faq"><i class="fas fa-question-circle"></i> FAQ</a>
-            </nav>
+            <div class="logo"><h1>UNEXCA · Registro de Proyectos PNF</h1><span>Sistema de gestión de proyectos socio-tecnológicos</span></div>
+            <nav class="nav-links"><a href="#verificacion"><i class="fas fa-rocket"></i> Inicio</a><a href="#steps"><i class="fas fa-cubes"></i> Pasos</a><a href="#faq"><i class="fas fa-question-circle"></i> FAQ</a></nav>
         </header>
-
-        <!-- PANTALLA DE VERIFICACIÓN -->
         <section id="verificacion" class="verification-card" style="display: none;">
             <h2>👋 Bienvenido</h2>
             <p>Ingresa tu cédula para comenzar. Si ya iniciaste un registro, cargaremos tu progreso.</p>
             <div class="verification-input-group">
                 <input type="text" id="cedulaVerificar" placeholder="V-12345678" autocomplete="off">
-                <button class="btn btn-primary" id="btnVerificar">
-                    <i class="fas fa-arrow-right"></i> Verificar y continuar
-                </button>
+                <button class="btn btn-primary" id="btnVerificar"><i class="fas fa-arrow-right"></i> Verificar y continuar</button>
             </div>
-            <div id="mensajeExito" class="mensaje mensaje-exito"></div>
-            <div id="mensajeError" class="mensaje mensaje-error"></div>
-            <div id="mensajeInfo" class="mensaje mensaje-info"></div>
+            <div id="mensajeExito" class="mensaje mensaje-exito"></div><div id="mensajeError" class="mensaje mensaje-error"></div><div id="mensajeInfo" class="mensaje mensaje-info"></div>
         </section>
-
-        <!-- PASOS DEL REGISTRO -->
         <section id="steps" class="steps-section">
             <h2><i class="fas fa-cubes"></i> Pasos del registro</h2>
             <div class="cards-grid">
-                <div class="card" onclick="document.getElementById('verificacion').scrollIntoView({behavior:'smooth'});">
-                    <div class="card-icon"><i class="fas fa-shield-alt"></i></div>
-                    <h3><span class="step-indicator">1</span> Acceso</h3>
-                    <div class="badge">Verificación</div>
-                    <p>Identifícate con tu cédula.</p>
-                    <span class="card-link">Ir al paso <i class="fas fa-arrow-right"></i></span>
-                </div>
-                <div class="card" onclick="document.getElementById('paso2').scrollIntoView({behavior:'smooth'});">
-                    <div class="card-icon"><i class="fas fa-user-graduate"></i></div>
-                    <h3><span class="step-indicator">2</span> Tu Historia</h3>
-                    <div class="badge">Datos personales</div>
-                    <p>Cuéntanos quién eres y qué estudias.</p>
-                    <span class="card-link">Ir al paso <i class="fas fa-arrow-right"></i></span>
-                </div>
-                <div class="card" onclick="document.getElementById('paso3').scrollIntoView({behavior:'smooth'});">
-                    <div class="card-icon"><i class="fas fa-globe-americas"></i></div>
-                    <h3><span class="step-indicator">3</span> Proyecto y Entorno</h3>
-                    <div class="badge">El corazón</div>
-                    <p>Define el qué y el dónde.</p>
-                    <span class="card-link">Ir al paso <i class="fas fa-arrow-right"></i></span>
-                </div>
-                <div class="card" onclick="document.getElementById('paso4').scrollIntoView({behavior:'smooth'});">
-                    <div class="card-icon"><i class="fas fa-map-signs"></i></div>
-                    <h3><span class="step-indicator">4</span> Mapa de Ruta</h3>
-                    <div class="badge">Seguimiento</div>
-                    <p>Planifica las fases.</p>
-                    <span class="card-link">Ir al paso <i class="fas fa-arrow-right"></i></span>
-                </div>
-                <div class="card" onclick="document.getElementById('paso5').scrollIntoView({behavior:'smooth'});">
-                    <div class="card-icon"><i class="fas fa-file-pdf"></i></div>
-                    <h3><span class="step-indicator">5</span> Las Pruebas</h3>
-                    <div class="badge">Documentación</div>
-                    <p>Adjunta tus archivos.</p>
-                    <span class="card-link">Ir al paso <i class="fas fa-arrow-right"></i></span>
-                </div>
-                <div class="card" onclick="document.getElementById('paso6').scrollIntoView({behavior:'smooth'});">
-                    <div class="card-icon"><i class="fas fa-check-double"></i></div>
-                    <h3><span class="step-indicator">6</span> El Gran Final</h3>
-                    <div class="badge">Revisión</div>
-                    <p>Revisa y envía.</p>
-                    <span class="card-link">Ir al paso <i class="fas fa-arrow-right"></i></span>
-                </div>
-                <div class="card" onclick="document.getElementById('faq').scrollIntoView({behavior:'smooth'});">
-                    <div class="card-icon"><i class="fas fa-question"></i></div>
-                    <h3><span class="step-indicator">?</span> FAQ</h3>
-                    <div class="badge">Ayuda</div>
-                    <p>Resuelve dudas.</p>
-                    <span class="card-link">Ir a FAQ <i class="fas fa-arrow-right"></i></span>
-                </div>
+                <div class="card" onclick="document.getElementById('verificacion').scrollIntoView({behavior:'smooth'});"><div class="card-icon"><i class="fas fa-shield-alt"></i></div><h3><span class="step-indicator">1</span> Acceso</h3><div class="badge">Verificación</div><p>Identifícate con tu cédula.</p><span class="card-link">Ir al paso <i class="fas fa-arrow-right"></i></span></div>
+                <div class="card" onclick="document.getElementById('paso2').scrollIntoView({behavior:'smooth'});"><div class="card-icon"><i class="fas fa-user-graduate"></i></div><h3><span class="step-indicator">2</span> Tu Historia</h3><div class="badge">Datos personales</div><p>Cuéntanos quién eres y qué estudias.</p><span class="card-link">Ir al paso <i class="fas fa-arrow-right"></i></span></div>
+                <div class="card" onclick="document.getElementById('paso3').scrollIntoView({behavior:'smooth'});"><div class="card-icon"><i class="fas fa-globe-americas"></i></div><h3><span class="step-indicator">3</span> Proyecto y Entorno</h3><div class="badge">El corazón</div><p>Define el qué y el dónde.</p><span class="card-link">Ir al paso <i class="fas fa-arrow-right"></i></span></div>
+                <div class="card" onclick="document.getElementById('paso4').scrollIntoView({behavior:'smooth'});"><div class="card-icon"><i class="fas fa-map-signs"></i></div><h3><span class="step-indicator">4</span> Mapa de Ruta</h3><div class="badge">Seguimiento</div><p>Planifica las fases.</p><span class="card-link">Ir al paso <i class="fas fa-arrow-right"></i></span></div>
+                <div class="card" onclick="document.getElementById('paso5').scrollIntoView({behavior:'smooth'});"><div class="card-icon"><i class="fas fa-file-pdf"></i></div><h3><span class="step-indicator">5</span> Las Pruebas</h3><div class="badge">Documentación</div><p>Adjunta tus archivos.</p><span class="card-link">Ir al paso <i class="fas fa-arrow-right"></i></span></div>
+                <div class="card" onclick="document.getElementById('paso6').scrollIntoView({behavior:'smooth'});"><div class="card-icon"><i class="fas fa-check-double"></i></div><h3><span class="step-indicator">6</span> El Gran Final</h3><div class="badge">Revisión</div><p>Revisa y envía.</p><span class="card-link">Ir al paso <i class="fas fa-arrow-right"></i></span></div>
+                <div class="card" onclick="document.getElementById('faq').scrollIntoView({behavior:'smooth'});"><div class="card-icon"><i class="fas fa-question"></i></div><h3><span class="step-indicator">?</span> FAQ</h3><div class="badge">Ayuda</div><p>Resuelve dudas.</p><span class="card-link">Ir a FAQ <i class="fas fa-arrow-right"></i></span></div>
             </div>
         </section>
-
-        <!-- FORMULARIO COMPLETO -->
         <form id="registroForm" class="registro-form oculto">
-            <!-- PASO 2 -->
             <section id="paso2">
                 <h2 class="section-title"><i class="fas fa-user-graduate"></i> Paso 2: Tu información</h2>
                 <div class="card-section">
                     <h3>Identificación</h3>
                     <div class="field"><label><i class="fas fa-id-card"></i> Cédula</label><input type="text" id="cedula" name="cedula" readonly></div>
                     <h3>Datos personales</h3>
-                    <div class="grid-2">
-                        <div class="field"><label class="required">Nombres</label><input type="text" id="nombres" name="nombres" required placeholder="Juan Carlos"></div>
-                        <div class="field"><label class="required">Apellidos</label><input type="text" id="apellidos" name="apellidos" required placeholder="Pérez González"></div>
-                    </div>
-                    <div class="grid-2">
-                        <div class="field"><label class="required">Correo</label><input type="email" id="correo" name="correo" required placeholder="ejemplo@correo.com"></div>
-                        <div class="field"><label class="required">Teléfono</label><input type="text" id="telefono" name="telefono" placeholder="0412-1234567" required></div>
-                    </div>
-                    <div class="grid-2">
-                        <div class="field"><label class="required">Fecha nacimiento</label><input type="date" id="fechaNacimiento" name="fechaNacimiento" required></div>
-                        <div class="field"><label class="required">Sexo</label><select id="sexo" name="sexo" required><option value="">Seleccione</option><option value="Masculino">Masculino</option><option value="Femenino">Femenino</option><option value="Otro">Otro</option></select></div>
-                    </div>
+                    <div class="grid-2"><div class="field"><label class="required">Nombres</label><input type="text" id="nombres" name="nombres" required placeholder="Juan Carlos"></div><div class="field"><label class="required">Apellidos</label><input type="text" id="apellidos" name="apellidos" required placeholder="Pérez González"></div></div>
+                    <div class="grid-2"><div class="field"><label class="required">Correo</label><input type="email" id="correo" name="correo" required placeholder="ejemplo@correo.com"></div><div class="field"><label class="required">Teléfono</label><input type="text" id="telefono" name="telefono" placeholder="0412-1234567" required></div></div>
+                    <div class="grid-2"><div class="field"><label class="required">Fecha nacimiento</label><input type="date" id="fechaNacimiento" name="fechaNacimiento" required></div><div class="field"><label class="required">Sexo</label><select id="sexo" name="sexo" required><option value="">Seleccione</option><option value="Masculino">Masculino</option><option value="Femenino">Femenino</option><option value="Otro">Otro</option></select></div></div>
                     <div class="grid-2"><div class="field"><label class="required">Fecha registro</label><input type="date" id="fechaRegistro" name="fechaRegistro" required></div></div>
                     <h3>Datos académicos</h3>
                     <div class="grid-2">
-                        <div class="field"><label class="required">Núcleo</label><select id="nucleoSelectPaso2" name="nucleo" required onchange="cargarProgramasPaso2()"><option value="">Seleccione núcleo</option></select></div>
-                        <div class="field"><label class="required">PNF</label><select id="pnfSelectPaso2" name="pnf" required><option value="">Primero seleccione núcleo</option></select></div>
+                        <div class="field"><label class="required"><i class="fas fa-university"></i> Ubicación / Núcleo</label>
+                            <select id="ubicacionSelect" required>
+                                <option value="">-- Seleccione una opción --</option>
+                                <option value="Altagracia">Altagracia</option>
+                                <option value="La Floresta">La Floresta</option>
+                                <option value="La Urbina">La Urbina</option>
+                                <option value="La Guaira">La Guaira (ver parroquias)</option>
+                            </select>
+                        </div>
+                        <div class="field" id="parroquiaContainer" style="display: none;">
+                            <label class="required"><i class="fas fa-map-marker-alt"></i> Parroquia (La Guaira)</label>
+                            <select id="parroquiaSelectLaGuaira">
+                                <option value="">-- Seleccione parroquia --</option>
+                                <option value="Caraballeda">Caraballeda</option><option value="Carayaca">Carayaca</option><option value="Caruao">Caruao</option>
+                                <option value="Catia La Mar">Catia La Mar</option><option value="Macuto">Macuto</option><option value="Maiquetía">Maiquetía</option>
+                                <option value="Naiguatá">Naiguatá</option><option value="Urimare">Urimare</option><option value="Carlos Soublette">Carlos Soublette</option>
+                            </select>
+                        </div>
                     </div>
-                    <div class="grid-3">
-                        <div class="field"><label class="required">Trayecto</label><select id="trayecto" name="trayecto" required><option value="">Seleccione</option><option value="I">I</option><option value="II">II</option><option value="III">III</option><option value="IV">IV</option></select></div>
-                        <div class="field"><label class="required">Semestre</label><select id="semestre" name="semestre" required><option value="">Seleccione</option><option value="I">I</option><option value="II">II</option></select></div>
-                        <div class="field"><label class="required">Turno</label><select id="turno" name="turno" required><option value="">Seleccione</option><option value="MAÑANA">Mañana</option><option value="TARDE">Tarde</option><option value="NOCHE">Noche</option></select></div>
+                    <input type="hidden" id="nucleoReal" name="nucleo">
+                    <div class="grid-2">
+                        <div class="field"><label class="required">Programa Nacional de Formación (PNF)</label>
+                            <select id="pnfSelectPaso2" name="pnf" required disabled><option value="">Primero seleccione un núcleo válido</option></select>
+                        </div>
                     </div>
-                    <div class="grid-3">
-                        <div class="field"><label>Sección</label><input type="text" id="seccion" name="seccion" placeholder="Ej: A"></div>
-                        <div class="field"><label>Tutor asignado</label><input type="text" id="tutorAsignado" name="tutorAcademico" readonly placeholder="Selecciona trayecto y turno"></div>
-                        <div class="field"><label>Docente</label><input type="text" id="tutorComunitario" name="tutorComunitario" placeholder="Nombre del tutor"></div>
-                    </div>
+                    <div class="grid-3"><div class="field"><label class="required">Trayecto</label><select id="trayecto" name="trayecto" required><option value="">Seleccione</option><option value="I">I</option><option value="II">II</option><option value="III">III</option><option value="IV">IV</option></select></div>
+                    <div class="field"><label class="required">Semestre</label><select id="semestre" name="semestre" required><option value="">Seleccione</option><option value="I">I</option><option value="II">II</option></select></div>
+                    <div class="field"><label class="required">Turno</label><select id="turno" name="turno" required><option value="">Seleccione</option><option value="MAÑANA">Mañana</option><option value="TARDE">Tarde</option><option value="NOCHE">Noche</option></select></div></div>
+                    <div class="grid-3"><div class="field"><label>Sección</label><input type="text" id="seccion" name="seccion" placeholder="Ej: A"></div>
+                    <div class="field"><label>Tutor asignado</label><input type="text" id="tutorAsignado" name="tutorAcademico" readonly placeholder="Selecciona trayecto y turno"></div>
+                    <div class="field"><label>Docente</label><input type="text" id="tutorComunitario" name="tutorComunitario" placeholder="Nombre del tutor"></div></div>
                     <div class="field"><label class="required">Línea investigación</label><select id="lineaInvestigacion" name="lineaInvestigacion" required><option value="">Seleccione</option><option value="Desarrollo Comunitario">Desarrollo Comunitario</option><option value="Tecnología y Sociedad">Tecnología y Sociedad</option><option value="Gestión Pública">Gestión Pública</option><option value="Educación Popular">Educación Popular</option><option value="Otra">Otra (especificar abajo)</option></select></div>
                 </div>
             </section>
-
-            <!-- PASO 3 (resumido) -->
             <section id="paso3">
                 <h2 class="section-title"><i class="fas fa-globe-americas"></i> Paso 3: Proyecto y entorno</h2>
                 <div class="card-section">
                     <h3>Ubicación</h3>
-                    <div class="grid-3">
-                        <div class="field"><label>Estado</label><select id="estadoSelect" name="estado" required><option value="">Cargando...</option></select></div>
-                        <div class="field"><label>Municipio</label><select id="municipioSelect" name="municipio" disabled><option value="">Primero seleccione estado</option></select></div>
-                        <div class="field"><label>Parroquia</label><select id="parroquiaSelect" name="parroquia" disabled><option value="">Primero seleccione municipio</option></select></div>
-                    </div>
-                    <div class="comuna-highlight">
-                        <div class="grid-2">
-                            <div class="field"><label>Comuna</label><select id="comunaSelect" name="comuna" disabled><option value="">Primero seleccione parroquia</option></select></div>
-                            <div class="field"><label>Consejo comunal</label><input type="text" id="consejoComunal" name="consejoComunal" maxlength="70" placeholder="Nombre del consejo comunal"></div>
-                        </div>
-                    </div>
+                    <div class="grid-3"><div class="field"><label>Estado</label><select id="estadoSelect" name="estado" required><option value="">Cargando...</option></select></div>
+                    <div class="field"><label>Municipio</label><select id="municipioSelect" name="municipio" disabled><option value="">Primero seleccione estado</option></select></div>
+                    <div class="field"><label>Parroquia</label><select id="parroquiaSelect" name="parroquia" disabled><option value="">Primero seleccione municipio</option></select></div></div>
+                    <div class="comuna-highlight"><div class="grid-2"><div class="field"><label>Comuna</label><select id="comunaSelect" name="comuna" disabled><option value="">Primero seleccione parroquia</option></select></div><div class="field"><label>Consejo comunal</label><input type="text" id="consejoComunal" name="consejoComunal" maxlength="70" placeholder="Nombre del consejo comunal"></div></div></div>
                     <div class="field"><label>Dirección</label><textarea id="direccion" name="direccion" rows="2" placeholder="Sector, calle..."></textarea></div>
                     <h3>Datos del proyecto</h3>
-                    <div class="grid-2">
-                        <div class="field"><label>Tipo proyecto</label><select id="tipoProyecto" name="tipoProyecto" required><option value="">Seleccione</option><option value="Proyecto de Investigación (T.S.U.)">Investigación</option><option value="Trabajo de Grado (Lic/Ing)">Trabajo de Grado</option><option value="Proyecto Socio-comunitario">Socio-comunitario</option></select></div>
-                        <div class="field"><label>Título</label><input type="text" id="tituloProyecto" name="tituloProyecto" required placeholder="Título del proyecto"></div>
-                    </div>
+                    <div class="grid-2"><div class="field"><label>Tipo proyecto</label><select id="tipoProyecto" name="tipoProyecto" required><option value="">Seleccione</option><option value="Proyecto de Investigación (T.S.U.)">Investigación</option><option value="Trabajo de Grado (Lic/Ing)">Trabajo de Grado</option><option value="Proyecto Socio-comunitario">Socio-comunitario</option></select></div>
+                    <div class="field"><label>Título</label><input type="text" id="tituloProyecto" name="tituloProyecto" required placeholder="Título del proyecto"></div></div>
                     <div class="field"><label>Descripción</label><textarea id="descripcion" name="descripcion" rows="3" required></textarea></div>
-                    <div class="grid-3">
-                        <div class="field"><label>Código interno</label><input type="text" id="codigoInterno" name="codigoInterno" placeholder="Opcional"></div>
-                        <div class="field"><label>Fecha inicio</label><input type="date" id="fechaInicio" name="fechaInicio" required></div>
-                        <div class="field"><label>Fecha fin estimada</label><input type="date" id="fechaFinEstimada" name="fechaFinEstimada" required></div>
-                    </div>
-                    <div class="grid-3">
-                        <div class="field"><label>Estado actual</label><select id="estadoActual" name="estadoActual" required><option value="En proceso">En proceso</option><option value="En revisión">En revisión</option><option value="Aprobado">Aprobado</option><option value="Finalizado">Finalizado</option><option value="Observado">Observado</option></select></div>
-                        <div class="field"><label>Prioridad</label><select id="prioridad" name="prioridad" required><option value="Alta">Alta</option><option value="Media">Media</option><option value="Baja">Baja</option></select></div>
-                    </div>
+                    <div class="grid-3"><div class="field"><label>Código interno</label><input type="text" id="codigoInterno" name="codigoInterno" placeholder="Opcional"></div><div class="field"><label>Fecha inicio</label><input type="date" id="fechaInicio" name="fechaInicio" required></div><div class="field"><label>Fecha fin estimada</label><input type="date" id="fechaFinEstimada" name="fechaFinEstimada" required></div></div>
+                    <div class="grid-3"><div class="field"><label>Estado actual</label><select id="estadoActual" name="estadoActual" required><option value="En proceso">En proceso</option><option value="En revisión">En revisión</option><option value="Aprobado">Aprobado</option><option value="Finalizado">Finalizado</option><option value="Observado">Observado</option></select></div>
+                    <div class="field"><label>Prioridad</label><select id="prioridad" name="prioridad" required><option value="Alta">Alta</option><option value="Media">Media</option><option value="Baja">Baja</option></select></div></div>
                 </div>
             </section>
-
-            <!-- PASO 4 (resumido) -->
             <section id="paso4">
                 <h2 class="section-title"><i class="fas fa-map-signs"></i> Paso 4: Mapa de ruta</h2>
                 <div class="card-section">
-                    <div class="grid-4">
-                        <div class="field"><label>Momento I</label><input type="number" min="0" max="100" step="5" id="avanceI" name="avanceI" placeholder="%"></div>
-                        <div class="field"><label>Momento II</label><input type="number" min="0" max="100" step="5" id="avanceII" name="avanceII" placeholder="%"></div>
-                        <div class="field"><label>Momento III</label><input type="number" min="0" max="100" step="5" id="avanceIII" name="avanceIII" placeholder="%"></div>
-                        <div class="field"><label>Momento IV</label><input type="number" min="0" max="100" step="5" id="avanceIV" name="avanceIV" placeholder="%"></div>
-                        <div class="field"><label>Momento V</label><input type="number" min="0" max="100" step="5" id="avanceV" name="avanceV" placeholder="%"></div>
-                        <div class="field"><label>Momento VI</label><input type="number" min="0" max="100" step="5" id="avanceVI" name="avanceVI" placeholder="%"></div>
-                    </div>
-                    <div class="grid-2">
-                        <div class="field"><label>Sponsor</label><input type="text" id="sponsor" name="sponsor" placeholder="Opcional"></div>
-                        <div class="field"><label>Coordinador</label><input type="text" id="coordinador" name="coordinador" value="(estudiante)"></div>
-                    </div>
-                    <div class="grid-3">
-                        <div class="field"><label>Presupuesto total</label><input type="number" step="0.01" id="presupuestoTotal" name="presupuestoTotal"></div>
-                        <div class="field"><label>Ejecutado</label><input type="number" step="0.01" id="presupuestoEjecutado" name="presupuestoEjecutado"></div>
-                        <div class="field"><label>Recursos críticos</label><input type="text" id="recursosCriticos" name="recursosCriticos" placeholder="Ej: computadoras"></div>
-                    </div>
+                    <div class="grid-4"><div class="field"><label>Momento I</label><input type="number" min="0" max="100" step="5" id="avanceI" name="avanceI" placeholder="%"></div><div class="field"><label>Momento II</label><input type="number" min="0" max="100" step="5" id="avanceII" name="avanceII" placeholder="%"></div><div class="field"><label>Momento III</label><input type="number" min="0" max="100" step="5" id="avanceIII" name="avanceIII" placeholder="%"></div><div class="field"><label>Momento IV</label><input type="number" min="0" max="100" step="5" id="avanceIV" name="avanceIV" placeholder="%"></div><div class="field"><label>Momento V</label><input type="number" min="0" max="100" step="5" id="avanceV" name="avanceV" placeholder="%"></div><div class="field"><label>Momento VI</label><input type="number" min="0" max="100" step="5" id="avanceVI" name="avanceVI" placeholder="%"></div></div>
+                    <div class="grid-2"><div class="field"><label>Sponsor</label><input type="text" id="sponsor" name="sponsor" placeholder="Opcional"></div><div class="field"><label>Coordinador</label><input type="text" id="coordinador" name="coordinador" value="(estudiante)"></div></div>
+                    <div class="grid-3"><div class="field"><label>Presupuesto total</label><input type="number" step="0.01" id="presupuestoTotal" name="presupuestoTotal"></div><div class="field"><label>Ejecutado</label><input type="number" step="0.01" id="presupuestoEjecutado" name="presupuestoEjecutado"></div><div class="field"><label>Recursos críticos</label><input type="text" id="recursosCriticos" name="recursosCriticos" placeholder="Ej: computadoras"></div></div>
                 </div>
             </section>
-
-            <!-- PASO 5 -->
             <section id="paso5">
                 <h2 class="section-title"><i class="fas fa-file-pdf"></i> Paso 5: Documentación</h2>
-                <div class="card-section">
-                    <div class="grid-2">
-                        <div class="field"><label>Acta constitución</label><input type="url" id="actaUrl" name="actaUrl" placeholder="https://..."></div>
-                        <div class="field"><label>Repositorio</label><input type="url" id="enlaceRepo" name="enlaceRepo" placeholder="Drive, GitHub..."></div>
-                    </div>
-                </div>
+                <div class="card-section"><div class="grid-2"><div class="field"><label>Acta constitución</label><input type="url" id="actaUrl" name="actaUrl" placeholder="https://..."></div><div class="field"><label>Repositorio</label><input type="url" id="enlaceRepo" name="enlaceRepo" placeholder="Drive, GitHub..."></div></div></div>
             </section>
-
-            <!-- PASO 6 -->
             <section id="paso6">
                 <h2 class="section-title"><i class="fas fa-check-double"></i> Paso 6: Revisión final</h2>
                 <div class="card-section">
-                    <div class="radio-group">
-                        <div class="radio-option"><input type="radio" name="interes" id="interes_politico" value="Político (Patriótico Bolivariano)"><label>Dirección</label></div>
-                        <div class="radio-option"><input type="radio" name="interes" id="interes_material" value="Material (Opción y Servicio)"><label>Administración</label></div>
-                        <div class="radio-option"><input type="radio" name="interes" id="interes_humano" value="Humano (Social / Popular)"><label>Talento Humano</label></div>
-                        <div class="radio-option"><input type="radio" name="interes" id="interes_regulatorio" value="Regulatorio (Orden Interno)"><label>Regulación</label></div>
-                        <div class="radio-option"><input type="radio" name="interes" id="interes_operativo" value="Operativo (Movilización y Requisición)"><label>Operaciones</label></div>
-                        <div class="radio-option"><input type="radio" name="interes" id="interes_ninguno" value="Ninguno" checked><label>Ninguno</label></div>
-                    </div>
+                    <div class="radio-group"><div class="radio-option"><input type="radio" name="interes" id="interes_politico" value="Político (Patriótico Bolivariano)"><label>Dirección</label></div><div class="radio-option"><input type="radio" name="interes" id="interes_material" value="Material (Opción y Servicio)"><label>Administración</label></div><div class="radio-option"><input type="radio" name="interes" id="interes_humano" value="Humano (Social / Popular)"><label>Talento Humano</label></div><div class="radio-option"><input type="radio" name="interes" id="interes_regulatorio" value="Regulatorio (Orden Interno)"><label>Regulación</label></div><div class="radio-option"><input type="radio" name="interes" id="interes_operativo" value="Operativo (Movilización y Requisición)"><label>Operaciones</label></div><div class="radio-option"><input type="radio" name="interes" id="interes_ninguno" value="Ninguno" checked><label>Ninguno</label></div></div>
                     <div class="field"><label>Observaciones</label><textarea id="observaciones" name="observaciones" placeholder="Cualquier comentario..."></textarea></div>
-                    <ul class="checklist">
-                        <li><input type="checkbox" id="check1"> <label>Revisé cédula y correo</label></li>
-                        <li><input type="checkbox" id="check2"> <label>Completé todas las secciones</label></li>
-                        <li><input type="checkbox" id="check3"> <label>Documentos con nombres claros</label></li>
-                    </ul>
+                    <ul class="checklist"><li><input type="checkbox" id="check1"> <label>Revisé cédula y correo</label></li><li><input type="checkbox" id="check2"> <label>Completé todas las secciones</label></li><li><input type="checkbox" id="check3"> <label>Documentos con nombres claros</label></li></ul>
                     <button type="submit" class="btn-submit" id="btnEnviar"><i class="fas fa-paper-plane"></i> Enviar registro completo</button>
                     <button type="button" class="btn btn-clear" id="btnLimpiar" onclick="limpiarFormulario()"><i class="fas fa-eraser"></i> Limpiar</button>
                 </div>
             </section>
-
             <section id="faq">
                 <h2 class="section-title"><i class="fas fa-question-circle"></i> Preguntas frecuentes</h2>
-                <div class="card-section">
-                    <div class="faq-item"><h3>¿Puedo guardar y seguir después?</h3><p>Sí, el sistema guarda tu progreso con la cédula.</p></div>
-                    <div class="faq-item"><h3>Me equivoqué, ¿qué hago?</h3><p>Puedes editar antes del envío final.</p></div>
-                    <div class="faq-item"><h3>No encuentro mi PNF</h3><p>Contacta a tu coordinación.</p></div>
-                </div>
+                <div class="card-section"><div class="faq-item"><h3>¿Puedo guardar y seguir después?</h3><p>Sí, el sistema guarda tu progreso con la cédula.</p></div><div class="faq-item"><h3>Me equivoqué, ¿qué hago?</h3><p>Puedes editar antes del envío final.</p></div><div class="faq-item"><h3>No encuentro mi PNF</h3><p>Contacta a tu coordinación.</p></div></div>
             </section>
         </form>
-
         <footer class="footer-note"><i class="fas fa-cloud-upload-alt"></i> Datos Seguros · Proyecto UNEXCA · Vanguardia Pedagógica</footer>
     </div>
-
     <script>
-        // ========== CONTROL DE INTRODUCCIÓN CON VIDEO Y SONIDO ==========
-        (function() {
-            const overlay = document.getElementById('introOverlay');
-            const video = document.getElementById('introVideo');
-            const skipBtn = document.getElementById('skipIntroBtn');
-            const soundBtn = document.getElementById('soundBtn');
-            const verificationSection = document.getElementById('verificacion');
+        // INTRO VIDEO
+        (function() { const overlay = document.getElementById('introOverlay'); const video = document.getElementById('introVideo'); const skipBtn = document.getElementById('skipIntroBtn'); const soundBtn = document.getElementById('soundBtn'); const verificationSection = document.getElementById('verificacion'); function finalizarIntro() { if (overlay) overlay.style.display = 'none'; if (verificationSection) verificationSection.style.display = 'block'; if (video) video.pause(); } if (soundBtn) { soundBtn.addEventListener('click', () => { if (video) { video.muted = false; soundBtn.innerHTML = '<i class="fas fa-volume-up"></i> Sonido activado'; soundBtn.disabled = true; soundBtn.style.opacity = '0.6'; soundBtn.style.cursor = 'default'; } }); } if (skipBtn) skipBtn.addEventListener('click', finalizarIntro); if (video) video.addEventListener('ended', finalizarIntro); if (overlay) overlay.style.display = 'flex'; if (verificationSection) verificationSection.style.display = 'none'; })();
 
-            function finalizarIntro() {
-                if (overlay) overlay.style.display = 'none';
-                if (verificationSection) verificationSection.style.display = 'block';
-                if (video) video.pause();
-            }
-
-            if (soundBtn) {
-                soundBtn.addEventListener('click', () => {
-                    if (video) {
-                        video.muted = false;
-                        soundBtn.innerHTML = '<i class="fas fa-volume-up"></i> Sonido activado';
-                        soundBtn.disabled = true;
-                        soundBtn.style.opacity = '0.6';
-                        soundBtn.style.cursor = 'default';
-                    }
-                });
-            }
-
-            if (skipBtn) skipBtn.addEventListener('click', finalizarIntro);
-            if (video) video.addEventListener('ended', finalizarIntro);
-
-            if (overlay) overlay.style.display = 'flex';
-            if (verificationSection) verificationSection.style.display = 'none';
-        })();
-
-        // ========== NUEVOS NÚCLEOS Y PNF DEL ESTADO LA GUAIRA ==========
-        // Estructura de la oferta académica ampliada con los datos proporcionados
-        const nuevosNucleosLaGuaira = {
-            "COMPLEJO EDUCATIVO CARABALLEDA": [
-                { programa: "ADMINISTRACION", tipo: "PNF" },
-                { programa: "CONTADURIA PUBLICA", tipo: "PNF" },
-                { programa: "DISTRIBUCION Y LOGISTICA", tipo: "PNF" },
-                { programa: "EDUCACION INICIAL", tipo: "PNF" },
-                { programa: "TURISMO", tipo: "PNF" },
-                { programa: "INGENIERIA INFORMATICA", tipo: "PNF" }
+        // ========== DATOS COMPLETOS DE LA OFERTA ACADÉMICA (incrustados desde el JSON original) ==========
+        const ofertaAcademicaCompleta = {
+            "Altagracia": [
+                { "tipo": "Pregrado", "programa": "Distribución y Logística" },
+                { "tipo": "Pregrado", "programa": "Trabajo Social" },
+                { "tipo": "Pregrado", "programa": "Administración" },
+                { "tipo": "Pregrado", "programa": "Ingeniería Informática" },
+                { "tipo": "Pregrado", "programa": "Contaduría" },
+                { "tipo": "Pregrado", "programa": "Ingeniería Agroalimentaria" },
+                { "tipo": "Pregrado", "programa": "Optometría" }
             ],
-            "LICEO GUAICAIPURO": [
-                { programa: "ADMINISTRACION", tipo: "PNF" },
-                { programa: "CONTADURIA PUBLICA", tipo: "PNF" },
-                { programa: "DISTRIBUCION Y LOGISTICA", tipo: "PNF" },
-                { programa: "TRABAJO SOCIAL", tipo: "PNF" },
-                { programa: "INGENIERIA AGROALIMENTARIA", tipo: "PNF" }
+            "La Urbina": [
+                { "tipo": "Pregrado", "programa": "Distribución y Logística" },
+                { "tipo": "Pregrado", "programa": "Administración" },
+                { "tipo": "Pregrado", "programa": "Turismo" },
+                { "tipo": "Pregrado", "programa": "Educación Especial" }
             ],
-            "LICEO BOLIVARIANO CARUAO": [
-                { programa: "ADMINISTRACION", tipo: "PNF" },
-                { programa: "TRABAJO SOCIAL", tipo: "PNF" },
-                { programa: "TURISMO", tipo: "PNF" }
+            "Carayaca": [
+                { "tipo": "Pregrado", "programa": "Distribución y Logística" },
+                { "tipo": "Pregrado", "programa": "Ingeniería Agroalimentaria" }
             ],
-            "E.N.B LUIS BELTRAN PIETRO FIGUEROA": [
-                { programa: "ADMINISTRACION", tipo: "PNF" },
-                { programa: "CONTADURIA PUBLICA", tipo: "PNF" },
-                { programa: "EDUCACION ESPECIAL", tipo: "PNF" },
-                { programa: "EDUCACION INICIAL", tipo: "PNF" },
-                { programa: "DISTRIBUCION Y LOGISTICA", tipo: "PNF" },
-                { programa: "TRABAJO SOCIAL", tipo: "PNF" },
-                { programa: "TURISMO", tipo: "PNF" },
-                { programa: "INGENIERIA INFORMATICA", tipo: "PNF" }
+            "La Floresta": [
+                { "tipo": "Pregrado", "programa": "Administración" },
+                { "tipo": "Pregrado", "programa": "Ingeniería Informática" },
+                { "tipo": "Pregrado", "programa": "Turismo" },
+                { "tipo": "Pregrado", "programa": "Educación Inicial" }
             ],
-            "E.I.B GUAICOTO": [
-                { programa: "ADMINISTRACION", tipo: "PNF" },
-                { programa: "CONTADURIA PUBLICA", tipo: "PNF" },
-                { programa: "TURISMO", tipo: "PNF" },
-                { programa: "INGENIERIA INFORMATICA", tipo: "PNF" }
-            ],
-            "E.T LICENCIADO ARANDA": [
-                { programa: "ADMINISTRACION", tipo: "PNF" },
-                { programa: "CONTADURIA PUBLICA", tipo: "PNF" },
-                { programa: "INGENIERIA INFORMATICA", tipo: "PNF" }
-            ],
-            "E.B NAIGUATA": [
-                { programa: "ADMINISTRACION", tipo: "PNF" },
-                { programa: "CONTADURIA PUBLICA", tipo: "PNF" },
-                { programa: "EDUCACION INICIAL", tipo: "PNF" }
-            ],
-            "LICEO NACIONAL HUGO CHAVEZ FRIAS": [
-                { programa: "ADMINISTRACION", tipo: "PNF" },
-                { programa: "CONTADURIA PUBLICA", tipo: "PNF" },
-                { programa: "DISTRIBUCION Y LOGISTICA", tipo: "PNF" },
-                { programa: "EDUCACION ESPECIAL", tipo: "PNF" },
-                { programa: "EDUCACION INICIAL", tipo: "PNF" },
-                { programa: "TRABAJO SOCIAL", tipo: "PNF" },
-                { programa: "TURISMO", tipo: "PNF" },
-                { programa: "INGENIERIA INFORMATICA", tipo: "PNF" }
-            ],
-            "E.B.E ALBERTO RAVELL": [
-                { programa: "ADMINISTRACION", tipo: "PNF" },
-                { programa: "CONTADURIA PUBLICA", tipo: "PNF" },
-                { programa: "INGENIERIA INFORMATICA", tipo: "PNF" }
+            "No especificados": [
+                { "tipo": "Posgrado", "programa": "Especialización en Auditoria de Tecnología de Información Financiera y Seguridad de Datos" },
+                { "tipo": "Posgrado", "programa": "Especialización Gestión del Talento Humano en las Organizaciones" }
             ]
         };
 
-        // ========== CONFIGURACIÓN Y DATOS ==========
-        const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxP-xiXx1ekm71MNlXHdiV6FfVeJLc8GQ_O3nU7jehn6RNDkB1mFU4y3JFX-o016F_C/exec';
-        let datosComunas = null;
-        let profesores = [];
-        let ofertaAcademica = {};
+        // ========== NÚCLEOS DE LA GUAIRA (con sus respectivos PNF) ==========
+        const nucleosLaGuaira = {
+            "COMPLEJO EDUCATIVO CARABALLEDA": [
+                "Administración", "Contaduría Pública", "Distribución y Logística", "Educación Inicial", "Turismo", "Ingeniería Informática"
+            ],
+            "LICEO GUAICAIPURO": [
+                "Administración", "Contaduría Pública", "Distribución y Logística", "Trabajo Social", "Ingeniería Agroalimentaria"
+            ],
+            "LICEO BOLIVARIANO CARUAO": [
+                "Administración", "Trabajo Social", "Turismo"
+            ],
+            "E.N.B LUIS BELTRAN PIETRO FIGUEROA": [
+                "Administración", "Contaduría Pública", "Educación Especial", "Educación Inicial", "Distribución y Logística", "Trabajo Social", "Turismo", "Ingeniería Informática"
+            ],
+            "E.I.B GUAICOTO": [
+                "Administración", "Contaduría Pública", "Turismo", "Ingeniería Informática"
+            ],
+            "E.T LICENCIADO ARANDA": [
+                "Administración", "Contaduría Pública", "Ingeniería Informática"
+            ],
+            "E.B NAIGUATA": [
+                "Administración", "Contaduría Pública", "Educación Inicial"
+            ],
+            "LICEO NACIONAL HUGO CHAVEZ FRIAS": [
+                "Administración", "Contaduría Pública", "Distribución y Logística", "Educación Especial", "Educación Inicial", "Trabajo Social", "Turismo", "Ingeniería Informática"
+            ],
+            "E.B.E ALBERTO RAVELL": [
+                "Administración", "Contaduría Pública", "Ingeniería Informática"
+            ]
+        };
 
-        // Cargar oferta_academica.json y fusionar con los nuevos núcleos de La Guaira
+        // Mapeo parroquia -> nombre del núcleo (para La Guaira)
+        const mapeoParroquiaNucleo = {
+            "Caraballeda": "COMPLEJO EDUCATIVO CARABALLEDA",
+            "Carayaca": "LICEO GUAICAIPURO",
+            "Caruao": "LICEO BOLIVARIANO CARUAO",
+            "Catia La Mar": "E.N.B LUIS BELTRAN PIETRO FIGUEROA",
+            "Macuto": "E.I.B GUAICOTO",
+            "Maiquetía": "E.T LICENCIADO ARANDA",
+            "Naiguatá": "E.B NAIGUATA",
+            "Urimare": "LICEO NACIONAL HUGO CHAVEZ FRIAS",
+            "Carlos Soublette": "E.B.E ALBERTO RAVELL"
+        };
+
+        // Unificar toda la oferta académica (primero los datos completos de Caracas, luego agregamos La Guaira)
+        let ofertaAcademica = { ...ofertaAcademicaCompleta };
+        // Agregar núcleos de La Guaira (transformando los arrays de strings a objetos con programa y tipo)
+        for (const [nucleo, programas] of Object.entries(nucleosLaGuaira)) {
+            ofertaAcademica[nucleo] = programas.map(p => ({ programa: p, tipo: "PNF" }));
+        }
+
+        // Opcional: intentar cargar un archivo externo para sobreescribir (si existe y se quiere actualizar)
         fetch('oferta_academica.json')
-            .then(response => response.json())
+            .then(res => res.json())
             .then(data => {
-                // Fusionar: primero los datos existentes, luego sobrescribir/agregar los nuevos
-                ofertaAcademica = { ...data, ...nuevosNucleosLaGuaira };
-                cargarNucleosPaso2();
-                console.log('✅ oferta_academica.json cargado y fusionado con nuevos núcleos de La Guaira');
+                console.log('📦 Archivo externo cargado, fusionando...');
+                // Fusionar: los datos externos tienen prioridad
+                ofertaAcademica = { ...ofertaAcademica, ...data };
+                // Pero no debemos perder los núcleos de La Guaira si no están en el externo
+                for (const [nucleo, programas] of Object.entries(nucleosLaGuaira)) {
+                    if (!ofertaAcademica[nucleo]) {
+                        ofertaAcademica[nucleo] = programas.map(p => ({ programa: p, tipo: "PNF" }));
+                    }
+                }
+                console.log('✅ Oferta académica final (con externo):', Object.keys(ofertaAcademica));
             })
-            .catch(error => {
-                console.error('❌ Error cargando oferta_academica.json, usando solo los nuevos núcleos:', error);
-                ofertaAcademica = { ...nuevosNucleosLaGuaira };
-                cargarNucleosPaso2();
+            .catch(err => {
+                console.warn('⚠️ No se encontró archivo externo, usando datos incrustados completos.', err);
             });
 
-        // Cargar comunas.json
-        fetch('comunas.json')
-            .then(response => response.json())
-            .then(data => { datosComunas = data; inicializarSelectores(); console.log('✅ comunas.json cargado'); })
-            .catch(error => { console.error('❌ Error cargando comunas.json:', error); const estadoSel = document.getElementById('estadoSelect'); if (estadoSel) estadoSel.innerHTML = '<option value="">Error al cargar</option>'; });
+        let datosComunas = null;
+        let profesores = [];
 
-        // Cargar profesores.json
-        fetch('profesores.json')
-            .then(response => response.json())
-            .then(data => { profesores = data; console.log('✅ Profesores cargados:', profesores.length); })
-            .catch(error => console.error('❌ Error cargando profesores.json:', error));
+        fetch('comunas.json').then(r => r.json()).then(d => { datosComunas = d; inicializarSelectores(); }).catch(e => console.error('Error comunas.json', e));
+        fetch('profesores.json').then(r => r.json()).then(d => { profesores = d; console.log('Profesores:', d.length); }).catch(e => console.error('Error profesores.json', e));
 
-        // Funciones auxiliares
         function mostrarMensaje(texto, tipo) {
-            const divExito = document.getElementById('mensajeExito');
-            const divError = document.getElementById('mensajeError');
-            const divInfo = document.getElementById('mensajeInfo');
-            if (!divExito || !divError || !divInfo) { alert(`${tipo.toUpperCase()}: ${texto}`); return; }
-            divExito.style.display = 'none';
-            divError.style.display = 'none';
-            divInfo.style.display = 'none';
-            if (tipo === 'error') {
-                divError.textContent = texto;
-                divError.style.display = 'block';
-                setTimeout(() => divError.style.display = 'none', 8000);
-            } else if (tipo === 'exito') {
-                divExito.textContent = texto;
-                divExito.style.display = 'block';
-                setTimeout(() => divExito.style.display = 'none', 8000);
-            } else {
-                divInfo.textContent = texto;
-                divInfo.style.display = 'block';
-                setTimeout(() => divInfo.style.display = 'none', 8000);
-            }
+            const divE = document.getElementById('mensajeExito'), divEr = document.getElementById('mensajeError'), divI = document.getElementById('mensajeInfo');
+            if (!divE) { alert(texto); return; }
+            divE.style.display = divEr.style.display = divI.style.display = 'none';
+            let div = tipo === 'error' ? divEr : (tipo === 'exito' ? divE : divI);
+            div.textContent = texto;
+            div.style.display = 'block';
+            setTimeout(() => div.style.display = 'none', 8000);
         }
-
-        // NUEVO: Mostrar toast de éxito flotante
-        function mostrarToastExito(mensaje) {
-            const toast = document.createElement('div');
-            toast.className = 'toast-success';
-            toast.innerHTML = `<i class="fas fa-check-circle"></i> ${mensaje}`;
-            document.body.appendChild(toast);
-            setTimeout(() => {
-                toast.style.opacity = '0';
-                setTimeout(() => toast.remove(), 500);
-            }, 5000);
-        }
+        function mostrarToastExito(m) { const t = document.createElement('div'); t.className = 'toast-success'; t.innerHTML = `<i class="fas fa-check-circle"></i> ${m}`; document.body.appendChild(t); setTimeout(() => { t.style.opacity = '0'; setTimeout(() => t.remove(), 500); }, 5000); }
 
         function inicializarSelectores() {
             const estadoSel = document.getElementById('estadoSelect');
             if (!estadoSel || !datosComunas) return;
             estadoSel.innerHTML = '<option value="">-- Seleccione estado --</option>';
-            datosComunas.estados.sort((a,b) => a.nombre.localeCompare(b.nombre)).forEach(estado => {
-                const option = document.createElement('option');
-                option.value = estado.nombre;
-                option.textContent = estado.nombre;
-                estadoSel.appendChild(option);
-            });
+            datosComunas.estados.sort((a,b)=>a.nombre.localeCompare(b.nombre)).forEach(e => { let o = document.createElement('option'); o.value = e.nombre; o.textContent = e.nombre; estadoSel.appendChild(o); });
             estadoSel.addEventListener('change', cargarMunicipios);
         }
-
         function cargarMunicipios() {
-            const estadoNombre = document.getElementById('estadoSelect').value;
-            const municipioSel = document.getElementById('municipioSelect');
-            const parroquiaSel = document.getElementById('parroquiaSelect');
-            const comunaSel = document.getElementById('comunaSelect');
-            if (!municipioSel || !parroquiaSel || !comunaSel) return;
-            municipioSel.innerHTML = '<option value="">-- Seleccione municipio --</option>';
-            parroquiaSel.innerHTML = '<option value="">-- Seleccione parroquia --</option>';
-            comunaSel.innerHTML = '<option value="">-- Seleccione comuna --</option>';
-            municipioSel.disabled = !estadoNombre;
-            parroquiaSel.disabled = true;
-            comunaSel.disabled = true;
-            if (!estadoNombre) return;
-            const estado = datosComunas.estados.find(e => e.nombre === estadoNombre);
+            const estado = document.getElementById('estadoSelect').value, mSel = document.getElementById('municipioSelect'), pSel = document.getElementById('parroquiaSelect'), cSel = document.getElementById('comunaSelect');
+            mSel.innerHTML = '<option value="">-- Seleccione municipio --</option>'; pSel.innerHTML = '<option value="">-- Seleccione parroquia --</option>'; cSel.innerHTML = '<option value="">-- Seleccione comuna --</option>';
+            mSel.disabled = !estado; pSel.disabled = true; cSel.disabled = true;
             if (!estado) return;
-            estado.municipios.sort((a,b) => a.nombre.localeCompare(b.nombre)).forEach(m => {
-                const option = document.createElement('option');
-                option.value = m.nombre;
-                option.textContent = m.nombre;
-                municipioSel.appendChild(option);
-            });
-            municipioSel.addEventListener('change', cargarParroquias);
+            const estadoObj = datosComunas.estados.find(e => e.nombre === estado);
+            if (!estadoObj) return;
+            estadoObj.municipios.sort((a,b)=>a.nombre.localeCompare(b.nombre)).forEach(m => { let o = document.createElement('option'); o.value = m.nombre; o.textContent = m.nombre; mSel.appendChild(o); });
+            mSel.addEventListener('change', cargarParroquias);
         }
-
         function cargarParroquias() {
-            const estadoNombre = document.getElementById('estadoSelect').value;
-            const municipioNombre = document.getElementById('municipioSelect').value;
-            const parroquiaSel = document.getElementById('parroquiaSelect');
-            const comunaSel = document.getElementById('comunaSelect');
-            if (!parroquiaSel || !comunaSel) return;
-            parroquiaSel.innerHTML = '<option value="">-- Seleccione parroquia --</option>';
-            comunaSel.innerHTML = '<option value="">-- Seleccione comuna --</option>';
-            parroquiaSel.disabled = !municipioNombre;
-            comunaSel.disabled = true;
-            if (!municipioNombre) return;
-            const estado = datosComunas.estados.find(e => e.nombre === estadoNombre);
-            const municipio = estado.municipios.find(m => m.nombre === municipioNombre);
+            const estado = document.getElementById('estadoSelect').value, municipio = document.getElementById('municipioSelect').value, pSel = document.getElementById('parroquiaSelect'), cSel = document.getElementById('comunaSelect');
+            pSel.innerHTML = '<option value="">-- Seleccione parroquia --</option>'; cSel.innerHTML = '<option value="">-- Seleccione comuna --</option>';
+            pSel.disabled = !municipio; cSel.disabled = true;
             if (!municipio) return;
-            municipio.parroquias.sort((a,b) => a.nombre.localeCompare(b.nombre)).forEach(p => {
-                const option = document.createElement('option');
-                option.value = p.nombre;
-                option.textContent = p.nombre;
-                parroquiaSel.appendChild(option);
-            });
-            parroquiaSel.addEventListener('change', cargarComunas);
+            const estadoObj = datosComunas.estados.find(e => e.nombre === estado), municipioObj = estadoObj.municipios.find(m => m.nombre === municipio);
+            if (!municipioObj) return;
+            municipioObj.parroquias.sort((a,b)=>a.nombre.localeCompare(b.nombre)).forEach(p => { let o = document.createElement('option'); o.value = p.nombre; o.textContent = p.nombre; pSel.appendChild(o); });
+            pSel.addEventListener('change', cargarComunas);
         }
-
         function cargarComunas() {
-            const estadoNombre = document.getElementById('estadoSelect').value;
-            const municipioNombre = document.getElementById('municipioSelect').value;
-            const parroquiaNombre = document.getElementById('parroquiaSelect').value;
-            const comunaSel = document.getElementById('comunaSelect');
-            if (!comunaSel) return;
-            comunaSel.innerHTML = '<option value="">-- Seleccione comuna --</option>';
-            comunaSel.disabled = !parroquiaNombre;
-            if (!parroquiaNombre) return;
-            const estado = datosComunas.estados.find(e => e.nombre === estadoNombre);
-            const municipio = estado.municipios.find(m => m.nombre === municipioNombre);
-            const parroquia = municipio.parroquias.find(p => p.nombre === parroquiaNombre);
+            const estado = document.getElementById('estadoSelect').value, municipio = document.getElementById('municipioSelect').value, parroquia = document.getElementById('parroquiaSelect').value, cSel = document.getElementById('comunaSelect');
+            cSel.innerHTML = '<option value="">-- Seleccione comuna --</option>'; cSel.disabled = !parroquia;
             if (!parroquia) return;
-            parroquia.comunas.sort().forEach(comuna => {
-                const option = document.createElement('option');
-                option.value = comuna;
-                option.textContent = comuna;
-                comunaSel.appendChild(option);
-            });
+            const estadoObj = datosComunas.estados.find(e => e.nombre === estado), municipioObj = estadoObj.municipios.find(m => m.nombre === municipio), parroquiaObj = municipioObj.parroquias.find(p => p.nombre === parroquia);
+            if (!parroquiaObj) return;
+            parroquiaObj.comunas.sort().forEach(c => { let o = document.createElement('option'); o.value = c; o.textContent = c; cSel.appendChild(o); });
         }
 
-        function cargarNucleosPaso2() {
-            const nucleoSelect = document.getElementById('nucleoSelectPaso2');
-            if (!nucleoSelect) return;
-            nucleoSelect.innerHTML = '<option value="">Seleccione un núcleo</option>';
-            Object.keys(ofertaAcademica).sort().forEach(nucleo => {
-                const option = document.createElement('option');
-                option.value = nucleo;
-                option.textContent = nucleo;
-                nucleoSelect.appendChild(option);
-            });
-        }
-
-        function cargarProgramasPaso2() {
-            const nucleo = document.getElementById('nucleoSelectPaso2').value;
-            const programaSelect = document.getElementById('pnfSelectPaso2');
-            programaSelect.innerHTML = '<option value="">Seleccione un programa</option>';
-            if (nucleo && ofertaAcademica[nucleo]) {
-                ofertaAcademica[nucleo].forEach(item => {
-                    const option = document.createElement('option');
+        function cargarProgramasPorNucleo(nucleoReal) {
+            const pnfSelect = document.getElementById('pnfSelectPaso2');
+            pnfSelect.innerHTML = '<option value="">Seleccione un programa</option>';
+            if (nucleoReal && ofertaAcademica[nucleoReal] && ofertaAcademica[nucleoReal].length) {
+                ofertaAcademica[nucleoReal].forEach(item => {
+                    let option = document.createElement('option');
                     option.value = item.programa;
-                    option.textContent = `${item.programa} (${item.tipo})`;
-                    programaSelect.appendChild(option);
+                    option.textContent = item.programa;
+                    pnfSelect.appendChild(option);
                 });
+                pnfSelect.disabled = false;
             } else {
-                programaSelect.innerHTML = '<option value="">No hay programas para este núcleo</option>';
+                pnfSelect.innerHTML = '<option value="">No hay programas para este núcleo</option>';
+                pnfSelect.disabled = true;
+                console.warn(`⚠️ No se encontraron programas para el núcleo: ${nucleoReal}`);
+            }
+        }
+
+        function onUbicacionChange() {
+            const ubicacion = document.getElementById('ubicacionSelect').value;
+            const parrContainer = document.getElementById('parroquiaContainer');
+            const parrSelect = document.getElementById('parroquiaSelectLaGuaira');
+            const nucleoHidden = document.getElementById('nucleoReal');
+            parrContainer.style.display = 'none';
+            nucleoHidden.value = '';
+            document.getElementById('pnfSelectPaso2').disabled = true;
+            document.getElementById('pnfSelectPaso2').innerHTML = '<option value="">Primero seleccione un núcleo válido</option>';
+            if (ubicacion === 'La Guaira') {
+                parrContainer.style.display = 'block';
+                if (parrSelect.value) {
+                    let nucleo = mapeoParroquiaNucleo[parrSelect.value];
+                    if (nucleo) { nucleoHidden.value = nucleo; cargarProgramasPorNucleo(nucleo); }
+                }
+            } else if (ubicacion && ofertaAcademica[ubicacion]) {
+                nucleoHidden.value = ubicacion;
+                cargarProgramasPorNucleo(ubicacion);
+            } else if (ubicacion && !ofertaAcademica[ubicacion]) {
+                mostrarMensaje(`El núcleo "${ubicacion}" no tiene programas cargados. Verifica la configuración.`, 'error');
+            }
+        }
+
+        function onParroquiaChange() {
+            const parroquia = document.getElementById('parroquiaSelectLaGuaira').value;
+            const nucleoHidden = document.getElementById('nucleoReal');
+            if (parroquia && mapeoParroquiaNucleo[parroquia]) {
+                nucleoHidden.value = mapeoParroquiaNucleo[parroquia];
+                cargarProgramasPorNucleo(nucleoHidden.value);
+            } else {
+                nucleoHidden.value = '';
+                document.getElementById('pnfSelectPaso2').disabled = true;
+                document.getElementById('pnfSelectPaso2').innerHTML = '<option value="">Seleccione una parroquia válida</option>';
             }
         }
 
         function actualizarTutor() {
-            const trayecto = document.getElementById('trayecto');
-            const turno = document.getElementById('turno');
-            const tutorInput = document.getElementById('tutorAsignado');
-            if (!trayecto || !turno || !tutorInput) return;
-            const trayectoVal = trayecto.value;
-            const turnoVal = turno.value;
-            if (!trayectoVal || !turnoVal || profesores.length === 0) { tutorInput.value = ''; return; }
-            const mapaTurnos = { 'MAÑANA': 'MATUTINO', 'TARDE': 'TARDE', 'NOCHE': 'NOCTURNO' };
-            let turnoJson = mapaTurnos[turnoVal] || turnoVal;
-            let resultados = profesores.filter(p => p.Asignatura && p.Asignatura.includes('PROYECTO') && p.Trayecto === trayectoVal && p.Turno === turnoJson);
-            if (resultados.length === 0 && turnoJson !== turnoVal) {
-                resultados = profesores.filter(p => p.Asignatura && p.Asignatura.includes('PROYECTO') && p.Trayecto === trayectoVal && p.Turno === turnoVal);
-            }
+            const trayecto = document.getElementById('trayecto').value, turno = document.getElementById('turno').value, tutorInput = document.getElementById('tutorAsignado');
+            if (!trayecto || !turno || !profesores.length) { tutorInput.value = ''; return; }
+            const mapa = { 'MAÑANA':'MATUTINO', 'TARDE':'TARDE', 'NOCHE':'NOCTURNO' };
+            let turnoJson = mapa[turno] || turno;
+            let resultados = profesores.filter(p => p.Asignatura && p.Asignatura.includes('PROYECTO') && p.Trayecto === trayecto && p.Turno === turnoJson);
+            if (!resultados.length && turnoJson !== turno) resultados = profesores.filter(p => p.Asignatura && p.Asignatura.includes('PROYECTO') && p.Trayecto === trayecto && p.Turno === turno);
             if (resultados.length === 1) tutorInput.value = resultados[0].Docente || 'No especificado';
             else if (resultados.length > 1) tutorInput.value = `Múltiples (${resultados.length}) - Consultar coordinación`;
             else tutorInput.value = 'No asignado automáticamente';
         }
 
-        function limpiarFormulario() {
-            document.getElementById('registroForm').reset();
-            document.getElementById('cedula').value = document.getElementById('cedulaVerificar').value;
-            mostrarMensaje('Formulario limpiado', 'info');
-        }
+        function limpiarFormulario() { document.getElementById('registroForm').reset(); document.getElementById('cedula').value = document.getElementById('cedulaVerificar').value; mostrarMensaje('Formulario limpiado', 'info'); }
 
-        document.addEventListener('DOMContentLoaded', function() {
-            const btnVerificar = document.getElementById('btnVerificar');
-            if (btnVerificar) {
-                btnVerificar.addEventListener('click', function() {
-                    const cedula = document.getElementById('cedulaVerificar').value.trim();
-                    if (!cedula) { mostrarMensaje('Ingrese una cédula', 'error'); return; }
-                    document.getElementById('cedula').value = cedula;
-                    document.getElementById('verificacion').style.display = 'none';
-                    document.getElementById('registroForm').classList.remove('oculto');
-                    mostrarMensaje('Nuevo registro. Complete los datos.', 'info');
-                    document.getElementById('paso2').scrollIntoView({ behavior: 'smooth', block: 'start' });
-                });
-            }
-            const trayecto = document.getElementById('trayecto');
-            const turno = document.getElementById('turno');
-            if (trayecto) trayecto.addEventListener('change', actualizarTutor);
-            if (turno) turno.addEventListener('change', actualizarTutor);
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('btnVerificar').addEventListener('click', () => {
+                let ced = document.getElementById('cedulaVerificar').value.trim();
+                if (!ced) { mostrarMensaje('Ingrese una cédula', 'error'); return; }
+                document.getElementById('cedula').value = ced;
+                document.getElementById('verificacion').style.display = 'none';
+                document.getElementById('registroForm').classList.remove('oculto');
+                mostrarMensaje('Nuevo registro. Complete los datos.', 'info');
+                document.getElementById('paso2').scrollIntoView({ behavior: 'smooth' });
+            });
+            document.getElementById('trayecto').addEventListener('change', actualizarTutor);
+            document.getElementById('turno').addEventListener('change', actualizarTutor);
+            document.getElementById('ubicacionSelect').addEventListener('change', onUbicacionChange);
+            document.getElementById('parroquiaSelectLaGuaira').addEventListener('change', onParroquiaChange);
         });
 
-        document.addEventListener('DOMContentLoaded', function() {
-            const form = document.getElementById('registroForm');
-            if (!form) return;
-            form.addEventListener('submit', async function(e) {
-                e.preventDefault();
-                const nucleo = document.getElementById('nucleoSelectPaso2').value;
-                if (!nucleo) { mostrarMensaje('Seleccione un núcleo', 'error'); document.getElementById('nucleoSelectPaso2').focus(); return; }
-                const btn = document.getElementById('btnEnviar');
-                btn.disabled = true;
-                btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
-                const formData = new FormData(this);
-                const data = Object.fromEntries(formData.entries());
-                data.timestamp = new Date().toISOString();
-                try {
-                    await fetch(GOOGLE_APPS_SCRIPT_URL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
-                    
-                    // NUEVO: Scroll al inicio y mostrar mensaje de éxito más visible
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                    mostrarMensaje('✅ ¡Registro enviado con éxito! Tu proyecto ha sido registrado.', 'exito');
-                    mostrarToastExito('Registro completado correctamente');
-                    
-                    // Resetear formulario y volver a pantalla de verificación
-                    this.reset();
-                    this.classList.add('oculto');
-                    document.getElementById('verificacion').style.display = 'block';
-                    document.getElementById('cedulaVerificar').value = '';
-                    document.getElementById('interes_ninguno').checked = true;
-                    
-                } catch (error) {
-                    console.error(error);
-                    mostrarMensaje('Error al enviar. Intenta de nuevo.', 'error');
-                } finally {
-                    btn.disabled = false;
-                    btn.innerHTML = '<i class="fas fa-paper-plane"></i> Enviar registro completo';
-                }
-            });
+        document.getElementById('registroForm')?.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const nucleoReal = document.getElementById('nucleoReal').value;
+            if (!nucleoReal) { mostrarMensaje('Debe seleccionar un núcleo (Altagracia, La Floresta, La Urbina o una parroquia de La Guaira)', 'error'); return; }
+            const btn = document.getElementById('btnEnviar');
+            btn.disabled = true; btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData.entries());
+            data.timestamp = new Date().toISOString();
+            data.nucleo = nucleoReal;
+            try {
+                await fetch('https://script.google.com/macros/s/AKfycbxP-xiXx1ekm71MNlXHdiV6FfVeJLc8GQ_O3nU7jehn6RNDkB1mFU4y3JFX-o016F_C/exec', { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                mostrarMensaje('✅ ¡Registro enviado con éxito!', 'exito');
+                mostrarToastExito('Registro completado correctamente');
+                this.reset();
+                this.classList.add('oculto');
+                document.getElementById('verificacion').style.display = 'block';
+                document.getElementById('cedulaVerificar').value = '';
+                document.getElementById('interes_ninguno').checked = true;
+                document.getElementById('ubicacionSelect').value = '';
+                document.getElementById('parroquiaSelectLaGuaira').value = '';
+                document.getElementById('parroquiaContainer').style.display = 'none';
+                document.getElementById('nucleoReal').value = '';
+                document.getElementById('pnfSelectPaso2').innerHTML = '<option value="">Primero seleccione un núcleo válido</option>';
+                document.getElementById('pnfSelectPaso2').disabled = true;
+            } catch (error) { console.error(error); mostrarMensaje('Error al enviar. Intenta de nuevo.', 'error'); }
+            finally { btn.disabled = false; btn.innerHTML = '<i class="fas fa-paper-plane"></i> Enviar registro completo'; }
         });
     </script>
 </body>
