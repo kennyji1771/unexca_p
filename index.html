@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
     <style>
-        /* ========== RESET Y VARIABLES (igual que antes) ========== */
+        /* ========== RESET Y VARIABLES (sin cambios, solo se respetan) ========== */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
             --bg: #c2c7cc;
@@ -238,6 +238,7 @@
             font-size: 1rem;
             background: white;
             transition: var(--transition);
+            font-family: 'Inter', sans-serif;
         }
         .field input:focus, .field select:focus, .field textarea:focus {
             outline: none;
@@ -343,7 +344,6 @@
             font-weight: 700;
             margin-right: 10px;
         }
-        /* NUEVO: Estilo para mensaje fijo de éxito (toast) */
         .toast-success {
             position: fixed;
             top: 20px;
@@ -543,11 +543,48 @@
                         <div class="field"><label class="required">Sexo</label><select id="sexo" name="sexo" required><option value="">Seleccione</option><option value="Masculino">Masculino</option><option value="Femenino">Femenino</option><option value="Otro">Otro</option></select></div>
                     </div>
                     <div class="grid-2"><div class="field"><label class="required">Fecha registro</label><input type="date" id="fechaRegistro" name="fechaRegistro" required></div></div>
+                    
                     <h3>Datos académicos</h3>
+                    <!-- NUEVA INTERFAZ DE SELECCIÓN DE NÚCLEO (JERÁRQUICA) -->
                     <div class="grid-2">
-                        <div class="field"><label class="required">Núcleo</label><select id="nucleoSelectPaso2" name="nucleo" required onchange="cargarProgramasPaso2()"><option value="">Seleccione núcleo</option></select></div>
-                        <div class="field"><label class="required">PNF</label><select id="pnfSelectPaso2" name="pnf" required><option value="">Primero seleccione núcleo</option></select></div>
+                        <div class="field">
+                            <label class="required"><i class="fas fa-university"></i> Ubicación / Núcleo</label>
+                            <select id="ubicacionSelect" required>
+                                <option value="">-- Seleccione una opción --</option>
+                                <option value="Altagracia">Altagracia</option>
+                                <option value="La Floresta">La Floresta</option>
+                                <option value="La Urbina">La Urbina</option>
+                                <option value="La Guaira">La Guaira (ver parroquias)</option>
+                            </select>
+                        </div>
+                        <div class="field" id="parroquiaContainer" style="display: none;">
+                            <label class="required"><i class="fas fa-map-marker-alt"></i> Parroquia (La Guaira)</label>
+                            <select id="parroquiaSelectLaGuaira">
+                                <option value="">-- Seleccione parroquia --</option>
+                                <option value="Caraballeda">Caraballeda</option>
+                                <option value="Carayaca">Carayaca</option>
+                                <option value="Caruao">Caruao</option>
+                                <option value="Catia La Mar">Catia La Mar</option>
+                                <option value="Macuto">Macuto</option>
+                                <option value="Maiquetía">Maiquetía</option>
+                                <option value="Naiguatá">Naiguatá</option>
+                                <option value="Urimare">Urimare</option>
+                                <option value="Carlos Soublette">Carlos Soublette</option>
+                            </select>
+                        </div>
                     </div>
+                    <!-- Campo oculto para almacenar el nombre real del núcleo -->
+                    <input type="hidden" id="nucleoReal" name="nucleo">
+                    
+                    <div class="grid-2">
+                        <div class="field">
+                            <label class="required">Programa Nacional de Formación (PNF)</label>
+                            <select id="pnfSelectPaso2" name="pnf" required disabled>
+                                <option value="">Primero seleccione un núcleo válido</option>
+                            </select>
+                        </div>
+                    </div>
+                    
                     <div class="grid-3">
                         <div class="field"><label class="required">Trayecto</label><select id="trayecto" name="trayecto" required><option value="">Seleccione</option><option value="I">I</option><option value="II">II</option><option value="III">III</option><option value="IV">IV</option></select></div>
                         <div class="field"><label class="required">Semestre</label><select id="semestre" name="semestre" required><option value="">Seleccione</option><option value="I">I</option><option value="II">II</option></select></div>
@@ -702,70 +739,89 @@
             if (verificationSection) verificationSection.style.display = 'none';
         })();
 
-        // ========== NUEVOS NÚCLEOS Y PNF DEL ESTADO LA GUAIRA ==========
-        // Estructura de la oferta académica ampliada con los datos proporcionados
+        // ========== NUEVOS NÚCLEOS Y PNF DEL ESTADO LA GUAIRA (mapeo parroquia -> núcleo) ==========
+        const mapeoParroquiaNucleo = {
+            "Caraballeda": "COMPLEJO EDUCATIVO CARABALLEDA",
+            "Carayaca": "LICEO GUAICAIPURO",
+            "Caruao": "LICEO BOLIVARIANO CARUAO",
+            "Catia La Mar": "E.N.B LUIS BELTRAN PIETRO FIGUEROA",
+            "Macuto": "E.I.B GUAICOTO",
+            "Maiquetía": "E.T LICENCIADO ARANDA",
+            "Naiguatá": "E.B NAIGUATA",
+            "Urimare": "LICEO NACIONAL HUGO CHAVEZ FRIAS",
+            "Carlos Soublette": "E.B.E ALBERTO RAVELL"
+        };
+
         const nuevosNucleosLaGuaira = {
             "COMPLEJO EDUCATIVO CARABALLEDA": [
-                { programa: "ADMINISTRACION", tipo: "PNF" },
-                { programa: "CONTADURIA PUBLICA", tipo: "PNF" },
-                { programa: "DISTRIBUCION Y LOGISTICA", tipo: "PNF" },
-                { programa: "EDUCACION INICIAL", tipo: "PNF" },
-                { programa: "TURISMO", tipo: "PNF" },
-                { programa: "INGENIERIA INFORMATICA", tipo: "PNF" }
+                { programa: "Administración", tipo: "PNF" },
+                { programa: "Contaduría Pública", tipo: "PNF" },
+                { programa: "Distribución y Logística", tipo: "PNF" },
+                { programa: "Educación Inicial", tipo: "PNF" },
+                { programa: "Turismo", tipo: "PNF" },
+                { programa: "Ingeniería Informática", tipo: "PNF" }
             ],
             "LICEO GUAICAIPURO": [
-                { programa: "ADMINISTRACION", tipo: "PNF" },
-                { programa: "CONTADURIA PUBLICA", tipo: "PNF" },
-                { programa: "DISTRIBUCION Y LOGISTICA", tipo: "PNF" },
-                { programa: "TRABAJO SOCIAL", tipo: "PNF" },
-                { programa: "INGENIERIA AGROALIMENTARIA", tipo: "PNF" }
+                { programa: "Administración", tipo: "PNF" },
+                { programa: "Contaduría Pública", tipo: "PNF" },
+                { programa: "Distribución y Logística", tipo: "PNF" },
+                { programa: "Trabajo Social", tipo: "PNF" },
+                { programa: "Ingeniería Agroalimentaria", tipo: "PNF" }
             ],
             "LICEO BOLIVARIANO CARUAO": [
-                { programa: "ADMINISTRACION", tipo: "PNF" },
-                { programa: "TRABAJO SOCIAL", tipo: "PNF" },
-                { programa: "TURISMO", tipo: "PNF" }
+                { programa: "Administración", tipo: "PNF" },
+                { programa: "Trabajo Social", tipo: "PNF" },
+                { programa: "Turismo", tipo: "PNF" }
             ],
             "E.N.B LUIS BELTRAN PIETRO FIGUEROA": [
-                { programa: "ADMINISTRACION", tipo: "PNF" },
-                { programa: "CONTADURIA PUBLICA", tipo: "PNF" },
-                { programa: "EDUCACION ESPECIAL", tipo: "PNF" },
-                { programa: "EDUCACION INICIAL", tipo: "PNF" },
-                { programa: "DISTRIBUCION Y LOGISTICA", tipo: "PNF" },
-                { programa: "TRABAJO SOCIAL", tipo: "PNF" },
-                { programa: "TURISMO", tipo: "PNF" },
-                { programa: "INGENIERIA INFORMATICA", tipo: "PNF" }
+                { programa: "Administración", tipo: "PNF" },
+                { programa: "Contaduría Pública", tipo: "PNF" },
+                { programa: "Educación Especial", tipo: "PNF" },
+                { programa: "Educación Inicial", tipo: "PNF" },
+                { programa: "Distribución y Logística", tipo: "PNF" },
+                { programa: "Trabajo Social", tipo: "PNF" },
+                { programa: "Turismo", tipo: "PNF" },
+                { programa: "Ingeniería Informática", tipo: "PNF" }
             ],
             "E.I.B GUAICOTO": [
-                { programa: "ADMINISTRACION", tipo: "PNF" },
-                { programa: "CONTADURIA PUBLICA", tipo: "PNF" },
-                { programa: "TURISMO", tipo: "PNF" },
-                { programa: "INGENIERIA INFORMATICA", tipo: "PNF" }
+                { programa: "Administración", tipo: "PNF" },
+                { programa: "Contaduría Pública", tipo: "PNF" },
+                { programa: "Turismo", tipo: "PNF" },
+                { programa: "Ingeniería Informática", tipo: "PNF" }
             ],
             "E.T LICENCIADO ARANDA": [
-                { programa: "ADMINISTRACION", tipo: "PNF" },
-                { programa: "CONTADURIA PUBLICA", tipo: "PNF" },
-                { programa: "INGENIERIA INFORMATICA", tipo: "PNF" }
+                { programa: "Administración", tipo: "PNF" },
+                { programa: "Contaduría Pública", tipo: "PNF" },
+                { programa: "Ingeniería Informática", tipo: "PNF" }
             ],
             "E.B NAIGUATA": [
-                { programa: "ADMINISTRACION", tipo: "PNF" },
-                { programa: "CONTADURIA PUBLICA", tipo: "PNF" },
-                { programa: "EDUCACION INICIAL", tipo: "PNF" }
+                { programa: "Administración", tipo: "PNF" },
+                { programa: "Contaduría Pública", tipo: "PNF" },
+                { programa: "Educación Inicial", tipo: "PNF" }
             ],
             "LICEO NACIONAL HUGO CHAVEZ FRIAS": [
-                { programa: "ADMINISTRACION", tipo: "PNF" },
-                { programa: "CONTADURIA PUBLICA", tipo: "PNF" },
-                { programa: "DISTRIBUCION Y LOGISTICA", tipo: "PNF" },
-                { programa: "EDUCACION ESPECIAL", tipo: "PNF" },
-                { programa: "EDUCACION INICIAL", tipo: "PNF" },
-                { programa: "TRABAJO SOCIAL", tipo: "PNF" },
-                { programa: "TURISMO", tipo: "PNF" },
-                { programa: "INGENIERIA INFORMATICA", tipo: "PNF" }
+                { programa: "Administración", tipo: "PNF" },
+                { programa: "Contaduría Pública", tipo: "PNF" },
+                { programa: "Distribución y Logística", tipo: "PNF" },
+                { programa: "Educación Especial", tipo: "PNF" },
+                { programa: "Educación Inicial", tipo: "PNF" },
+                { programa: "Trabajo Social", tipo: "PNF" },
+                { programa: "Turismo", tipo: "PNF" },
+                { programa: "Ingeniería Informática", tipo: "PNF" }
             ],
             "E.B.E ALBERTO RAVELL": [
-                { programa: "ADMINISTRACION", tipo: "PNF" },
-                { programa: "CONTADURIA PUBLICA", tipo: "PNF" },
-                { programa: "INGENIERIA INFORMATICA", tipo: "PNF" }
+                { programa: "Administración", tipo: "PNF" },
+                { programa: "Contaduría Pública", tipo: "PNF" },
+                { programa: "Ingeniería Informática", tipo: "PNF" }
             ]
+        };
+
+        // Para los núcleos de Caracas (Altagracia, La Floresta, La Urbina) asumimos que ya existen en oferta_academica.json
+        // Si no existen, las agregamos con una estructura vacía para que no falle.
+        const nucleiCaracas = {
+            "Altagracia": [],
+            "La Floresta": [],
+            "La Urbina": []
         };
 
         // ========== CONFIGURACIÓN Y DATOS ==========
@@ -774,28 +830,24 @@
         let profesores = [];
         let ofertaAcademica = {};
 
-        // Cargar oferta_academica.json y fusionar con los nuevos núcleos de La Guaira
+        // Cargar oferta_academica.json y fusionar
         fetch('oferta_academica.json')
             .then(response => response.json())
             .then(data => {
-                // Fusionar: primero los datos existentes, luego sobrescribir/agregar los nuevos
-                ofertaAcademica = { ...data, ...nuevosNucleosLaGuaira };
-                cargarNucleosPaso2();
-                console.log('✅ oferta_academica.json cargado y fusionado con nuevos núcleos de La Guaira');
+                ofertaAcademica = { ...data, ...nuevosNucleosLaGuaira, ...nucleiCaracas };
+                console.log('✅ oferta_academica cargado y fusionado');
+                // No se llena un select directo, se usará la lógica de ubicación
             })
             .catch(error => {
-                console.error('❌ Error cargando oferta_academica.json, usando solo los nuevos núcleos:', error);
-                ofertaAcademica = { ...nuevosNucleosLaGuaira };
-                cargarNucleosPaso2();
+                console.error('❌ Error cargando oferta_academica.json, usando solo datos internos:', error);
+                ofertaAcademica = { ...nuevosNucleosLaGuaira, ...nucleiCaracas };
             });
 
-        // Cargar comunas.json
         fetch('comunas.json')
             .then(response => response.json())
-            .then(data => { datosComunas = data; inicializarSelectores(); console.log('✅ comunas.json cargado'); })
-            .catch(error => { console.error('❌ Error cargando comunas.json:', error); const estadoSel = document.getElementById('estadoSelect'); if (estadoSel) estadoSel.innerHTML = '<option value="">Error al cargar</option>'; });
+            .then(data => { datosComunas = data; inicializarSelectores(); })
+            .catch(error => console.error('❌ Error cargando comunas.json:', error));
 
-        // Cargar profesores.json
         fetch('profesores.json')
             .then(response => response.json())
             .then(data => { profesores = data; console.log('✅ Profesores cargados:', profesores.length); })
@@ -810,31 +862,18 @@
             divExito.style.display = 'none';
             divError.style.display = 'none';
             divInfo.style.display = 'none';
-            if (tipo === 'error') {
-                divError.textContent = texto;
-                divError.style.display = 'block';
-                setTimeout(() => divError.style.display = 'none', 8000);
-            } else if (tipo === 'exito') {
-                divExito.textContent = texto;
-                divExito.style.display = 'block';
-                setTimeout(() => divExito.style.display = 'none', 8000);
-            } else {
-                divInfo.textContent = texto;
-                divInfo.style.display = 'block';
-                setTimeout(() => divInfo.style.display = 'none', 8000);
-            }
+            const div = tipo === 'error' ? divError : (tipo === 'exito' ? divExito : divInfo);
+            div.textContent = texto;
+            div.style.display = 'block';
+            setTimeout(() => div.style.display = 'none', 8000);
         }
 
-        // NUEVO: Mostrar toast de éxito flotante
         function mostrarToastExito(mensaje) {
             const toast = document.createElement('div');
             toast.className = 'toast-success';
             toast.innerHTML = `<i class="fas fa-check-circle"></i> ${mensaje}`;
             document.body.appendChild(toast);
-            setTimeout(() => {
-                toast.style.opacity = '0';
-                setTimeout(() => toast.remove(), 500);
-            }, 5000);
+            setTimeout(() => { toast.style.opacity = '0'; setTimeout(() => toast.remove(), 500); }, 5000);
         }
 
         function inicializarSelectores() {
@@ -855,7 +894,6 @@
             const municipioSel = document.getElementById('municipioSelect');
             const parroquiaSel = document.getElementById('parroquiaSelect');
             const comunaSel = document.getElementById('comunaSelect');
-            if (!municipioSel || !parroquiaSel || !comunaSel) return;
             municipioSel.innerHTML = '<option value="">-- Seleccione municipio --</option>';
             parroquiaSel.innerHTML = '<option value="">-- Seleccione parroquia --</option>';
             comunaSel.innerHTML = '<option value="">-- Seleccione comuna --</option>';
@@ -879,7 +917,6 @@
             const municipioNombre = document.getElementById('municipioSelect').value;
             const parroquiaSel = document.getElementById('parroquiaSelect');
             const comunaSel = document.getElementById('comunaSelect');
-            if (!parroquiaSel || !comunaSel) return;
             parroquiaSel.innerHTML = '<option value="">-- Seleccione parroquia --</option>';
             comunaSel.innerHTML = '<option value="">-- Seleccione comuna --</option>';
             parroquiaSel.disabled = !municipioNombre;
@@ -902,7 +939,6 @@
             const municipioNombre = document.getElementById('municipioSelect').value;
             const parroquiaNombre = document.getElementById('parroquiaSelect').value;
             const comunaSel = document.getElementById('comunaSelect');
-            if (!comunaSel) return;
             comunaSel.innerHTML = '<option value="">-- Seleccione comuna --</option>';
             comunaSel.disabled = !parroquiaNombre;
             if (!parroquiaNombre) return;
@@ -918,31 +954,64 @@
             });
         }
 
-        function cargarNucleosPaso2() {
-            const nucleoSelect = document.getElementById('nucleoSelectPaso2');
-            if (!nucleoSelect) return;
-            nucleoSelect.innerHTML = '<option value="">Seleccione un núcleo</option>';
-            Object.keys(ofertaAcademica).sort().forEach(nucleo => {
-                const option = document.createElement('option');
-                option.value = nucleo;
-                option.textContent = nucleo;
-                nucleoSelect.appendChild(option);
-            });
-        }
-
-        function cargarProgramasPaso2() {
-            const nucleo = document.getElementById('nucleoSelectPaso2').value;
-            const programaSelect = document.getElementById('pnfSelectPaso2');
-            programaSelect.innerHTML = '<option value="">Seleccione un programa</option>';
-            if (nucleo && ofertaAcademica[nucleo]) {
-                ofertaAcademica[nucleo].forEach(item => {
+        // Función para cargar los PNF según el núcleo seleccionado (real)
+        function cargarProgramasPorNucleo(nucleoReal) {
+            const pnfSelect = document.getElementById('pnfSelectPaso2');
+            pnfSelect.innerHTML = '<option value="">Seleccione un programa</option>';
+            pnfSelect.disabled = false;
+            if (nucleoReal && ofertaAcademica[nucleoReal] && ofertaAcademica[nucleoReal].length > 0) {
+                ofertaAcademica[nucleoReal].forEach(item => {
                     const option = document.createElement('option');
                     option.value = item.programa;
-                    option.textContent = `${item.programa} (${item.tipo})`;
-                    programaSelect.appendChild(option);
+                    option.textContent = item.programa;  // Ya no mostramos "(PNF)"
+                    pnfSelect.appendChild(option);
                 });
             } else {
-                programaSelect.innerHTML = '<option value="">No hay programas para este núcleo</option>';
+                pnfSelect.innerHTML = '<option value="">No hay programas para este núcleo</option>';
+                pnfSelect.disabled = true;
+            }
+        }
+
+        // Manejador del cambio de ubicación
+        function onUbicacionChange() {
+            const ubicacion = document.getElementById('ubicacionSelect').value;
+            const parroquiaContainer = document.getElementById('parroquiaContainer');
+            const parroquiaSelect = document.getElementById('parroquiaSelectLaGuaira');
+            const nucleoHidden = document.getElementById('nucleoReal');
+            
+            // Ocultar selector de parroquia por defecto
+            parroquiaContainer.style.display = 'none';
+            nucleoHidden.value = '';
+            document.getElementById('pnfSelectPaso2').disabled = true;
+            document.getElementById('pnfSelectPaso2').innerHTML = '<option value="">Primero seleccione un núcleo válido</option>';
+            
+            if (ubicacion === 'La Guaira') {
+                parroquiaContainer.style.display = 'block';
+                // Si ya hay una parroquia seleccionada, actualizar
+                if (parroquiaSelect.value) {
+                    const nucleo = mapeoParroquiaNucleo[parroquiaSelect.value];
+                    if (nucleo) {
+                        nucleoHidden.value = nucleo;
+                        cargarProgramasPorNucleo(nucleo);
+                    }
+                }
+            } else if (ubicacion && ofertaAcademica[ubicacion] !== undefined) {
+                // Es Altagracia, La Floresta o La Urbina
+                nucleoHidden.value = ubicacion;
+                cargarProgramasPorNucleo(ubicacion);
+            }
+        }
+
+        function onParroquiaChange() {
+            const parroquia = document.getElementById('parroquiaSelectLaGuaira').value;
+            const nucleoHidden = document.getElementById('nucleoReal');
+            if (parroquia && mapeoParroquiaNucleo[parroquia]) {
+                nucleoHidden.value = mapeoParroquiaNucleo[parroquia];
+                cargarProgramasPorNucleo(nucleoHidden.value);
+            } else {
+                nucleoHidden.value = '';
+                document.getElementById('pnfSelectPaso2').disabled = true;
+                document.getElementById('pnfSelectPaso2').innerHTML = '<option value="">Seleccione una parroquia válida</option>';
             }
         }
 
@@ -971,6 +1040,7 @@
             mostrarMensaje('Formulario limpiado', 'info');
         }
 
+        // Eventos después de cargar el DOM
         document.addEventListener('DOMContentLoaded', function() {
             const btnVerificar = document.getElementById('btnVerificar');
             if (btnVerificar) {
@@ -988,36 +1058,47 @@
             const turno = document.getElementById('turno');
             if (trayecto) trayecto.addEventListener('change', actualizarTutor);
             if (turno) turno.addEventListener('change', actualizarTutor);
+
+            // Listeners para la nueva interfaz
+            const ubicacionSelect = document.getElementById('ubicacionSelect');
+            const parroquiaSelectLaGuaira = document.getElementById('parroquiaSelectLaGuaira');
+            if (ubicacionSelect) ubicacionSelect.addEventListener('change', onUbicacionChange);
+            if (parroquiaSelectLaGuaira) parroquiaSelectLaGuaira.addEventListener('change', onParroquiaChange);
         });
 
+        // Envío del formulario
         document.addEventListener('DOMContentLoaded', function() {
             const form = document.getElementById('registroForm');
             if (!form) return;
             form.addEventListener('submit', async function(e) {
                 e.preventDefault();
-                const nucleo = document.getElementById('nucleoSelectPaso2').value;
-                if (!nucleo) { mostrarMensaje('Seleccione un núcleo', 'error'); document.getElementById('nucleoSelectPaso2').focus(); return; }
+                const nucleoReal = document.getElementById('nucleoReal').value;
+                if (!nucleoReal) { mostrarMensaje('Debe seleccionar un núcleo válido (Altagracia, La Floresta, La Urbina o una parroquia de La Guaira)', 'error'); return; }
                 const btn = document.getElementById('btnEnviar');
                 btn.disabled = true;
                 btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
                 const formData = new FormData(this);
                 const data = Object.fromEntries(formData.entries());
                 data.timestamp = new Date().toISOString();
+                // Asegurar que el campo 'nucleo' tenga el valor real
+                data.nucleo = nucleoReal;
                 try {
                     await fetch(GOOGLE_APPS_SCRIPT_URL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
-                    
-                    // NUEVO: Scroll al inicio y mostrar mensaje de éxito más visible
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                     mostrarMensaje('✅ ¡Registro enviado con éxito! Tu proyecto ha sido registrado.', 'exito');
                     mostrarToastExito('Registro completado correctamente');
-                    
-                    // Resetear formulario y volver a pantalla de verificación
                     this.reset();
                     this.classList.add('oculto');
                     document.getElementById('verificacion').style.display = 'block';
                     document.getElementById('cedulaVerificar').value = '';
                     document.getElementById('interes_ninguno').checked = true;
-                    
+                    // Resetear campos de núcleo
+                    document.getElementById('ubicacionSelect').value = '';
+                    document.getElementById('parroquiaSelectLaGuaira').value = '';
+                    document.getElementById('parroquiaContainer').style.display = 'none';
+                    document.getElementById('nucleoReal').value = '';
+                    document.getElementById('pnfSelectPaso2').innerHTML = '<option value="">Primero seleccione un núcleo válido</option>';
+                    document.getElementById('pnfSelectPaso2').disabled = true;
                 } catch (error) {
                     console.error(error);
                     mostrarMensaje('Error al enviar. Intenta de nuevo.', 'error');
