@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
     <style>
-        /* ========== RESET Y VARIABLES ========== */
+        /* ========== RESET Y VARIABLES (igual que antes) ========== */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
             --bg: #c2c7cc;
@@ -42,7 +42,7 @@
             padding: 2rem 2rem;
             width: 100%;
         }
-        /* ========== HEADER (mismo que antes) ========== */
+        /* ========== HEADER ========== */
         .app-header {
             background: var(--surface);
             backdrop-filter: blur(8px);
@@ -194,7 +194,7 @@
         .card-link { text-decoration: none; font-weight: 600; color: var(--primary); display: flex; align-items: center; gap: 0.5rem; border-top: 1px dashed var(--border); padding-top: 1rem; margin-top: auto; transition: gap 0.2s; }
         .card-link i { transition: transform 0.2s; }
         .card:hover .card-link i { transform: translateX(6px); }
-        /* ========== FORMULARIO (resumido, pero completo) ========== */
+        /* ========== FORMULARIO ========== */
         .registro-form {
             background: var(--surface);
             backdrop-filter: blur(8px);
@@ -343,6 +343,26 @@
             font-weight: 700;
             margin-right: 10px;
         }
+        /* NUEVO: Estilo para mensaje fijo de éxito (toast) */
+        .toast-success {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #166534;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 50px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            z-index: 10001;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            backdrop-filter: blur(8px);
+            background-color: rgba(22, 101, 52, 0.95);
+            border: 1px solid #86efac;
+        }
         @media (max-width: 768px) {
             .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
             .app-header { flex-direction: column; text-align: center; padding: 1.5rem; }
@@ -430,7 +450,7 @@
             </nav>
         </header>
 
-        <!-- PANTALLA DE VERIFICACIÓN (oculta inicialmente) -->
+        <!-- PANTALLA DE VERIFICACIÓN -->
         <section id="verificacion" class="verification-card" style="display: none;">
             <h2>👋 Bienvenido</h2>
             <p>Ingresa tu cédula para comenzar. Si ya iniciaste un registro, cargaremos tu progreso.</p>
@@ -501,7 +521,7 @@
             </div>
         </section>
 
-        <!-- FORMULARIO COMPLETO (resumido pero funcional) -->
+        <!-- FORMULARIO COMPLETO -->
         <form id="registroForm" class="registro-form oculto">
             <!-- PASO 2 -->
             <section id="paso2">
@@ -663,7 +683,6 @@
                 if (video) video.pause();
             }
 
-            // Activar sonido (quitar mute) y cambiar ícono
             if (soundBtn) {
                 soundBtn.addEventListener('click', () => {
                     if (video) {
@@ -679,32 +698,110 @@
             if (skipBtn) skipBtn.addEventListener('click', finalizarIntro);
             if (video) video.addEventListener('ended', finalizarIntro);
 
-            // Siempre mostrar el overlay al inicio
             if (overlay) overlay.style.display = 'flex';
             if (verificationSection) verificationSection.style.display = 'none';
         })();
 
-        // ========== CONFIGURACIÓN Y DATOS (mismo que antes) ==========
+        // ========== NUEVOS NÚCLEOS Y PNF DEL ESTADO LA GUAIRA ==========
+        // Estructura de la oferta académica ampliada con los datos proporcionados
+        const nuevosNucleosLaGuaira = {
+            "COMPLEJO EDUCATIVO CARABALLEDA": [
+                { programa: "ADMINISTRACION", tipo: "PNF" },
+                { programa: "CONTADURIA PUBLICA", tipo: "PNF" },
+                { programa: "DISTRIBUCION Y LOGISTICA", tipo: "PNF" },
+                { programa: "EDUCACION INICIAL", tipo: "PNF" },
+                { programa: "TURISMO", tipo: "PNF" },
+                { programa: "INGENIERIA INFORMATICA", tipo: "PNF" }
+            ],
+            "LICEO GUAICAIPURO": [
+                { programa: "ADMINISTRACION", tipo: "PNF" },
+                { programa: "CONTADURIA PUBLICA", tipo: "PNF" },
+                { programa: "DISTRIBUCION Y LOGISTICA", tipo: "PNF" },
+                { programa: "TRABAJO SOCIAL", tipo: "PNF" },
+                { programa: "INGENIERIA AGROALIMENTARIA", tipo: "PNF" }
+            ],
+            "LICEO BOLIVARIANO CARUAO": [
+                { programa: "ADMINISTRACION", tipo: "PNF" },
+                { programa: "TRABAJO SOCIAL", tipo: "PNF" },
+                { programa: "TURISMO", tipo: "PNF" }
+            ],
+            "E.N.B LUIS BELTRAN PIETRO FIGUEROA": [
+                { programa: "ADMINISTRACION", tipo: "PNF" },
+                { programa: "CONTADURIA PUBLICA", tipo: "PNF" },
+                { programa: "EDUCACION ESPECIAL", tipo: "PNF" },
+                { programa: "EDUCACION INICIAL", tipo: "PNF" },
+                { programa: "DISTRIBUCION Y LOGISTICA", tipo: "PNF" },
+                { programa: "TRABAJO SOCIAL", tipo: "PNF" },
+                { programa: "TURISMO", tipo: "PNF" },
+                { programa: "INGENIERIA INFORMATICA", tipo: "PNF" }
+            ],
+            "E.I.B GUAICOTO": [
+                { programa: "ADMINISTRACION", tipo: "PNF" },
+                { programa: "CONTADURIA PUBLICA", tipo: "PNF" },
+                { programa: "TURISMO", tipo: "PNF" },
+                { programa: "INGENIERIA INFORMATICA", tipo: "PNF" }
+            ],
+            "E.T LICENCIADO ARANDA": [
+                { programa: "ADMINISTRACION", tipo: "PNF" },
+                { programa: "CONTADURIA PUBLICA", tipo: "PNF" },
+                { programa: "INGENIERIA INFORMATICA", tipo: "PNF" }
+            ],
+            "E.B NAIGUATA": [
+                { programa: "ADMINISTRACION", tipo: "PNF" },
+                { programa: "CONTADURIA PUBLICA", tipo: "PNF" },
+                { programa: "EDUCACION INICIAL", tipo: "PNF" }
+            ],
+            "LICEO NACIONAL HUGO CHAVEZ FRIAS": [
+                { programa: "ADMINISTRACION", tipo: "PNF" },
+                { programa: "CONTADURIA PUBLICA", tipo: "PNF" },
+                { programa: "DISTRIBUCION Y LOGISTICA", tipo: "PNF" },
+                { programa: "EDUCACION ESPECIAL", tipo: "PNF" },
+                { programa: "EDUCACION INICIAL", tipo: "PNF" },
+                { programa: "TRABAJO SOCIAL", tipo: "PNF" },
+                { programa: "TURISMO", tipo: "PNF" },
+                { programa: "INGENIERIA INFORMATICA", tipo: "PNF" }
+            ],
+            "E.B.E ALBERTO RAVELL": [
+                { programa: "ADMINISTRACION", tipo: "PNF" },
+                { programa: "CONTADURIA PUBLICA", tipo: "PNF" },
+                { programa: "INGENIERIA INFORMATICA", tipo: "PNF" }
+            ]
+        };
+
+        // ========== CONFIGURACIÓN Y DATOS ==========
         const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxP-xiXx1ekm71MNlXHdiV6FfVeJLc8GQ_O3nU7jehn6RNDkB1mFU4y3JFX-o016F_C/exec';
         let datosComunas = null;
         let profesores = [];
         let ofertaAcademica = {};
 
+        // Cargar oferta_academica.json y fusionar con los nuevos núcleos de La Guaira
+        fetch('oferta_academica.json')
+            .then(response => response.json())
+            .then(data => {
+                // Fusionar: primero los datos existentes, luego sobrescribir/agregar los nuevos
+                ofertaAcademica = { ...data, ...nuevosNucleosLaGuaira };
+                cargarNucleosPaso2();
+                console.log('✅ oferta_academica.json cargado y fusionado con nuevos núcleos de La Guaira');
+            })
+            .catch(error => {
+                console.error('❌ Error cargando oferta_academica.json, usando solo los nuevos núcleos:', error);
+                ofertaAcademica = { ...nuevosNucleosLaGuaira };
+                cargarNucleosPaso2();
+            });
+
+        // Cargar comunas.json
         fetch('comunas.json')
             .then(response => response.json())
             .then(data => { datosComunas = data; inicializarSelectores(); console.log('✅ comunas.json cargado'); })
             .catch(error => { console.error('❌ Error cargando comunas.json:', error); const estadoSel = document.getElementById('estadoSelect'); if (estadoSel) estadoSel.innerHTML = '<option value="">Error al cargar</option>'; });
 
-        fetch('oferta_academica.json')
-            .then(response => response.json())
-            .then(data => { ofertaAcademica = data; cargarNucleosPaso2(); console.log('✅ oferta_academica.json cargado'); })
-            .catch(error => { console.error('❌ Error cargando oferta_academica.json:', error); const nucleoSelect = document.getElementById('nucleoSelectPaso2'); if (nucleoSelect) nucleoSelect.innerHTML = '<option value="">Error al cargar núcleos</option>'; });
-
+        // Cargar profesores.json
         fetch('profesores.json')
             .then(response => response.json())
             .then(data => { profesores = data; console.log('✅ Profesores cargados:', profesores.length); })
             .catch(error => console.error('❌ Error cargando profesores.json:', error));
 
+        // Funciones auxiliares
         function mostrarMensaje(texto, tipo) {
             const divExito = document.getElementById('mensajeExito');
             const divError = document.getElementById('mensajeError');
@@ -716,16 +813,28 @@
             if (tipo === 'error') {
                 divError.textContent = texto;
                 divError.style.display = 'block';
-                setTimeout(() => divError.style.display = 'none', 5000);
+                setTimeout(() => divError.style.display = 'none', 8000);
             } else if (tipo === 'exito') {
                 divExito.textContent = texto;
                 divExito.style.display = 'block';
-                setTimeout(() => divExito.style.display = 'none', 5000);
+                setTimeout(() => divExito.style.display = 'none', 8000);
             } else {
                 divInfo.textContent = texto;
                 divInfo.style.display = 'block';
-                setTimeout(() => divInfo.style.display = 'none', 5000);
+                setTimeout(() => divInfo.style.display = 'none', 8000);
             }
+        }
+
+        // NUEVO: Mostrar toast de éxito flotante
+        function mostrarToastExito(mensaje) {
+            const toast = document.createElement('div');
+            toast.className = 'toast-success';
+            toast.innerHTML = `<i class="fas fa-check-circle"></i> ${mensaje}`;
+            document.body.appendChild(toast);
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                setTimeout(() => toast.remove(), 500);
+            }, 5000);
         }
 
         function inicializarSelectores() {
@@ -896,15 +1005,22 @@
                 data.timestamp = new Date().toISOString();
                 try {
                     await fetch(GOOGLE_APPS_SCRIPT_URL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
-                    mostrarMensaje('✅ Registro enviado', 'exito');
+                    
+                    // NUEVO: Scroll al inicio y mostrar mensaje de éxito más visible
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    mostrarMensaje('✅ ¡Registro enviado con éxito! Tu proyecto ha sido registrado.', 'exito');
+                    mostrarToastExito('Registro completado correctamente');
+                    
+                    // Resetear formulario y volver a pantalla de verificación
                     this.reset();
                     this.classList.add('oculto');
                     document.getElementById('verificacion').style.display = 'block';
                     document.getElementById('cedulaVerificar').value = '';
                     document.getElementById('interes_ninguno').checked = true;
+                    
                 } catch (error) {
                     console.error(error);
-                    mostrarMensaje('Error al enviar', 'error');
+                    mostrarMensaje('Error al enviar. Intenta de nuevo.', 'error');
                 } finally {
                     btn.disabled = false;
                     btn.innerHTML = '<i class="fas fa-paper-plane"></i> Enviar registro completo';
